@@ -4,7 +4,7 @@
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -lreadline
+CFLAGS = -Wall -Werror -Wextra
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
