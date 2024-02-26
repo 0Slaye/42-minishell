@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/04 14:01:15 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:08:29 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_lstsize(t_list *lst)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
-	return (0);
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i + 1);
 }

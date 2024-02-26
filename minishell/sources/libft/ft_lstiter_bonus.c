@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/04 14:25:35 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:08:23 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
-	return (0);
+	if (lst == NULL)
+		return ;
+	while (lst->next != NULL)
+	{
+		(*f)(lst->content);
+		lst = lst->next;
+	}
+	(*f)(lst->content);
 }

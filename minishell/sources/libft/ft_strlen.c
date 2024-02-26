@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/01 10:11:11 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/15 17:55:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+size_t	ft_strlen(const char *s)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

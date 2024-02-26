@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/01 10:14:42 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:08:40 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *) s)[i] = c;
+		i++;
+	}
+	return (s);
 }

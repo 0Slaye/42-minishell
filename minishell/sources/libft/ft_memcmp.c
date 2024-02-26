@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/01 11:14:09 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:08:33 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char *) s1)[i] != ((unsigned char *) s2)[i])
+			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
+		i++;
+	}
+	return (((unsigned char *) s1)[i - 1] - ((unsigned char *) s2)[i - 1]);
 }

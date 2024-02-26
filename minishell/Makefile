@@ -10,8 +10,10 @@ CFLAGS = -Wall -Werror -Wextra
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
+LIBFT = sources/libft
 SRCS_FILES =	main.c \
-				prompt/prompt.c
+				prompt/prompt.c \
+				lexer/lexer.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
@@ -20,7 +22,8 @@ INCLS = includes/
 #                                      EXTRA                                   #
 ################################################################################
 
-NFILES := $(shell find ./sources -name "*.c" | wc -l)
+NLIBFTFILES := $(shell find ./sources/libft -name "*.c" | wc -l)
+NFILES := $$(($(shell find ./sources -name "*.c" | wc -l) - $(NLIBFTFILES)))
 COUNTER := 0
 
 UPDATE = \033[0K\r
@@ -38,7 +41,8 @@ BLUE = \033[1;34m
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -lreadline
+	@make bonus -C $(LIBFT) --no-print-directory
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -lreadline $(LIBFT)/libft.a
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)100$(WHITE)/$(BLUE)100$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)binary$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
 
@@ -48,10 +52,12 @@ $(NAME) : $(OBJS)
 	@printf "$(BOLD)[$(NAME)] : [$(BLUE)$(shell echo $$(($(COUNTER) * 100 / $(NFILES))))$(WHITE)/$(BLUE)100$(WHITE)]$(RESET)$(UPDATE)"
 
 clean :
+	@make clean -C $(LIBFT) --no-print-directory
 	@rm -f $(OBJS)
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)objects$(WHITE)] [$(RED)✘$(WHITE)]$(RESET)"
 
 fclean : clean
+	@make fclean -C $(LIBFT) --no-print-directory
 	@rm -f $(NAME)
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)binary$(WHITE)] [$(RED)✘$(WHITE)]$(RESET)"
 

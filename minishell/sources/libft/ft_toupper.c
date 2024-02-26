@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/01 10:46:03 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:09:32 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+static int	ft_islower(int c)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
+	if (c >= 'a' && c <= 'z')
+		return (1);
 	return (0);
+}
+
+int	ft_toupper(int c)
+{
+	if (ft_islower(c))
+		return (c - 32);
+	return (c);
 }

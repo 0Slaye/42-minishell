@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/01 10:56:10 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:09:13 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strrchr(const char *s, int c)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
+	int		i;
+	char	convert;
+
+	i = 0;
+	convert = c;
+	if (convert == 0)
+		return ((char *) &s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == convert && ft_strchr((char *) &s[i + 1], convert) == 0)
+			return ((char *) &s[i]);
+		i++;
+	}
 	return (0);
 }

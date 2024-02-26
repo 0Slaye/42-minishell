@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/01 11:09:37 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:08:31 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
+	size_t	i;
+	char	convert;
+
+	i = 0;
+	convert = c;
+	while (i < n)
+	{
+		if (((char *) s)[i] == convert)
+			return (&((char *) s)[i]);
+		i++;
+	}
 	return (0);
 }

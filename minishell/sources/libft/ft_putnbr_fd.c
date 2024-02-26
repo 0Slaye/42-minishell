@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/03 16:18:18 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:08:46 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_putnbr_fd(int n, int fd)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
-	return (0);
+	long	value;
+	char	input;
+
+	value = (long) n;
+	if (value < 0)
+	{
+		write(fd, "-", 1);
+		value *= -1;
+	}
+	input = '0' + value % 10;
+	if (value < 10)
+	{
+		write(fd, &input, 1);
+		return ;
+	}
+	ft_putnbr_fd(value / 10, fd);
+	write(fd, &input, 1);
 }

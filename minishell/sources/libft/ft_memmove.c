@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:41 by uwywijas         ###   ########.fr       */
+/*   Created: 2023/11/01 10:24:32 by uwywijas          #+#    #+#             */
+/*   Updated: 2023/12/08 17:08:37 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	(void) argc, (void) argv, (void) env;
-	prompt("minishel: ");
-	return (0);
+	size_t	i;
+
+	if (dest == 0 && src == 0)
+		return (dest);
+	if (src < dest)
+	{
+		i = -1;
+		while (++i < n)
+			((char *) dest)[n - i - 1] = ((char *) src)[n - i - 1];
+	}
+	else
+	{
+		i = -1;
+		while (++i < n)
+			((char *) dest)[i] = ((char *) src)[i];
+	}
+	return (dest);
 }

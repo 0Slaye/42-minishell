@@ -6,20 +6,21 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 15:10:11 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:47:03 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 
-int	prompt(void)
+int	prompt(char *value)
 {
 	char	*line_read;
 
 	while (TRUE)
 	{
-		line_read = readline(PROMPT);
+		line_read = readline(value);
 		add_history(line_read);
+		lexer(line_read);
 		free(line_read);
 	}
 }
