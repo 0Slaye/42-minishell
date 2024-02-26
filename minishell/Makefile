@@ -10,7 +10,8 @@ CFLAGS = -Wall -Werror -Wextra
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
-SRCS_FILES =	main.c
+SRCS_FILES =	main.c \
+				prompt/prompt.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
@@ -37,7 +38,7 @@ BLUE = \033[1;34m
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -lreadline
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)100$(WHITE)/$(BLUE)100$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)binary$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
 
