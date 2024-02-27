@@ -51,23 +51,3 @@
 
 ## Norm
 - 42 norminette
-
-
-
-
-
-
-
-
-q
-
-
-
-
-
-
-
-
-
-# Prompt
-
