@@ -14,13 +14,13 @@
 
 ## Prompt
 > [!NOTE]
-> The readline() function can cause memory leaks. We don’t have to fix them
+> The readline() function can cause memory leaks. We don’t have to fix them.
  - handling prompt
  - handling history
 
 ## Lexer
 > [!NOTE]
-> We have to handle '$' with environment variables and '?'
+> We have to handle '$' with environment variables and '?'.
 > We don't have to handle unclosed quotes or special characters which are not required by the subject such as '\' or ';'.
 - tokens creation
 - text spliting
