@@ -20,7 +20,7 @@
 
 ## Lexer
 > [!NOTE]
-> We have to handle '$'VAR and '$'?
+> We have to handle '$' with environment variables and '?'
 - tokens creation
 - text spliting
 - token assignment
