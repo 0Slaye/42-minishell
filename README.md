@@ -23,12 +23,13 @@
 > We have to handle '$' with environment variables and '?'
 >
 > We don't have to handle unclosed quotes or special characters which are not required by the subject such as '\\' or ';'
-- tokens creation
 - text spliting
+- tokens creation
 - token assignment
 
 ## Ast
 - linked list creation
+- main execution
 - linked list reading method
 
 ## Path
