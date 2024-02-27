@@ -1,16 +1,16 @@
 ![Banner](assets/banner.png)
 
 # Working tree
-|Theme|Link|Ressource|State|
-|--|--|--|--|
-|Prompt|[section](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|todo|
-|Lexer|[section](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|todo|
-|Ast|[section](#Ast)|[wikipedia](https://en.wikipedia.org/wiki/Abstract_syntax_tree)|todo|
-|Path|[section](#Path)|[wikipedia](https://en.wikipedia.org/wiki/Path_(computing))|todo|
-|Signals|[section](#Signals)|[wikipedia](https://en.wikipedia.org/wiki/Bash_(Unix_shell))|todo|
-|Builtins|[section](#Builtins)|[manual](https://www.man7.org/linux/man-pages/)|todo|
-|Leaks|[section](#Leaks)|[wikipedia](https://en.wikipedia.org/wiki/Valgrind)|todo|
-|Norm|[section](#Norm)|[github](https://github.com/42School/norminette)|todo|
+|Theme|Ressource|State|
+|--|--|--|
+[Prompt](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|todo|
+[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|todo|
+[Ast](#Ast)|[wikipedia](https://en.wikipedia.org/wiki/Abstract_syntax_tree)|todo|
+[Path](#Path)|[wikipedia](https://en.wikipedia.org/wiki/Path_(computing))|todo|
+[Signals](#Signals)|[wikipedia](https://en.wikipedia.org/wiki/Bash_(Unix_shell))|todo|
+[Builtins](#Builtins)|[manual](https://www.man7.org/linux/man-pages/)|todo|
+[Leaks](#Leaks)|[wikipedia](https://en.wikipedia.org/wiki/Valgrind)|todo|
+[Norm](#Norm)|[github](https://github.com/42School/norminette)|todo|
 
 ## Prompt
 > [!NOTE]
