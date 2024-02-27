@@ -19,6 +19,8 @@
  - handling history
 
 ## Lexer
+> [!NOTE]
+> We have to handle $VAR and $?
 - tokens creation
 - text spliting
 - token assignment
