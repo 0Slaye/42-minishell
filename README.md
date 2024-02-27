@@ -34,8 +34,11 @@
 
 ## Signals
 - ctrl-c
+	- in interactive, displays a new prompt on a new line
 - ctrl-d
+	- in interactive, exits the shell
 - ctrl-\
+	- in interactive, does nothing
 
 ## Builtins
 - echo with option -n
