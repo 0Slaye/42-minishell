@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:48:24 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:33:13 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	lexer(char *line)
 {
-	int	i;
-
-	i = -1;
-	if (!line)
-		return ;
-	while (line[++i] != '\0')
-		printf("%c", line[i]);
-	printf("\n");
+	(void) line; // Cuting line by pipe ?
+	return ;
 }
