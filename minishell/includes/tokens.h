@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commons.h                                          :+:      :+:    :+:   */
+/*   tokens.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/02/28 17:59:22 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/02/28 18:10:25 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMONS_H
-# define COMMONS_H
+#ifndef TOKENS_H
+# define TOKENS_H
 
-# define TRUE 1
-# define FALSE 0
+# define PIPE "|"
+# define SL_REDIRECTION "<"
+# define SR_REDIRECTION ">"
+# define DL_REDIRECTION "<<"
+# define DR_REDIRECTION ">>"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "../sources/libft/libft.h"
-
-int		prompt(char *value);
-t_list	**lexer(char *line);
+enum e_tokens
+{
+	T_WORD,
+	T_PIPE,
+	T_SL_REDIRECTION,
+	T_SR_REDIRECTION,
+	T_DL_REDIRECTION,
+	T_DR_REDIRECTION
+};
 
 #endif
