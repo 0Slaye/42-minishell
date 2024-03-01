@@ -6,12 +6,28 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/01 15:27:49 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:37:19 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "tokens.h"
+
+int	get_type(char *line)
+{
+	if (is_token(line, PIPE))
+		return (T_PIPE);
+	if (is_token(line, DL_REDIRECTION))
+		return (T_DL_REDIRECTION);
+	if (is_token(line, DR_REDIRECTION))
+		return (T_DR_REDIRECTION);
+	if (is_token(line, SL_REDIRECTION))
+		return (T_SL_REDIRECTION);
+	if (is_token(line, SR_REDIRECTION))
+		return (T_SR_REDIRECTION);
+	else
+		return (T_WORD);
+}
 
 t_token	*get_token(int type, char *value)
 {
@@ -84,18 +100,7 @@ t_list	**lexer(char *line)
 	type = -1;
 	while (line[++i] != '\0')
 	{
-		if (is_token(&line[i], PIPE))
-			type = T_PIPE;
-		else if (is_token(&line[i], DL_REDIRECTION))
-			type = T_DL_REDIRECTION;
-		else if (is_token(&line[i], DR_REDIRECTION))
-			type = T_DR_REDIRECTION;
-		else if (is_token(&line[i], SL_REDIRECTION))
-			type = T_SL_REDIRECTION;
-		else if (is_token(&line[i], SR_REDIRECTION))
-			type = T_SR_REDIRECTION;
-		else
-			type = T_WORD;
+		type = get_type(&line[i]);
 		if (type == T_DL_REDIRECTION || type == T_DR_REDIRECTION)
 			i++;
 		token = get_token(type, get_value(&line[i], type));
