@@ -13,7 +13,8 @@ CFLAGS = -Wall -Werror -Wextra
 LIBFT = sources/libft
 SRCS_FILES =	main.c \
 				prompt/prompt.c \
-				lexer/lexer.c
+				lexer/lexer.c \
+				lexer/lexer_utils.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
@@ -62,5 +63,11 @@ fclean : clean
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)binary$(WHITE)] [$(RED)✘$(WHITE)]$(RESET)"
 
 re : fclean all
+
+git : fclean
+	@git add .
+	@git commit -m "$(shell date)"
+	@git push
+	@echo "$(BOLD)[$(NAME)] : [$(BLUE)github$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
 
 .PHONY : all clean fclean re
