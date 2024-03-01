@@ -64,10 +64,4 @@ fclean : clean
 
 re : fclean all
 
-git : fclean
-	@git add .
-	@git commit -m "$(shell date)"
-	@git push
-	@echo "$(BOLD)[$(NAME)] : [$(BLUE)github$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
-
 .PHONY : all clean fclean re
