@@ -3,8 +3,8 @@
 # Working tree
 |Theme|Ressource|State|
 |--|--|--|
-[Prompt](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|todo|
-[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|todo|
+[Prompt](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|done|
+[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|doing|
 [Ast](#Ast)|[wikipedia](https://en.wikipedia.org/wiki/Abstract_syntax_tree)|todo|
 [Path](#Path)|[wikipedia](https://en.wikipedia.org/wiki/Path_(computing))|todo|
 [Signals](#Signals)|[wikipedia](https://en.wikipedia.org/wiki/Bash_(Unix_shell))|todo|
