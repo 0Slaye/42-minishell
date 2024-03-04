@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:11:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/01 15:27:36 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:40:52 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int	is_token(char *start, char *token)
 	return (0);
 }
 
-int	get_word_lenght(char *line)
+int	get_word_lenght(char *line, int type)
 {
 	int	i;
 
 	i = -1;
+	if (type != T_WORD)
+		return (0);
 	while (line[++i] != '\0')
 	{
 		if (is_token(&line[i], PIPE))
@@ -38,17 +40,25 @@ int	get_word_lenght(char *line)
 		if (is_token(&line[i], SR_REDIRECTION))
 			break ;
 	}
-	return (i - 1);
+	return (i);
 }
 
-void	show_lexer(t_list **lexing)
+void	show_lexing(t_list **lexing)
 {
-	while ((*lexing)->next != NULL)
+	while (*lexing)
 	{
-		printf("%d : ", (int)((t_token *)((*lexing)->content))->type);
+		printf("%d: ", (int)((t_token *)((*lexing)->content))->type);
 		printf("[%s]\n", (char *)((t_token *)((*lexing)->content))->value);
 		*lexing = (*lexing)->next;
 	}
-	printf("%d : ", (int)((t_token *)((*lexing)->content))->type);
-	printf("[%s]\n", (char *)((t_token *)((*lexing)->content))->value);
+}
+
+void	free_lexing(t_list **lexing)
+{
+	while (*lexing)
+	{
+		free((char *)((t_token *)((*lexing)->content))->value);
+		*lexing = (*lexing)->next;
+	}
+	ft_lstclear(lexing, &free);
 }

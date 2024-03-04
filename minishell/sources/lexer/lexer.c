@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/01 15:37:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:46:51 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,43 @@ int	get_type(char *line)
 		return (T_WORD);
 }
 
-t_token	*get_token(int type, char *value)
+char	*get_value(char *line, char *value, int type)
+{
+	int		i;
+
+	i = -1;
+	if (type != T_WORD)
+		return (NULL);
+	value[get_word_lenght(line, type)] = '\0';
+	while (line[++i] != '\0')
+	{
+		if (is_token(&line[i], PIPE))
+			break ;
+		if (is_token(&line[i], DL_REDIRECTION))
+			break ;
+		if (is_token(&line[i], DR_REDIRECTION))
+			break ;
+		if (is_token(&line[i], SL_REDIRECTION))
+			break ;
+		if (is_token(&line[i], SR_REDIRECTION))
+			break ;
+		value[i] = line[i];
+	}
+	return (value);
+}
+
+t_token	*get_token(char *line, int type)
 {
 	t_token	*token;
+	char	*value;
 
+	token = malloc(sizeof(t_token));
+	if (!token)
+		return (NULL);
+	value = malloc(sizeof(char) * (get_word_lenght(line, type) + 1));
 	if (!value)
-		return (NULL);
-	token = malloc(sizeof(t_token *));
-	if (!token && type == T_WORD)
-		return (free(value), NULL);
-	else if (!token)
-		return (NULL);
+		return (free(token), NULL);
+	value = get_value(line, value, type);
 	token->type = type;
 	token->value = value;
 	return (token);
@@ -56,35 +82,6 @@ int	add_token(t_list **list, t_token *token)
 	return (0);
 }
 
-char	*get_value(char *line, int type)
-{
-	char	*result;
-	int		i;
-
-	i = -1;
-	if (type != T_WORD)
-		return ("token\0");
-	result = malloc(sizeof(char) * (get_word_lenght(line) + 1));
-	if (!result)
-		return (NULL);
-	result[get_word_lenght(line)] = '\0';
-	while (line[++i] != '\0')
-	{
-		if (is_token(&line[i], PIPE))
-			break ;
-		if (is_token(&line[i], DL_REDIRECTION))
-			break ;
-		if (is_token(&line[i], DR_REDIRECTION))
-			break ;
-		if (is_token(&line[i], SL_REDIRECTION))
-			break ;
-		if (is_token(&line[i], SR_REDIRECTION))
-			break ;
-		result[i] = line[i];
-	}
-	return (result);
-}
-
 t_list	**lexer(char *line)
 {
 	t_list	**lexing;
@@ -98,16 +95,17 @@ t_list	**lexer(char *line)
 	*lexing = NULL;
 	i = -1;
 	type = -1;
-	while (line[++i] != '\0')
+	while (i <= (int) ft_strlen(line) && line[++i] != '\0')
 	{
 		type = get_type(&line[i]);
 		if (type == T_DL_REDIRECTION || type == T_DR_REDIRECTION)
 			i++;
-		token = get_token(type, get_value(&line[i], type));
+		token = get_token(&line[i], type);
+		if (!token)
+			return (free_lexing(lexing), NULL);
 		add_token(lexing, token);
 		if (type == T_WORD)
-			i += get_word_lenght(&line[i]);
+			i += get_word_lenght(&line[i], type) - 1;
 	}
-	show_lexer(lexing);
-	return (lexing);
+	return (show_lexing(lexing), free_lexing(lexing), lexing);
 }
