@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:11:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/04 17:40:52 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:09:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ void	show_lexing(t_list **lexing)
 	}
 }
 
+void	deleter(void *value)
+{
+	free((char *)((t_token *)value)->value);
+	free(value);
+}
+
 void	free_lexing(t_list **lexing)
 {
-	while (*lexing)
-	{
-		free((char *)((t_token *)((*lexing)->content))->value);
-		*lexing = (*lexing)->next;
-	}
-	ft_lstclear(lexing, &free);
+	ft_lstclear(lexing, &deleter);
 }

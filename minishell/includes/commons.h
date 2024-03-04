@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/04 17:02:49 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:02:50 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <readline/history.h>
 # include "../sources/libft/libft.h"
 
-int		prompt(char *value);
+void	prompt(char *value);
 t_list	**lexer(char *line);
 int		is_token(char *start, char *token);
 int		get_word_lenght(char *line, int type);
