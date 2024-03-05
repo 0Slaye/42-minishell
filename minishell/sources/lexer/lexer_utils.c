@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:11:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/05 10:54:04 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:38:24 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_word_lenght(char *line, int type)
 
 void	show_lexing(t_list **lexing)
 {
-	t_list *holder;
+	t_list	*holder;
 
 	holder = *lexing;
 	while (*lexing)

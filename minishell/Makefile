@@ -14,7 +14,8 @@ LIBFT = sources/libft
 SRCS_FILES =	main.c \
 				prompt/prompt.c \
 				lexer/lexer.c \
-				lexer/lexer_utils.c
+				lexer/lexer_utils.c \
+				lexer/quotes.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
@@ -64,11 +65,9 @@ fclean : clean
 
 re : fclean all
 
-valgrind : 
-	@valgrind --quiet --leak-check=full ./minishell
-
-clear :
+valgrind : re
 	@clear
+	@valgrind --quiet --leak-check=full ./minishell
 
 git : fclean
 	@git add . > /dev/null 2>&1
