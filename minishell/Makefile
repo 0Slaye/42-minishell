@@ -64,10 +64,16 @@ fclean : clean
 
 re : fclean all
 
+valgrind : 
+	@valgrind --quiet --leak-check=full ./minishell
+
+clear :
+	@clear
+
 git : fclean
 	@git add .
 	@git commit -m "$(shell date)"
-	@git push
+	@git push > /dev/null
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)github$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
 
 .PHONY : all clean fclean re

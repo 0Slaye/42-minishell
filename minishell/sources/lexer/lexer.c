@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/04 17:46:51 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:54:30 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@ t_list	**lexer(char *line)
 		if (type == T_WORD)
 			i += get_word_lenght(&line[i], type) - 1;
 	}
-	return (show_lexing(lexing), free_lexing(lexing), lexing);
+	show_lexing(lexing);
+	free_lexing(lexing);
+	return (NULL);
 }

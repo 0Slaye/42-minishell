@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:11:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/04 18:09:44 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:54:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,16 @@ int	get_word_lenght(char *line, int type)
 
 void	show_lexing(t_list **lexing)
 {
+	t_list *holder;
+
+	holder = *lexing;
 	while (*lexing)
 	{
 		printf("%d: ", (int)((t_token *)((*lexing)->content))->type);
 		printf("[%s]\n", (char *)((t_token *)((*lexing)->content))->value);
 		*lexing = (*lexing)->next;
 	}
+	*lexing = holder;
 }
 
 void	deleter(void *value)
@@ -62,4 +66,5 @@ void	deleter(void *value)
 void	free_lexing(t_list **lexing)
 {
 	ft_lstclear(lexing, &deleter);
+	free(lexing);
 }
