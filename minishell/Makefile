@@ -72,7 +72,7 @@ clear :
 
 git : fclean
 	@git add . > /dev/null 2>&1
-	@git commit -m "$(shell date)"
+	@git commit -m "$(shell date)" > /dev/null 2>&1
 	@git push > /dev/null 2>&1
 	@echo "$(BOLD)[$(NAME)] : [$(BLUE)github$(WHITE)] [$(GREEN)✔️$(WHITE)]$(RESET)"
 
