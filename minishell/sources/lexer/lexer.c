@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/05 11:34:13 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:59:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,14 @@ t_token	*get_token(char *line, int type)
 {
 	t_token	*token;
 	char	*value;
+	int		length;
 
 	token = ft_calloc(1, sizeof(t_token));
 	if (!token)
 		return (NULL);
+	length = get_word_lenght(line, type);
+	if (length == -1)
+		return (free(token), NULL);
 	value = ft_calloc(get_word_lenght(line, type) + 1, sizeof(char));
 	if (!value)
 		return (free(token), NULL);
@@ -81,7 +85,7 @@ int	add_token(t_list **list, t_token *token)
 	return (0);
 }
 
-t_list	**lexer(char *line)
+t_list	**lexer(char *line) // << EOF 'test|' wc -l | cat > outfile
 {
 	t_list	**lexing;
 	t_token	*token;

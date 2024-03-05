@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/04 18:02:50 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:33:07 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	prompt(char *value);
 t_list	**lexer(char *line);
 int		is_token(char *start, char *token);
 int		get_word_lenght(char *line, int type);
+int		get_simple_quotes_length(char *line);
 void	show_lexing(t_list **lexing);
 void	free_lexing(t_list **lexing);
 

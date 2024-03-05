@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/04 17:45:43 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:08:59 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ enum e_tokens
 typedef struct s_token
 {
 	int		type;
-	char	*value;
+	void	*value;
 }	t_token;
 
 #endif
