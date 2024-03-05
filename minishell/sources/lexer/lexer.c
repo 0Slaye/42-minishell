@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/05 10:54:30 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:31:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	get_type(char *line)
 		return (T_WORD);
 }
 
-char	*get_value(char *line, char *value, int type)
+void	get_value(char *line, char *value, int type)
 {
 	int		i;
 
 	i = -1;
 	if (type != T_WORD)
-		return (NULL);
+		return ;
 	value[get_word_lenght(line, type)] = '\0';
 	while (line[++i] != '\0')
 	{
@@ -51,7 +51,6 @@ char	*get_value(char *line, char *value, int type)
 			break ;
 		value[i] = line[i];
 	}
-	return (value);
 }
 
 t_token	*get_token(char *line, int type)
@@ -59,13 +58,13 @@ t_token	*get_token(char *line, int type)
 	t_token	*token;
 	char	*value;
 
-	token = malloc(sizeof(t_token));
+	token = ft_calloc(1, sizeof(t_token));
 	if (!token)
 		return (NULL);
-	value = malloc(sizeof(char) * (get_word_lenght(line, type) + 1));
+	value = ft_calloc(get_word_lenght(line, type) + 1, sizeof(char));
 	if (!value)
 		return (free(token), NULL);
-	value = get_value(line, value, type);
+	get_value(line, value, type);
 	token->type = type;
 	token->value = value;
 	return (token);
@@ -89,7 +88,7 @@ t_list	**lexer(char *line)
 	int		type;
 	int		i;
 
-	lexing = malloc(sizeof(t_list **));
+	lexing = ft_calloc(1, sizeof(t_list **));
 	if (!lexing)
 		return (NULL);
 	*lexing = NULL;
@@ -107,7 +106,5 @@ t_list	**lexer(char *line)
 		if (type == T_WORD)
 			i += get_word_lenght(&line[i], type) - 1;
 	}
-	show_lexing(lexing);
-	free_lexing(lexing);
-	return (NULL);
+	return (show_lexing(lexing), free_lexing(lexing), NULL);
 }
