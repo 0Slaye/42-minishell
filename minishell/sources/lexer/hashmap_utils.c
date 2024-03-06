@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes.c                                           :+:      :+:    :+:   */
+/*   hashmap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 12:02:51 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/05 12:50:09 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/06 17:13:09 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/06 17:19:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
+#include "tokens.h"
 
-int	get_simple_quotes_length(char *line)
+void	show_hashmap(int *hashmap, int length)
 {
 	int	i;
-	int	result;
 
 	i = -1;
-	result = 0;
-	while (line[++i] != '\'' && line[i] != '\0')
-		result++;
-	if (line[i] == '\0')
-		return (-1);
-	return (result);
+	printf("Hashmap: ");
+	while (++i < length)
+		printf("%d ", hashmap[i]);
+	printf("\n");
 }

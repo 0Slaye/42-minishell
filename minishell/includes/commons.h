@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/05 12:33:07 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:29:46 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@
 # include <readline/history.h>
 # include "../sources/libft/libft.h"
 
+// Prompt
 void	prompt(char *value);
+
+// Lexer
 t_list	**lexer(char *line);
-int		is_token(char *start, char *token);
-int		get_word_lenght(char *line, int type);
-int		get_simple_quotes_length(char *line);
-void	show_lexing(t_list **lexing);
-void	free_lexing(t_list **lexing);
+int		*ft_hashmap(char *line);
+int		setup_quotes(char *line, int *hashmap);
+void	show_hashmap(int *hashmap, int length);
 
 #endif

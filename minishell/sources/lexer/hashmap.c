@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   hashmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:16:32 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/06 17:12:08 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/06 17:36:10 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "tokens.h"
+#include "errors.h"
 
-t_list	**lexer(char *line)
+int	setup_hashmap(char *line, int *hashmap)
+{
+	int	i;
+
+	i = -1;
+	while (++i < (int) ft_strlen(line))
+		hashmap[i] = 0;
+	if (setup_quotes(line, hashmap) != 0)
+		return (printf(ER_LEXER_QUOTE), 1);
+	return (0);
+}
+
+int	*ft_hashmap(char *line)
 {
 	int	*hashmap;
 
-	hashmap = ft_hashmap(line);
+	hashmap = malloc(sizeof(int) * ft_strlen(line));
 	if (!hashmap)
 		return (NULL);
-	show_hashmap(hashmap, ft_strlen(line));
-	return (free(hashmap), NULL);
+	if (setup_hashmap(line, hashmap) != 0)
+		return (free(hashmap), NULL);
+	return (hashmap);
 }

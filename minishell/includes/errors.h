@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:16:32 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/06 17:36:09 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
-#include "tokens.h"
+#ifndef ERRORS_H
+# define ERRORS_H
 
-t_list	**lexer(char *line)
-{
-	int	*hashmap;
+# define ER_LEXER_QUOTE "lexer: Error when parsing for quotes\n"
 
-	hashmap = ft_hashmap(line);
-	if (!hashmap)
-		return (NULL);
-	show_hashmap(hashmap, ft_strlen(line));
-	return (free(hashmap), NULL);
-}
+#endif

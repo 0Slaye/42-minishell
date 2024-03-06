@@ -15,7 +15,9 @@ SRCS_FILES =	main.c \
 				prompt/prompt.c \
 				lexer/lexer.c \
 				lexer/lexer_utils.c \
-				lexer/quotes.c
+				lexer/hashmap.c \
+				lexer/hashmap_utils.c \
+				lexer/hashmap_quotes.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
@@ -66,6 +68,7 @@ fclean : clean
 re : fclean all
 
 valgrind : re
+	@make clean
 	@clear
 	@valgrind --quiet --leak-check=full ./minishell
 

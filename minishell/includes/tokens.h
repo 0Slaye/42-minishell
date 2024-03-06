@@ -6,18 +6,18 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:08:59 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:06:48 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENS_H
 # define TOKENS_H
 
-# define PIPE "|"
-# define SL_REDIRECTION "<"
-# define SR_REDIRECTION ">"
-# define DL_REDIRECTION "<<"
-# define DR_REDIRECTION ">>"
+# define PIPE 124
+# define SL_REDIRECTION 60
+# define SR_REDIRECTION 62
+# define S_QUOTE 39
+# define D_QUOTE 34
 
 enum e_tokens
 {
@@ -26,7 +26,9 @@ enum e_tokens
 	T_SL_REDIRECTION,
 	T_SR_REDIRECTION,
 	T_DL_REDIRECTION,
-	T_DR_REDIRECTION
+	T_DR_REDIRECTION,
+	T_S_QUOTE,
+	T_D_QUOTE
 };
 
 typedef struct s_token
