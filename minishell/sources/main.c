@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/05 10:40:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:08:31 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	(void) argc, (void) argv, (void) envp;
-	prompt("minishell$ ");
-	return (0);
+	t_input	*input;
+
+	input = malloc(sizeof(t_input));
+	if (!input)
+		return (1);
+	input->argc = argc;
+	input->argv = argv;
+	input->envp = envp;
+	prompt("minishell$ ", input);
+	return (free(input), 0);
 }

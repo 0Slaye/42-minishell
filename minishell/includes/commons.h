@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:45:04 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:08:30 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,18 @@
 # include <readline/history.h>
 # include "../sources/libft/libft.h"
 
+typedef struct s_input
+{
+	int		argc;
+	char	**argv;
+	char	**envp;
+}	t_input;
+
 // Prompt
-void	prompt(char *value);
+void	prompt(char *value, t_input *input);
 
 // Lexer
-t_list	**lexer(char *line);
+t_list	**lexer(char *line, t_input *input);
 int		*ft_hashmap(char *line);
 void	show_hashmap(int *hashmap, int length);
 int		setup_quotes(char *line, int *hashmap);
