@@ -17,7 +17,8 @@ SRCS_FILES =	main.c \
 				lexer/lexer_utils.c \
 				lexer/hashmap.c \
 				lexer/hashmap_utils.c \
-				lexer/hashmap_quotes.c
+				lexer/hashmap_quotes.c \
+				lexer/hashmap_tokens.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/

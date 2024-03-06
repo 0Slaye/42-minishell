@@ -6,27 +6,12 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:19:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:32:26 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:40:01 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "tokens.h"
-
-int	count_char(char *str, char c)
-{
-	int	result;
-	int	i;
-
-	result = 0;
-	i = -1;
-	while (str[++i] != '\0')
-	{
-		if (str[i] == c)
-			result++;
-	}
-	return (result);
-}
 
 int	setup_quotes(char *line, int *hashmap)
 {

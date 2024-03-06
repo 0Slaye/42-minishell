@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:29:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:45:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	prompt(char *value);
 // Lexer
 t_list	**lexer(char *line);
 int		*ft_hashmap(char *line);
-int		setup_quotes(char *line, int *hashmap);
 void	show_hashmap(int *hashmap, int length);
+int		setup_quotes(char *line, int *hashmap);
+void	setup_tokens(char *line, int *hashmap);
 
 #endif

@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap.c                                          :+:      :+:    :+:   */
+/*   hashmap_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 17:12:08 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:47:28 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/06 17:39:51 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/06 17:44:53 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "tokens.h"
-#include "errors.h"
 
-int	setup_hashmap(char *line, int *hashmap)
+void	setup_tokens(char *line, int *hashmap)
 {
 	int	i;
 
 	i = -1;
-	while (++i < (int) ft_strlen(line))
-		hashmap[i] = 0;
-	if (setup_quotes(line, hashmap) != 0)
-		return (printf(ER_LEXER_QUOTE), 1);
-	setup_tokens(line, hashmap);
-	return (0);
-}
-
-int	*ft_hashmap(char *line)
-{
-	int	*hashmap;
-
-	hashmap = malloc(sizeof(int) * ft_strlen(line));
-	if (!hashmap)
-		return (NULL);
-	if (setup_hashmap(line, hashmap) != 0)
-		return (free(hashmap), NULL);
-	return (hashmap);
+	while (line[++i] != '\0')
+	{
+		if (line[i] == S_QUOTE)
+		{
+			while (line[++i] != S_QUOTE)
+				;
+		}
+		else if (line[i] == D_QUOTE)
+		{
+			while (line[++i] != D_QUOTE)
+				;
+		}
+		if (line[i] == PIPE)
+			hashmap[i] = T_PIPE;
+		else if (line[i] == SL_REDIRECTION)
+			hashmap[i] = T_SL_REDIRECTION;
+		else if (line[i] == SR_REDIRECTION)
+			hashmap[i] = T_SR_REDIRECTION;
+	}
 }
