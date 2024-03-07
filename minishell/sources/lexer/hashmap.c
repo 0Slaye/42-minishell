@@ -6,21 +6,15 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:12:08 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:06:57 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:27:18 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
-#include "tokens.h"
 #include "errors.h"
 
 int	setup_hashmap(char *line, int *hashmap)
 {
-	int	i;
-
-	i = -1;
-	while (++i < (int) ft_strlen(line))
-		hashmap[i] = 0;
 	if (setup_quotes(line, hashmap) != 0)
 		return (printf(ER_LEXER_QUOTE), 1);
 	setup_tokens(line, hashmap);
@@ -31,7 +25,7 @@ int	*ft_hashmap(char *line)
 {
 	int	*hashmap;
 
-	hashmap = malloc(sizeof(int) * ft_strlen(line));
+	hashmap = ft_calloc(ft_strlen(line), sizeof(int));
 	if (!hashmap)
 		return (NULL);
 	if (setup_hashmap(line, hashmap) != 0)

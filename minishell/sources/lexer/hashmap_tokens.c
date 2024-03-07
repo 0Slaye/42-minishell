@@ -6,12 +6,11 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:39:51 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:44:53 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:27:22 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
-#include "tokens.h"
 
 void	setup_tokens(char *line, int *hashmap)
 {

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:08:30 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:27:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../sources/libft/libft.h"
+# include "tokens.h"
 
 typedef struct s_input
 {
@@ -35,6 +36,10 @@ void	prompt(char *value, t_input *input);
 
 // Lexer
 t_list	**lexer(char *line, t_input *input);
+t_token	*get_token(int type, char *value);
+char	*get_word(int *hashmap, char *line);
+void	free_lexer(t_list **lexer);
+void	show_lexer(t_list **lexer);
 int		*ft_hashmap(char *line);
 void	show_hashmap(int *hashmap, int length);
 int		setup_quotes(char *line, int *hashmap);
