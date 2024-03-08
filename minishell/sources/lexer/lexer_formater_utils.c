@@ -6,11 +6,33 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 15:43:33 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:06:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
+
+int	quotes_case_utils_hashmap(char *value, char *result, int *i, int *offset)
+{
+	int	*hashmap;
+
+	hashmap = ft_hashmap(value);
+	if (!hashmap)
+		return (1);
+	if (hashmap[*i] == T_S_QUOTE)
+	{
+		while (hashmap[++(*i)] != T_S_QUOTE)
+			result[++(*offset)] = value[*i];
+		(*i)++;
+	}
+	else if (hashmap[*i] == T_D_QUOTE)
+	{
+		while (hashmap[++(*i)] != T_D_QUOTE)
+			result[++(*offset)] = value[*i];
+		(*i)++;
+	}
+	return (free(hashmap), 0);
+}
 
 int	quotes_case_util(char *value, char *result, int *i, int *offset)
 {
