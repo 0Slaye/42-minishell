@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 16:08:21 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:42:19 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,25 @@ int	quotes_case_utils_hashmap(char *value, char *result, int *i, int *offset)
 	hashmap = ft_hashmap(value);
 	if (!hashmap)
 		return (1);
+	if (*i == (int) ft_strlen(value))
+		return (free(hashmap), 0);
 	if (hashmap[*i] == T_S_QUOTE)
 	{
+		if (ft_strchr(&value[*i + 1], S_QUOTE) == 0)
+			return (free(hashmap), 0);
+		result[++(*offset)] = value[*i];
 		while (hashmap[++(*i)] != T_S_QUOTE)
 			result[++(*offset)] = value[*i];
-		(*i)++;
+		result[++(*offset)] = value[*i];
 	}
 	else if (hashmap[*i] == T_D_QUOTE)
 	{
+		if (ft_strchr(&value[*i + 1], T_D_QUOTE) == 0)
+			return (free(hashmap), 0);
+		result[++(*offset)] = value[*i];
 		while (hashmap[++(*i)] != T_D_QUOTE)
 			result[++(*offset)] = value[*i];
-		(*i)++;
+		result[++(*offset)] = value[*i];
 	}
 	return (free(hashmap), 0);
 }
