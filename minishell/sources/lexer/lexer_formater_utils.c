@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   lexer_formater_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 15:35:46 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/08 15:43:33 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 
-void	prompt(char *value, t_input *input)
+int	quotes_case_util(char *value, char *result, int *i, int *offset)
 {
-	char	*line_read;
-
-	while (TRUE)
-	{
-		line_read = readline(value);
-		add_history(line_read);
-		lexer(line_read, input);
-		free(line_read);
-	}
+	if (value[*i + 1] == '\0')
+		return (result[++(*offset)] = value[*i], 1);
+	if (value[*i] == S_QUOTE && value[*i + 1] == S_QUOTE)
+		*i += 1;
+	else if (value[*i] == D_QUOTE && value[*i + 1] == D_QUOTE)
+		*i += 1;
+	else
+		result[++(*offset)] = value[*i];
+	return (0);
 }
