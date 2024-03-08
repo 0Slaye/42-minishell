@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/07 11:27:04 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:30:48 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ void	prompt(char *value, t_input *input);
 
 // Lexer
 t_list	**lexer(char *line, t_input *input);
+int		lexer_get_type(t_list *list);
+void	lexer_formater(t_list **lexer);
+char	*lexer_get_value(t_list *list);
 t_token	*get_token(int type, char *value);
 char	*get_word(int *hashmap, char *line);
 void	free_lexer(t_list **lexer);
+void	lfree(void *token);
 void	show_lexer(t_list **lexer);
 int		*ft_hashmap(char *line);
 void	show_hashmap(int *hashmap, int length);

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/07 11:27:58 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:30:31 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_list	**lexer(char *line, t_input *input)
 	if (!hashmap)
 		return (NULL);
 	lexer = hashmap_parse(hashmap, line);
+	lexer_formater(lexer);
 	show_lexer(lexer);
 	free_lexer(lexer);
 	return (free(hashmap), NULL);

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   lexer_geter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 14:33:18 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/08 14:21:58 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/08 14:32:32 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 
-void	prompt(char *value, t_input *input)
+int	lexer_get_type(t_list *list)
 {
-	char	*line_read;
+	return ((int)((t_token *) list->content)->type);
+}
 
-	while (TRUE)
-	{
-		line_read = readline(value);
-		add_history(line_read);
-		lexer(line_read, input);
-		free(line_read);
-	}
+char	*lexer_get_value(t_list *list)
+{
+	return ((char *)((t_token *) list->content)->value);
 }
