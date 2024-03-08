@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 16:05:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:08:28 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		lexer_formater(t_list **lexer);
 int		quotes_case_util(char *value, char *result, int *i, int *offset);
 int		quotes_case_utils_hashmap(char *value, char *result, \
 int *i, int *offset);
+void	lst_update_type(t_list *first, t_list *second, int type);
 void	lexer_expender(t_list **lexer, char **envp);
 char	*lexer_get_value(t_list *list);
 t_token	*get_token(int type, char *value);

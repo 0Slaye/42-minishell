@@ -6,21 +6,11 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:18:42 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 16:05:51 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:08:18 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
-
-void	lst_update_type(t_list *first, t_list *second, int type)
-{
-	t_list	*holder;
-
-	holder = second->next;
-	ft_lstdelone(second, &lfree);
-	((t_token *) first->content)->type = type;
-	first->next = holder;
-}
 
 void	redirections_case(t_list **lexer)
 {
