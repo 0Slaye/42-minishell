@@ -3,8 +3,8 @@
 # Working tree
 |Theme|Ressource|State|
 |--|--|--|
-[Prompt](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|done|
-[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|doing|
+[Prompt](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|need clear history on exit|
+[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|need to expand vars and format quotes in T_WORDS|
 [Ast](#Ast)|[wikipedia](https://en.wikipedia.org/wiki/Abstract_syntax_tree)|todo|
 [Path](#Path)|[wikipedia](https://en.wikipedia.org/wiki/Path_(computing))|todo|
 [Signals](#Signals)|[wikipedia](https://en.wikipedia.org/wiki/Bash_(Unix_shell))|todo|
