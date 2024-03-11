@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/11 15:29:04 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:13:08 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	get_var_length(char **envp, char *var, int select)
 	i = -1;
 	while (var[++i] != ' ' && var[i] != D_QUOTE && var[i] != '\0')
 		length++;
+	if (length == 0)
+		return (1);
 	if (select == 0)
 		return (length);
 	i = -1;
@@ -57,6 +59,8 @@ int	get_expended_length(char **envp, char *value, int *hashmap)
 		}
 		else
 			result++;
+		if (value[i] == '\0')
+			break ;
 	}
 	return (result);
 }
@@ -73,10 +77,11 @@ int	expend_case(t_list **lexer, char **envp)
 	hashmap = ft_hashmap(value);
 	if (!hashmap)
 		return (1);
+	printf("%d\n", get_expended_length(envp, value, hashmap));
 	if (get_expended_length(envp, value, hashmap) == -1)
 		return (free(hashmap), 1);
 	result = ft_calloc(get_expended_length(envp, value, hashmap) + 1, sizeof(char));
 	if (!result)
 		return (free(hashmap), 1);
-	return (0);
+	return (free(hashmap), 0);
 }

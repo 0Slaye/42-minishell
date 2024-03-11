@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:17:42 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 16:22:31 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:48:49 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	spaces_before_case(t_list **lexer)
 			while (value[++i] != '\0' && value[i] == ' ')
 				;
 		}
-		result[++offset] = value[i];
+		if (value[i] != '\0')
+			result[++offset] = value[i];
+		else
+			break ;
 	}
 	result[++offset] = '\0';
 	((t_token *)(*lexer)->content)->value = result;
