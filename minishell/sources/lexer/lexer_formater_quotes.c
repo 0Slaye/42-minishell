@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/11 14:22:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:11:19 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	useless_quotes_case_recursion(char *value, int *hashmap, int *i)
 		else if (hashmap[*i] == T_D_QUOTE && hashmap[*i + 1] == T_D_QUOTE)
 			*i += 2;
 	}
-	if (*i >= (int) ft_strlen(value))
+	if (*i >= (int) ft_strlen(value) - 1)
 		return ;
 	if (hashmap[*i] == T_S_QUOTE && hashmap[*i + 1] == T_S_QUOTE)
 		useless_quotes_case_recursion(value, hashmap, i);

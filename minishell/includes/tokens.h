@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/07 11:33:07 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:37:30 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define SR_REDIRECTION 62
 # define S_QUOTE 39
 # define D_QUOTE 34
+# define DOLLAR 36
 
 enum e_tokens
 {
