@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/12 15:17:54 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:32:23 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void	show_hashmap(int *hashmap, int length);
 int		setup_quotes(char *line, int *hashmap);
 void	setup_tokens(char *line, int *hashmap);
 t_list	**split_command(char *command);
+int		get_list_value_length(t_list **list);
 
 #endif

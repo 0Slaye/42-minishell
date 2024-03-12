@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/11 18:01:53 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:25:53 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,4 @@ int	main(int argc, char **argv, char **envp)
 	input->envp = envp;
 	prompt("minishell$ ", input);
 	return (free(input), 0);
-} // "$(shell date)" > /dev/null 2>&1
+}

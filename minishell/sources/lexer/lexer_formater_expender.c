@@ -6,82 +6,123 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/11 17:13:08 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:34:42 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 
-int	get_var_length(char **envp, char *var, int select)
+int	add_to_list(t_list **list, char *value, int type)
+{
+	t_token	*token;
+	t_list	*holder;
+
+	token = ft_calloc(1, sizeof(t_token));
+	if (!token)
+		return (1);
+	token->type = type;
+	token->value = value;
+	holder = ft_lstnew(token);
+	if (!holder)
+		return (free(token), 1);
+	ft_lstadd_back(list, holder);
+	return (0);
+}
+
+char	*get_expend_value(char *value, char **envp)
 {
 	int	i;
 	int	length;
 
 	length = 0;
 	i = -1;
-	while (var[++i] != ' ' && var[i] != D_QUOTE && var[i] != '\0')
+	while (value[++i] != ' ' && value[i] != D_QUOTE && value[i] != '\0')
 		length++;
 	if (length == 0)
-		return (1);
-	if (select == 0)
-		return (length);
+		return ("$");
 	i = -1;
 	while (envp[++i])
 	{
-		if (ft_strncmp(envp[i], var, length) == 0)
-			return (ft_strlen(envp[i]) - length - 1);
+		if (ft_strncmp(envp[i], value, length) == 0)
+			return (&envp[i][length + 1]);
 	}
-	return (-1);
+	return ("");
 }
 
-int	get_expended_length(char **envp, char *value, int *hashmap)
+int	list_expend(t_list **list, char *value, char **envp)
 {
-	int	result;
-	int	i;
+	int		i;
 
-	result = 0;
 	i = -1;
 	while (value[++i] != '\0')
 	{
-		if (hashmap[i] == T_S_QUOTE)
-		{
-			while (hashmap[++i] != T_S_QUOTE)
-				result++;
-			i++;
-			result++;
-		}
 		if (value[i] == DOLLAR)
 		{
-			if (get_var_length(envp, &value[i + 1], 1) == -1)
-				return (-1);
-			result += get_var_length(envp, &value[i + 1], 1);
-			i += get_var_length(envp, &value[i + 1], 0);
+			if (add_to_list(list, get_expend_value(&value[i + 1], envp), 1) \
+			!= 0)
+				return (1);
+			while (value[++i] != SPACE && value[i] != D_QUOTE && value[i] \
+			!= '\0')
+				;
+			i--;
 		}
 		else
-			result++;
-		if (value[i] == '\0')
-			break ;
+		{
+			if (add_to_list(list, &value[i], 0) != 0)
+				return (1);
+		}
 	}
-	return (result);
+	return (0);
+}
+
+int	switch_value(t_list **lexer, t_list **list)
+{
+	int		length;
+	char	*result;
+	int		i;
+	int		j;
+
+	length = get_list_value_length(list);
+	result = ft_calloc(length + 1, sizeof(char));
+	if (!result)
+		return (1);
+	j = 0;
+	while (*list)
+	{
+		if (lexer_get_type(*list) == 1)
+		{
+			i = -1;
+			while (lexer_get_value(*list)[++i] != '\0')
+				result[j++] = lexer_get_value(*list)[i];
+		}
+		else
+			result[j++] = lexer_get_value(*list)[0];
+		*list = (*list)->next;
+	}
+	free(lexer_get_value(*lexer));
+	((t_token *)(*lexer)->content)->value = result;
+	return (0);
 }
 
 int	expend_case(t_list **lexer, char **envp)
 {
+	t_list	**list;
+	t_list	*holder;
 	char	*value;
-	char	*result;
-	int		*hashmap;
 
+	list = ft_calloc(1, sizeof(t_list *));
+	if (!list)
+		return (1);
 	value = lexer_get_value(*lexer);
 	if (ft_strchr(value, DOLLAR) == NULL)
-		return (0);
-	hashmap = ft_hashmap(value);
-	if (!hashmap)
-		return (1);
-	printf("%d\n", get_expended_length(envp, value, hashmap));
-	if (get_expended_length(envp, value, hashmap) == -1)
-		return (free(hashmap), 1);
-	result = ft_calloc(get_expended_length(envp, value, hashmap) + 1, sizeof(char));
-	if (!result)
-		return (free(hashmap), 1);
-	return (free(hashmap), 0);
+		return (free(list), 0);
+	if (list_expend(list, value, envp) != 0)
+		return (ft_lstclear(list, &free), 1);
+	holder = *list;
+	if (switch_value(lexer, list) != 0)
+		return (ft_lstclear(list, &free), 1);
+	*list = holder;
+	ft_lstclear(list, &free);
+	free(list);
+	return (0);
 }

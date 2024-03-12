@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.h                                           :+:      :+:    :+:   */
+/*   lexer_formater_expender_utils.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/12 16:59:58 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/12 17:34:21 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENS_H
-# define TOKENS_H
+#include "commons.h"
 
-# define PIPE 124
-# define SL_REDIRECTION 60
-# define SR_REDIRECTION 62
-# define S_QUOTE 39
-# define D_QUOTE 34
-# define DOLLAR 36
-
-enum e_tokens
+int	get_list_value_length(t_list **list)
 {
-	T_WORD,
-	T_PIPE,
-	T_SL_REDIRECTION,
-	T_SR_REDIRECTION,
-	T_DL_REDIRECTION,
-	T_DR_REDIRECTION,
-	T_S_QUOTE,
-	T_D_QUOTE,
-	T_SPACE
-};
+	int		length;
+	t_list	*holder;
 
-typedef struct s_token
-{
-	int		type;
-	void	*value;
-}	t_token;
-
-#endif
+	holder = *list;
+	length = ft_lstsize(*list) - 1;
+	while (*list)
+	{
+		if (lexer_get_type(*list) == 1)
+			length += ft_strlen(lexer_get_value(*list));
+		*list = (*list)->next;
+	}
+	*list = holder;
+	return (length);
+}
