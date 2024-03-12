@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:39:51 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/07 11:27:22 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:46:33 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	setup_tokens(char *line, int *hashmap)
 		}
 		if (line[i] == PIPE)
 			hashmap[i] = T_PIPE;
+		if (line[i] == SPACE)
+			hashmap[i] = T_SPACE;
 		else if (line[i] == SL_REDIRECTION)
 			hashmap[i] = T_SL_REDIRECTION;
 		else if (line[i] == SR_REDIRECTION)

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/11 14:37:30 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:19:28 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ enum e_tokens
 	T_DL_REDIRECTION,
 	T_DR_REDIRECTION,
 	T_S_QUOTE,
-	T_D_QUOTE
+	T_D_QUOTE,
+	T_SPACE
 };
 
 typedef struct s_token

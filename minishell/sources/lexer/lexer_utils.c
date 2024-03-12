@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:11:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/08 14:25:06 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:55:18 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*get_word(int *hashmap, char *line)
 	while (++i < (int) ft_strlen(line))
 	{
 		if (hashmap[i] == T_PIPE)
+			break ;
+		if (hashmap[i] == T_SPACE)
 			break ;
 		if (hashmap[i] == T_SL_REDIRECTION)
 			break ;
