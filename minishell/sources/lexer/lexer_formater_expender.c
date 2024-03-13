@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/12 17:34:42 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:59:53 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,26 @@ char	*get_expend_value(char *value, char **envp)
 
 int	list_expend(t_list **list, char *value, char **envp)
 {
+	int		*hashmap;
+	int		is_in_s_quotes;
 	int		i;
 
+	hashmap = ft_hashmap(value);
+	if (!hashmap)
+		return (1);
+	is_in_s_quotes = 0;
 	i = -1;
 	while (value[++i] != '\0')
 	{
-		if (value[i] == DOLLAR)
+		if (value[i] != '\0' && hashmap[i] == T_S_QUOTE && is_in_s_quotes == 0)
+			is_in_s_quotes = 1;
+		else if (value[i] != '\0' && hashmap[i] == T_S_QUOTE && is_in_s_quotes == 1)
+			is_in_s_quotes = 0;
+		if (value[i] == DOLLAR && is_in_s_quotes == 0)
 		{
 			if (add_to_list(list, get_expend_value(&value[i + 1], envp), 1) \
 			!= 0)
-				return (1);
+				return (free(hashmap), 1);
 			while (value[++i] != SPACE && value[i] != D_QUOTE && value[i] \
 			!= '\0')
 				;
@@ -69,10 +79,12 @@ int	list_expend(t_list **list, char *value, char **envp)
 		else
 		{
 			if (add_to_list(list, &value[i], 0) != 0)
-				return (1);
+				return (free(hashmap), 1);
 		}
 	}
-	return (0);
+	if (add_to_list(list, "\0", 0) != 0)
+		return (free(hashmap), 1);
+	return (free(hashmap), 0);
 }
 
 int	switch_value(t_list **lexer, t_list **list)
