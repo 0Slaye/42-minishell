@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/13 17:03:59 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:18:30 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ char	*get_expend_value(char *value, char **envp)
 	i = -1;
 	while (value[++i] != ' ' && value[i] != D_QUOTE && value[i] != '\0')
 		length++;
-	if (length == 0)
+	if (length == 0 && value[0] != S_QUOTE && value[0] != D_QUOTE)
 		return ("$");
+	else if (length == 0)
+		return ("");
 	i = -1;
 	while (envp[++i])
 	{
