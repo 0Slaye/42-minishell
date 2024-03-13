@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/13 17:19:50 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:49:46 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*get_expend_value(char *value, char **envp)
 		length++;
 	if (length == 0 && value[0] != S_QUOTE && value[0] != D_QUOTE)
 		return ("$");
-	else if (length == 0)
+	else if (value[0] == S_QUOTE || value[0] == D_QUOTE)
 		return ("");
 	i = -1;
 	while (envp[++i])
@@ -73,8 +73,8 @@ int	list_expend(t_list **list, char *value, char **envp)
 			if (add_to_list(list, get_expend_value(&value[i + 1], envp), 1) \
 			!= 0)
 				return (free(hashmap), 1);
-			while (value[++i] != SPACE && value[i] != D_QUOTE && value[i] \
-			!= '\0')
+			while (value[++i] != SPACE && value[i] != D_QUOTE \
+			&& value[i] != S_QUOTE && value[i] != '\0')
 				;
 			i--;
 		}

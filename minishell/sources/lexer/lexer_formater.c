@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:18:42 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/13 14:13:14 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:57:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	lexer_formater(t_list **lexer, char **envp)
 	t_list	*holder;
 
 	holder = *lexer;
+	(void) envp;
 	while (*lexer)
 	{
 		if ((*lexer)->next)

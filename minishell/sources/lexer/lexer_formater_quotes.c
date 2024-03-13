@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/13 14:13:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:40:59 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,36 @@ int	useless_quotes_case(t_list **lexer)
 	while (value[++i] != '\0')
 	{
 		useless_quotes_case_recursion(value, hashmap, &i);
+		if (i >= (int) ft_strlen(value))
+			break ;
+		result[++offset] = value[i];
+	}
+	result[++offset] = '\0';
+	((t_token *)(*lexer)->content)->value = result;
+	return (free(value), free(hashmap), 0);
+}
+
+int	clean_quotes_case(t_list **lexer)
+{
+	char	*result;
+	char	*value;
+	int		*hashmap;
+	int		i;
+	int		offset;
+
+	value = lexer_get_value(*lexer);
+	hashmap = ft_hashmap(value);
+	if (!hashmap)
+		return (1);
+	result = ft_calloc(ft_strlen(value) + 1, sizeof(char));
+	if (!result)
+		return (free(hashmap), 1);
+	i = -1;
+	offset = -1;
+	while (value[++i] != '\0')
+	{
+		if (hashmap[i] == T_S_QUOTE || hashmap[i] == T_D_QUOTE)
+			i++;
 		if (i >= (int) ft_strlen(value))
 			break ;
 		result[++offset] = value[i];
