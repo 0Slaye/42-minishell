@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/14 14:59:58 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:12:52 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,31 @@ int	get_list_value_length(t_list **list)
 	}
 	*list = holder;
 	return (length);
+}
+
+int	is_simple_quoted(char *value, int *hashmap, int is_quoted, int i)
+{
+	if (value[i] != '\0' && hashmap[i] == T_S_QUOTE && is_quoted == 0)
+		return (1);
+	else if (value[i] != '\0' && hashmap[i] == T_S_QUOTE && is_quoted == 1)
+		return (0);
+	return (is_quoted);
+}
+
+int	add_var_to_list(t_list **list, char *value, char **envp, int *i)
+{
+	if (add_to_list(list, get_expend_value(&value[*i + 1], envp), 1) != 0)
+		return (1);
+	while (value[++(*i)] != SPACE && value[*i] != D_QUOTE \
+	&& value[*i] != S_QUOTE && value[*i] != '\0')
+		;
+	(*i)--;
+	return (0);
+}
+
+int	list_return_selector(t_list **list)
+{
+	if (add_to_list(list, "\0", 0) != 0)
+		return (1);
+	return (0);
 }

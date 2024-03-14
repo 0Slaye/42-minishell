@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/14 15:25:57 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:04:10 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,21 @@ char	*get_expend_value(char *value, char **envp)
 int	list_expend(t_list **list, char *value, char **envp)
 {
 	int		*hashmap;
-	int		is_quotes;
+	int		is_quoted;
 	int		i;
 
 	hashmap = ft_hashmap(value);
 	if (!hashmap)
 		return (1);
-	is_quotes = 0;
+	is_quoted = 0;
 	i = -1;
 	while (value[++i] != '\0')
 	{
-		if (value[i] != '\0' && hashmap[i] == T_S_QUOTE && is_quotes == 0)
-			is_quotes = 1;
-		else if (value[i] != '\0' && hashmap[i] == T_S_QUOTE && is_quotes == 1)
-			is_quotes = 0;
-		if (value[i] == DOLLAR && is_quotes == 0)
+		is_quoted = is_simple_quoted(value, hashmap, is_quoted, i);
+		if (value[i] == DOLLAR && is_quoted == 0)
 		{
-			if (add_to_list(list, get_expend_value(&value[i + 1], envp), 1) \
-			!= 0)
-				return (free(hashmap), 1);
-			while (value[++i] != SPACE && value[i] != D_QUOTE \
-			&& value[i] != S_QUOTE && value[i] != '\0')
-				;
-			i--;
+			if (add_var_to_list(list, value, envp, &i) != 0)
+				return (free(hashmap), i);
 		}
 		else
 		{
@@ -84,9 +76,7 @@ int	list_expend(t_list **list, char *value, char **envp)
 				return (free(hashmap), 1);
 		}
 	}
-	if (add_to_list(list, "\0", 0) != 0)
-		return (free(hashmap), 1);
-	return (free(hashmap), 0);
+	return (list_return_selector(list), free(hashmap), 0);
 }
 
 char	*get_result_value(t_list **list)

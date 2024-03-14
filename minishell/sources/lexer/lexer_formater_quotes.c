@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/13 17:40:59 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:12:23 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	clean_quotes_case(t_list **lexer)
 			break ;
 		result[++offset] = value[i];
 	}
-	result[++offset] = '\0';
 	((t_token *)(*lexer)->content)->value = result;
 	return (free(value), free(hashmap), 0);
 }
