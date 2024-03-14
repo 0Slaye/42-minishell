@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_formater_expender.c                          :+:      :+:    :+:   */
+/*   lexer_expender.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/13 18:49:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:25:57 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	list_expend(t_list **list, char *value, char **envp)
 	return (free(hashmap), 0);
 }
 
-int	switch_value(t_list **lexer, t_list **list)
+char	*get_result_value(t_list **list)
 {
 	int		length;
 	char	*result;
@@ -99,7 +99,7 @@ int	switch_value(t_list **lexer, t_list **list)
 	length = get_list_value_length(list);
 	result = ft_calloc(length + 1, sizeof(char));
 	if (!result)
-		return (1);
+		return (NULL);
 	j = 0;
 	while (*list)
 	{
@@ -113,30 +113,26 @@ int	switch_value(t_list **lexer, t_list **list)
 			result[j++] = lexer_get_value(*list)[0];
 		*list = (*list)->next;
 	}
-	free(lexer_get_value(*lexer));
-	((t_token *)(*lexer)->content)->value = result;
-	return (0);
+	return (result);
 }
 
-int	expend_case(t_list **lexer, char **envp)
+char	*lexer_expender(char *value, char **envp)
 {
-	t_list	**list;
+	t_list	**lst;
 	t_list	*holder;
-	char	*value;
+	char	*result;
 
-	list = ft_calloc(1, sizeof(t_list *));
-	if (!list)
-		return (1);
-	value = lexer_get_value(*lexer);
+	lst = ft_calloc(1, sizeof(t_list *));
+	if (!lst)
+		return (NULL);
 	if (ft_strchr(value, DOLLAR) == NULL)
-		return (free(list), 0);
-	if (list_expend(list, value, envp) != 0)
-		return (ft_lstclear(list, &free), 1);
-	holder = *list;
-	if (switch_value(lexer, list) != 0)
-		return (ft_lstclear(list, &free), 1);
-	*list = holder;
-	ft_lstclear(list, &free);
-	free(list);
-	return (0);
+		return (free(lst), ft_strdup(value));
+	if (list_expend(lst, value, envp) != 0)
+		return (ft_lstclear(lst, &free), free(lst), NULL);
+	holder = *lst;
+	result = get_result_value(lst);
+	if (!result)
+		return (ft_lstclear(lst, &free), free(lst), NULL);
+	*lst = holder;
+	return (ft_lstclear(lst, &free), free(lst), result);
 }
