@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/14 16:04:10 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:51:15 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ char	*get_expend_value(char *value, char **envp)
 	while (envp[++i])
 	{
 		if (ft_strncmp(envp[i], value, length) == 0)
+		{
+			replace_token_by_ascii(&envp[i][length + 1]);
 			return (&envp[i][length + 1]);
+		}
 	}
 	return ("");
 }

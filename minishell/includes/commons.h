@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/14 16:03:52 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:50:15 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	prompt(char *value, t_input *input);
 // Lexer
 t_list	**lexer(char *line, t_input *input);
 int		lexer_get_type(t_list *list);
-int		lexer_formater(t_list **lexer, char **envp);
+int		lexer_formater(t_list **lexer);
 int		spaces_before_case(t_list **lexer);
 int		spaces_after_case(t_list **lexer);
 int		useless_quotes_case(t_list **lexer);
@@ -61,5 +61,7 @@ int		add_to_list(t_list **list, char *value, int type);
 int		add_var_to_list(t_list **list, char *value, char **envp, int *i);
 char	*get_expend_value(char *value, char **envp);
 int		list_return_selector(t_list **list);
+void	replace_token_by_ascii(char *value);
+void	update_token_by_ascii(char *value);
 
 #endif
