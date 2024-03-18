@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/15 16:50:15 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:02:00 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ char	*get_expend_value(char *value, char **envp);
 int		list_return_selector(t_list **list);
 void	replace_token_by_ascii(char *value);
 void	update_token_by_ascii(char *value);
+int		get_envp_var_length(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/15 17:06:30 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:03:49 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ char	*get_expend_value(char *value, char **envp)
 
 	length = 0;
 	i = -1;
-	while (value[++i] != ' ' && value[i] != D_QUOTE && value[i] != '\0')
+	while (value[++i] != ' ' && value[i] != S_QUOTE \
+	&& value[i] != D_QUOTE && value[i] != '\0')
 		length++;
-	if (length == 0 && value[0] != S_QUOTE && value[0] != D_QUOTE)
+	if (length == 0)
 		return ("$");
-	else if (value[0] == S_QUOTE || value[0] == D_QUOTE)
-		return ("");
 	i = -1;
 	while (envp[++i])
 	{
-		if (ft_strncmp(envp[i], value, length) == 0)
+		if (ft_strncmp(envp[i], value, get_envp_var_length(envp[i])) == 0)
 		{
 			replace_token_by_ascii(&envp[i][length + 1]);
 			return (&envp[i][length + 1]);

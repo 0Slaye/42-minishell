@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:18:42 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/15 17:01:29 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:04:20 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	lexer_formater(t_list **lexer)
 			return (1);
 		if (lexer_get_type(*lexer) == T_WORD && clean_quotes_case(lexer) != 0)
 			return (1);
-		if (lexer_get_type(*lexer) == T_WORD )
+		if (lexer_get_type(*lexer) == T_WORD)
 			update_token_by_ascii(lexer_get_value(*lexer));
 		*lexer = (*lexer)->next;
 	}

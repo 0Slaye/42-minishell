@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/15 16:47:42 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:01:51 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ int	list_return_selector(t_list **list)
 	if (add_to_list(list, "\0", 0) != 0)
 		return (1);
 	return (0);
+}
+
+int	get_envp_var_length(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i] != '\0' && str[i] != '=')
+		;
+	return (i);
 }
