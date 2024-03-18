@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/18 18:06:30 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/18 17:54:29 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/18 18:01:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 
-void	prompt(char *value, t_input *input)
+t_list	**ast(t_list **lexer)
 {
-	char	*line_read;
-	t_list	**r_lexer;
-	t_list	**r_ast;
-
-	while (TRUE)
-	{
-		line_read = readline(value);
-		add_history(line_read);
-		r_lexer = lexer(line_read, input);
-		free(line_read);
-		if (!r_lexer)
-			break ;
-		show_lexer(r_lexer);
-		r_ast = ast(r_lexer);
-		free_lexer(r_lexer);
-		if (!r_ast)
-			break ;
-	}
+	return (lexer);
 }

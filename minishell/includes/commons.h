@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/18 15:07:35 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:55:23 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,8 @@ int		add_to_list(t_list **list, char *value, int type);
 int		add_var_to_list(t_list **list, char *value, char **envp, int *i);
 int		list_return_selector(t_list **list);
 int		get_envp_var_length(char *str);
+
+// Ast
+t_list	**ast(t_list **lexer);
 
 #endif

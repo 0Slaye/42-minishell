@@ -25,7 +25,8 @@ SRCS_FILES =	main.c \
 				lexer/lexer_formater_quotes.c \
 				lexer/lexer_expender.c \
 				lexer/lexer_expender_utils.c \
-				lexer/lexer_expender_ascii.c
+				lexer/lexer_expender_ascii.c \
+				ast/ast.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
