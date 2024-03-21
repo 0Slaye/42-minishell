@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/18 15:03:49 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:48:01 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,19 @@ char	*get_expend_value(char *value, char **envp)
 
 	length = 0;
 	i = -1;
-	while (value[++i] != ' ' && value[i] != S_QUOTE \
-	&& value[i] != D_QUOTE && value[i] != '\0')
+	while (value[++i] != ' ' && value[i] != S_QUOTE && value[i] != QUESTION \
+	&& value[i] != D_QUOTE && value[i] != DOLLAR && value[i] != '\0')
 		length++;
+	if (value[0] && value[0] == QUESTION)
+		return ("0");
 	if (length == 0)
 		return ("$");
 	i = -1;
 	while (envp[++i])
 	{
-		if (ft_strncmp(envp[i], value, get_envp_var_length(envp[i])) == 0)
+		if (get_envp_var_length(envp[i]) != length)
+			continue ;
+		else if (ft_strncmp(envp[i], value, get_envp_var_length(envp[i])) == 0)
 		{
 			replace_token_by_ascii(&envp[i][length + 1]);
 			return (&envp[i][length + 1]);
@@ -70,7 +74,7 @@ int	list_expend(t_list **list, char *value, char **envp)
 		if (value[i] == DOLLAR && is_quoted == 0)
 		{
 			if (add_var_to_list(list, value, envp, &i) != 0)
-				return (free(hashmap), i);
+				return (free(hashmap), 1);
 		}
 		else
 		{

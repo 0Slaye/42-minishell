@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/18 15:01:51 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:49:37 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ int	add_var_to_list(t_list **list, char *value, char **envp, int *i)
 {
 	if (add_to_list(list, get_expend_value(&value[*i + 1], envp), 1) != 0)
 		return (1);
-	while (value[++(*i)] != SPACE && value[*i] != D_QUOTE \
-	&& value[*i] != S_QUOTE && value[*i] != '\0')
+	while (value[++(*i)] != SPACE \
+	&& value[*i] != D_QUOTE && value[*i] != QUESTION \
+	&& value[*i] != S_QUOTE && value[*i] != DOLLAR && value[*i] != '\0')
 		;
+	if (value[*i] == QUESTION)
+		(*i)++;
 	(*i)--;
 	return (0);
 }

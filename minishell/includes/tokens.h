@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/15 16:43:55 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:37:45 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define EX_SR_REDIRECTION 19
 # define EX_S_QUOTE 20
 # define EX_D_QUOTE 21
+# define QUESTION 63
 
 enum e_tokens
 {
