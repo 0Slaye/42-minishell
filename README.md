@@ -4,8 +4,9 @@
 |Theme|Ressource|State|
 |--|--|--|
 [Prompt](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|need clear history on exit|
-[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|done|
-[Ast](#Ast)|[wikipedia](https://en.wikipedia.org/wiki/Abstract_syntax_tree)|todo|
+[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|need to handle $? correctly|
+[Parser](#Parser)|[booleanworld](https://www.booleanworld.com/building-recursive-descent-parsers-definitive-guide/)|doing|
+[Interpreter](#Interpreter)|[wikipedia](https://en.wikipedia.org/wiki/Interpreter_(computing))|todo|
 [Path](#Path)|[wikipedia](https://en.wikipedia.org/wiki/Path_(computing))|todo|
 [Signals](#Signals)|[wikipedia](https://en.wikipedia.org/wiki/Bash_(Unix_shell))|todo|
 [Builtins](#Builtins)|[manual](https://www.man7.org/linux/man-pages/)|todo|
@@ -27,10 +28,13 @@
 - tokens creation
 - token assignment
 
-## Ast
+## Parser
 - linked list creation
-- main execution
 - linked list reading method
+
+## Interpreter
+- main execution from linked list (ast in recursive descent)
+
 
 ## Path
 - using path variable 
