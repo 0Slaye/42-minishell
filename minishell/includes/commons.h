@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/18 17:55:23 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:09:22 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@
 # include "../sources/libft/libft.h"
 # include "tokens.h"
 
-typedef struct s_input
+typedef struct s_program
 {
 	int		argc;
 	char	**argv;
 	char	**envp;
-}	t_input;
+	int		exit;
+}	t_program;
 
 // Prompt
-void	prompt(char *value, t_input *input);
+void	prompt(char *value, t_program *program);
 
 // Lexer
 t_token	*get_token(int type, char *value);
-t_list	**lexer(char *line, t_input *input);
+t_list	**lexer(char *line, t_program *program);
 t_list	**split_command(char *command);
 void	lst_update_type(t_list *first, t_list *second, int type);
 void	free_lexer(t_list **lexer);
@@ -48,8 +49,8 @@ void	replace_token_by_ascii(char *value);
 void	update_token_by_ascii(char *value);
 char	*lexer_get_value(t_list *list);
 char	*get_word(int *hashmap, char *line);
-char	*lexer_expender(char *value, char **envp);
-char	*get_expend_value(char *value, char **envp);
+char	*lexer_expender(char *value, t_program *program);
+char	*get_expend_value(char *value, t_program *program);
 int		lexer_get_type(t_list *list);
 int		lexer_formater(t_list **lexer);
 int		spaces_before_case(t_list **lexer);
@@ -61,7 +62,7 @@ int		get_list_value_length(t_list **list);
 int		clean_quotes_case(t_list **lexer);
 int		is_simple_quoted(char *value, int *hashmap, int is_quoted, int i);
 int		add_to_list(t_list **list, char *value, int type);
-int		add_var_to_list(t_list **list, char *value, char **envp, int *i);
+int		add_var_to_list(t_list **list, char *value, t_program *program, int *i);
 int		list_return_selector(t_list **list);
 int		get_envp_var_length(char *str);
 

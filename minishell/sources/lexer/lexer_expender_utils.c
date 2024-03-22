@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/21 17:53:01 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:19:30 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,14 @@ int	is_simple_quoted(char *value, int *hashmap, int is_quoted, int i)
 	return (is_quoted);
 }
 
-int	add_var_to_list(t_list **list, char *value, char **envp, int *i)
+int	add_var_to_list(t_list **list, char *value, t_program *program, int *i)
 {
-	if (add_to_list(list, get_expend_value(&value[*i + 1], envp), 1) != 0)
+	if (value[*i + 1] && value[*i + 1] == QUESTION)
+	{
+		if (add_to_list(list, get_expend_value(&value[*i + 1], program), 2) != 0)
+			return (1);
+	}
+	else if (add_to_list(list, get_expend_value(&value[*i + 1], program), 1) != 0)
 		return (1);
 	while (value[++(*i)] != SPACE \
 	&& value[*i] != D_QUOTE && value[*i] != QUESTION \

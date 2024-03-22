@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/18 18:06:10 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:08:03 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ t_list	**hashmap_parse(int *hashmap, char *line)
 	return (result);
 }
 
-t_list	**lexer(char *value, t_input *input)
+t_list	**lexer(char *value, t_program *program)
 {
 	t_list	**lexer;
 	int		*hashmap;
 	char	*expended;
 
-	expended = lexer_expender(value, input->envp);
+	expended = lexer_expender(value, program);
 	if (!expended)
 		return (NULL);
 	hashmap = ft_hashmap(expended);

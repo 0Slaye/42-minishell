@@ -6,13 +6,13 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/18 18:07:13 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:03:28 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 
-void	prompt(char *value, t_input *input)
+void	prompt(char *value, t_program *program)
 {
 	char	*line_read;
 	t_list	**r_lexer;
@@ -22,7 +22,7 @@ void	prompt(char *value, t_input *input)
 	{
 		line_read = readline(value);
 		add_history(line_read);
-		r_lexer = lexer(line_read, input);
+		r_lexer = lexer(line_read, program);
 		free(line_read);
 		if (!r_lexer)
 			break ;

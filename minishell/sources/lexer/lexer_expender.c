@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/21 17:53:08 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:19:40 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	add_to_list(t_list **list, char *value, int type)
 	return (0);
 }
 
-char	*get_expend_value(char *value, char **envp)
+char	*get_expend_value(char *value, t_program *program)
 {
 	int	i;
 	int	length;
@@ -40,24 +40,25 @@ char	*get_expend_value(char *value, char **envp)
 	&& value[i] != D_QUOTE && value[i] != DOLLAR && value[i] != '\0')
 		length++;
 	if (value[0] && value[0] == QUESTION)
-		return ("0");
+		return (ft_itoa(program->exit));
 	if (length == 0)
 		return ("$");
 	i = -1;
-	while (envp[++i])
+	while (program->envp[++i])
 	{
-		if (get_envp_var_length(envp[i]) != length)
+		if (get_envp_var_length(program->envp[i]) != length)
 			continue ;
-		else if (ft_strncmp(envp[i], value, get_envp_var_length(envp[i])) == 0)
+		else if (ft_strncmp(program->envp[i], value, \
+		get_envp_var_length(program->envp[i])) == 0)
 		{
-			replace_token_by_ascii(&envp[i][length + 1]);
-			return (&envp[i][length + 1]);
+			replace_token_by_ascii(&program->envp[i][length + 1]);
+			return (&program->envp[i][length + 1]);
 		}
 	}
 	return ("");
 }
 
-int	list_expend(t_list **list, char *value, char **envp)
+int	list_expend(t_list **list, char *value, t_program *program)
 {
 	int		*hashmap;
 	int		is_quoted;
@@ -73,7 +74,7 @@ int	list_expend(t_list **list, char *value, char **envp)
 		is_quoted = is_simple_quoted(value, hashmap, is_quoted, i);
 		if (value[i] == DOLLAR && is_quoted == 0)
 		{
-			if (add_var_to_list(list, value, envp, &i) != 0)
+			if (add_var_to_list(list, value, program, &i) != 0)
 				return (free(hashmap), 1);
 		}
 		else
@@ -99,11 +100,13 @@ char	*get_result_value(t_list **list)
 	j = 0;
 	while (*list)
 	{
-		if (lexer_get_type(*list) == 1)
+		if (lexer_get_type(*list) == 1 || lexer_get_type(*list) == 2)
 		{
 			i = -1;
 			while (lexer_get_value(*list)[++i] != '\0')
 				result[j++] = lexer_get_value(*list)[i];
+			if (lexer_get_type(*list) == 2)
+				free(lexer_get_value(*list));
 		}
 		else
 			result[j++] = lexer_get_value(*list)[0];
@@ -112,7 +115,7 @@ char	*get_result_value(t_list **list)
 	return (result);
 }
 
-char	*lexer_expender(char *value, char **envp)
+char	*lexer_expender(char *value, t_program *program)
 {
 	t_list	**lst;
 	t_list	*holder;
@@ -123,7 +126,7 @@ char	*lexer_expender(char *value, char **envp)
 		return (NULL);
 	if (ft_strchr(value, DOLLAR) == NULL)
 		return (free(lst), ft_strdup(value));
-	if (list_expend(lst, value, envp) != 0)
+	if (list_expend(lst, value, program) != 0)
 		return (ft_lstclear(lst, &free), free(lst), NULL);
 	holder = *lst;
 	result = get_result_value(lst);

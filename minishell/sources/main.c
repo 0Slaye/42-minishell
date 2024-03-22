@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/12 17:25:53 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:11:28 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_input	*input;
+	t_program	*program;
 
-	input = malloc(sizeof(t_input));
-	if (!input)
+	program = malloc(sizeof(t_program));
+	if (!program)
 		return (1);
-	input->argc = argc;
-	input->argv = argv;
-	input->envp = envp;
-	prompt("minishell$ ", input);
-	return (free(input), 0);
+	program->argc = argc;
+	program->argv = argv;
+	program->envp = envp;
+	program->exit = 0;
+	prompt("minishell$ ", program);
+	return (free(program), 0);
 }
