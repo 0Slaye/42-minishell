@@ -4,7 +4,7 @@
 |Theme|Ressource|State|
 |--|--|--|
 [Prompt](#Prompt)|[readline](https://man7.org/linux/man-pages/man3/readline.3.html)|need clear history on exit|
-[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|need to handle $? correctly|
+[Lexer](#Lexer)|[wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis)|done|
 [Parser](#Parser)|[booleanworld](https://www.booleanworld.com/building-recursive-descent-parsers-definitive-guide/)|doing|
 [Interpreter](#Interpreter)|[wikipedia](https://en.wikipedia.org/wiki/Interpreter_(computing))|todo|
 [Path](#Path)|[wikipedia](https://en.wikipedia.org/wiki/Path_(computing))|todo|
