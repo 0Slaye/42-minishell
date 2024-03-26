@@ -16,21 +16,21 @@ piped_command:	T_PIPE simple_command piped_command
 				| void
 				;
 
-simple_command:	cmd_prefix T_WORD cmd_suffix
-				| cmd_prefix T_WORD
-				| T_WORD cmd_suffix
+simple_command:	command_prefix T_WORD command_suffix
+				| command_prefix T_WORD
+				| T_WORD command_suffix
 				| T_WORD
-				| cmd_prefix
-				| cmd_suffix
+				| command_prefix
+				| command_suffix
 				;
 
-cmd_prefix:		redirect
-				| cmd_prefix redirect
+command_prefix:		redirect
+				| command_prefix redirect
 				;
 
-cmd_suffix:		T_WORD cmd_suffix
+command_suffix:		T_WORD command_suffix
 				| T_WORD
-				| redirect cmd_suffix
+				| redirect command_suffix
 				| redirect
 				;
 

@@ -26,7 +26,15 @@ SRCS_FILES =	main.c \
 				lexer/lexer_expender.c \
 				lexer/lexer_expender_utils.c \
 				lexer/lexer_expender_ascii.c \
-				parser/ast.c
+				parser/ast.c \
+				parser/tree.c \
+				parser/rules/command_line.c \
+				parser/rules/command.c \
+				parser/rules/piped_command.c \
+				parser/rules/simple_command.c \
+				parser/rules/command_prefix.c \
+				parser/rules/command_suffix.c \
+				parser/rules/redirect.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/

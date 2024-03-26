@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   command_suffix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/26 15:49:33 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/26 15:56:29 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/26 16:13:12 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "commons.h"
+#include "errors.h"
 
-// Lexer
-# define ER_LEXER_QUOTE "minishell: error when parsing for quotes\n"
-
-// Parser
-# define ER_PARSER_TOKEN "minishell: syntax error near unexpected token `%s'\n"
-
-#endif
+int	command_suffix()
+{
+	return (0);
+}

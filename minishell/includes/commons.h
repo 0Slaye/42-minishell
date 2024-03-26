@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/22 19:09:22 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:05:20 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ typedef struct s_program
 	char	**envp;
 	int		exit;
 }	t_program;
+
+typedef struct s_tree
+{
+	int		type;
+	void	*left;
+	void	*right;
+	char	*value;
+}	t_tree;
 
 // Prompt
 void	prompt(char *value, t_program *program);
@@ -66,7 +74,11 @@ int		add_var_to_list(t_list **list, char *value, t_program *program, int *i);
 int		list_return_selector(t_list **list);
 int		get_envp_var_length(char *str);
 
-// Ast
-t_list	**ast(t_list **lexer);
+// Parser
+t_tree	**ast(t_list **lexer);
+t_tree	**command_line(t_list **lexer);
+t_tree	*tree_new_node(int type, t_tree *left, t_tree *right, char *value);
+void	tfree(t_tree **tree);
+int		command(t_list **lexer, t_tree **tree);
 
 #endif

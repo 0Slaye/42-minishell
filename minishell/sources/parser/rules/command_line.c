@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   command_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/26 15:49:33 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/26 15:54:07 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/26 16:16:01 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "commons.h"
+#include "errors.h"
 
-// Lexer
-# define ER_LEXER_QUOTE "minishell: error when parsing for quotes\n"
+t_tree	**command_line(t_list **lexer)
+{
+	t_tree	**tree;
 
-// Parser
-# define ER_PARSER_TOKEN "minishell: syntax error near unexpected token `%s'\n"
-
-#endif
+	(void) lexer;
+	tree = ft_calloc(1, sizeof(t_tree *));
+	if (!tree)
+		return (NULL);
+	if (command(lexer, tree) != 0)
+		return (tfree(tree), NULL);
+	if (!ft_lstlast(*lexer))
+		return (tfree(tree), printf(ER_PARSER_TOKEN, "newline"), NULL);
+	return (tree);
+}

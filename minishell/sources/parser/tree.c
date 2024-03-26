@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/26 15:49:33 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/26 14:59:16 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/03/26 15:55:05 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "commons.h"
 
-// Lexer
-# define ER_LEXER_QUOTE "minishell: error when parsing for quotes\n"
+t_tree	*tree_new_node(int type, t_tree *left, t_tree *right, char *value)
+{
+	t_tree	*node;
 
-// Parser
-# define ER_PARSER_TOKEN "minishell: syntax error near unexpected token `%s'\n"
+	node = ft_calloc(1, sizeof(t_tree));
+	if (!node)
+		return (NULL);
+	node->type = type;
+	node->left = left;
+	node->right = right;
+	node->value = value;
+	return (node);
+}
 
-#endif
+void	tfree(t_tree **tree)
+{
+	free(tree);
+}
