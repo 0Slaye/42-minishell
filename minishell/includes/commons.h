@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/26 16:05:20 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:28:00 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,10 @@ t_tree	**command_line(t_list **lexer);
 t_tree	*tree_new_node(int type, t_tree *left, t_tree *right, char *value);
 void	tfree(t_tree **tree);
 int		command(t_list **lexer, t_tree **tree);
+int		command_prefix(t_list **lexer, t_tree **tree);
+int		command_suffix(t_list **lexer, t_tree **tree);
+int		piped_command(t_list **lexer, t_tree **tree);
+int		redirect(t_list **lexer, t_tree **tree);
+int		simple_command(t_list **lexer, t_tree **tree);
 
 #endif
