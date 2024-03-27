@@ -29,7 +29,6 @@ SRCS_FILES =	main.c \
 				parser/ast.c \
 				parser/tree.c \
 				parser/rules/command_line.c \
-				parser/rules/command.c \
 				parser/rules/piped_command.c \
 				parser/rules/simple_command.c \
 				parser/rules/command_prefix.c \

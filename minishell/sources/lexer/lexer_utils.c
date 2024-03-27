@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:11:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/12 15:55:18 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:04:49 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	show_lexer(t_list **lexer)
 	holder = *lexer;
 	while (*lexer)
 	{
-		printf("parsing: %d: ", lexer_get_type(*lexer));
+		printf("lexer: %d: ", lexer_get_type(*lexer));
 		printf("[%s]\n", lexer_get_value(*lexer));
 		*lexer = (*lexer)->next;
 	}

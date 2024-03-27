@@ -24,11 +24,11 @@ simple_command:	command_prefix T_WORD command_suffix
 				| command_suffix
 				;
 
-command_prefix:		redirect
-				| command_prefix redirect
+command_prefix:	redirect command_prefix
+				| redirect
 				;
 
-command_suffix:		T_WORD command_suffix
+command_suffix:	T_WORD command_suffix
 				| T_WORD
 				| redirect command_suffix
 				| redirect
