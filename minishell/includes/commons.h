@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/27 18:00:13 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:36:58 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ int		command_suffix(t_list *lexer);
 t_tree	*piped_command(t_list *lexer);
 int		redirect(t_list *lexer);
 t_tree	*simple_command(t_list *lexer);
+t_list	*lexer_get_unsonsumed(t_list *lexer);
 
 #endif

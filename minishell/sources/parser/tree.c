@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:59:16 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/27 18:18:43 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:44:23 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ void	show_tree(t_tree *tree, int n)
 		printf("[%d]: %s\n", tree->type, tree->value);
 	if (tree->left)
 		show_tree(tree->left, n + 1);
+}
+
+t_list	*lexer_get_unsonsumed(t_list *lexer)
+{
+	while (lexer)
+	{
+		if (lexer_get_type(lexer) != T_CONSUMED)
+			return (lexer);
+		lexer = lexer->next;
+	}
+	return (NULL);
 }
 
 void	tfree(t_tree **tree)
