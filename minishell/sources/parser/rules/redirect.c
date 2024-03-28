@@ -6,15 +6,36 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:19 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/27 16:51:21 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:46:22 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-int	redirect(t_list *lexer)
+t_tree	*redirect_return(t_list *token, int type)
 {
-	(void) lexer;
-	return (0);
+	consume_token(token);
+	consume_token(token->next);
+	return (tree_new(type, lexer_get_value(token->next), NULL, NULL));
+}
+
+t_tree	*redirect(t_list *lexer)
+{
+	t_list	*token;
+
+	token = get_next_token(lexer);
+	if (!token)
+		return (NULL);
+	if (token->next && lexer_get_type(token->next) != T_WORD)
+		return (NULL);
+	if (lexer_get_type(token) == T_SL_REDIRECTION)
+		return (redirect_return(token, T_SL_REDIRECTION));
+	if (lexer_get_type(token) == T_SR_REDIRECTION)
+		return (redirect_return(token, T_SR_REDIRECTION));
+	if (lexer_get_type(token) == T_DL_REDIRECTION)
+		return (redirect_return(token, T_DL_REDIRECTION));
+	if (lexer_get_type(token) == T_DR_REDIRECTION)
+		return (redirect_return(token, T_DR_REDIRECTION));
+	return (NULL);
 }

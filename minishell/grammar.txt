@@ -18,9 +18,9 @@ piped_command:	T_PIPE simple_command piped_command
 
 simple_command:	command_prefix T_WORD command_suffix
 				| command_prefix T_WORD
+				| command_prefix
 				| T_WORD command_suffix
 				| T_WORD
-				| command_prefix
 				| command_suffix
 				;
 
