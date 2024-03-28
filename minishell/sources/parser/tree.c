@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:59:16 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/28 18:18:41 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:25:28 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	print_tree(t_tree *tree, int n)
 	while (i-- > 0)
 		printf("\t");
 	if (tree)
-	{
-		ft_strlen(tree->value);
 		printf("[%d]: %s\n", tree->type, tree->value);
-	}
 	if (tree->left)
 		print_tree(tree->left, n + 1);
 }
