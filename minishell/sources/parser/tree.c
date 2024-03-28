@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:59:16 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/28 17:43:11 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:18:41 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,22 @@ t_tree	*tree_new(int type, char *value, t_tree *left, t_tree *right)
 	return (node);
 }
 
-void	show_tree(t_tree *tree, int n)
+void	print_tree(t_tree *tree, int n)
 {
 	int	i;
 
 	i = n;
 	if (tree->right)
-		show_tree(tree->right, n + 1);
+		print_tree(tree->right, n + 1);
 	while (i-- > 0)
 		printf("\t");
 	if (tree)
+	{
+		ft_strlen(tree->value);
 		printf("[%d]: %s\n", tree->type, tree->value);
+	}
 	if (tree->left)
-		show_tree(tree->left, n + 1);
+		print_tree(tree->left, n + 1);
 }
 
 t_list	*get_next_token(t_list *lexer)
@@ -57,7 +60,12 @@ void	consume_token(t_list *token)
 	((t_token *)token->content)->type = T_CONSUMED;
 }
 
-void	tfree(t_tree **tree)
+void	free_tree(t_tree *tree)
 {
-	free(tree);
+	if (tree->right)
+		free_tree(tree->right);
+	if (tree->left)
+		free_tree(tree->left);
+	if (tree)
+		free(tree);
 }

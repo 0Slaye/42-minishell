@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/28 17:42:53 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:17:41 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	prompt(char *value, t_program *program)
 {
 	char	*line_read;
 	t_list	**r_lexer;
-	t_tree	**r_ast;
+	t_tree	*r_ast;
 
 	while (TRUE)
 	{
@@ -27,9 +27,11 @@ void	prompt(char *value, t_program *program)
 		if (!r_lexer)
 			break ;
 		r_ast = ast(r_lexer);
-		free_lexer(r_lexer);
 		if (!r_ast)
 			break ;
-		free(r_ast);
+		print_tree(r_ast, 0);
+		free_lexer(r_lexer);
+		free_tree(r_ast);
+		//free(r_ast);
 	}
 }
