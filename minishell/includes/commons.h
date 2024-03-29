@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/28 18:14:14 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:24:07 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ t_tree	*redirect(t_list *lexer);
 t_tree	*simple_command(t_list *lexer);
 t_list	*get_next_token(t_list *lexer);
 void	consume_token(t_list *token);
+void	return_error(t_list *token);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/29 16:10:38 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:24:25 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ t_tree	*simple_command(t_list *lexer)
 				return (suffix);
 		}
 	}
-	printf(ER_PARSER_TOKEN, lexer_get_value(get_next_token(lexer)));
+	return_error(get_next_token(lexer));
 	return (NULL);
 }
