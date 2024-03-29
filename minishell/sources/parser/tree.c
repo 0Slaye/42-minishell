@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:59:16 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/28 18:25:28 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:13:15 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_list	*get_next_token(t_list *lexer)
 
 void	consume_token(t_list *token)
 {
+	if (!token)
+		return ;
 	((t_token *)token->content)->type = T_CONSUMED;
 }
 
