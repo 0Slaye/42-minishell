@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:19 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/28 17:46:22 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:39:01 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_tree	*redirect(t_list *lexer)
 
 	token = get_next_token(lexer);
 	if (!token)
+		return (NULL);
+	if (!token->next)
 		return (NULL);
 	if (token->next && lexer_get_type(token->next) != T_WORD)
 		return (NULL);

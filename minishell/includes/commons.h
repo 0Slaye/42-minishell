@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/29 16:24:07 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:57:35 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_program
 	char	**argv;
 	char	**envp;
 	int		exit;
+	int		ast;
 }	t_program;
 
 typedef struct s_tree
@@ -75,16 +76,16 @@ int		list_return_selector(t_list **list);
 int		get_envp_var_length(char *str);
 
 // Parser
-t_tree	*ast(t_list **lexer);
-t_tree	*command_line(t_list **lexer);
+t_tree	*ast(t_list **lexer, t_program *program);
+t_tree	*command_line(t_list **lexer, t_program *program);
 t_tree	*tree_new(int type, char *value, t_tree *left, t_tree *right);
 void	print_tree(t_tree *tree, int n);
 void	free_tree(t_tree *tree);
 t_tree	*command_prefix(t_list *lexer);
 t_tree	*command_suffix(t_list *lexer);
-t_tree	*piped_command(t_list *lexer);
+t_tree	*piped_command(t_list *lexer, t_program *program);
 t_tree	*redirect(t_list *lexer);
-t_tree	*simple_command(t_list *lexer);
+t_tree	*simple_command(t_list *lexer, t_program *program);
 t_list	*get_next_token(t_list *lexer);
 void	consume_token(t_list *token);
 void	return_error(t_list *token);

@@ -6,14 +6,14 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/29 16:24:25 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:56:51 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-t_tree	*simple_command(t_list *lexer)
+t_tree	*simple_command(t_list *lexer, t_program *program)
 {
 	t_list	*token;
 	t_tree	*prefix;
@@ -52,5 +52,5 @@ t_tree	*simple_command(t_list *lexer)
 		}
 	}
 	return_error(get_next_token(lexer));
-	return (NULL);
+	return (program->ast = 1, NULL);
 }
