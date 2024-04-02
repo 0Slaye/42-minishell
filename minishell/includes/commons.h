@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/02 15:04:15 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:29:46 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,18 @@ t_tree	*ast(t_list **lexer, t_program *program);
 t_tree	*command_line(t_list **lexer, t_program *program);
 t_tree	*tree_new(int type, char *value, t_tree *left, t_tree *right);
 t_tree	*command_prefix(t_list *lexer);
-t_tree	*command_suffix(t_list *lexer);
+t_tree	*command_suffix(t_list *lexer, t_tree *node);
 t_tree	*piped_command(t_list *lexer, t_program *program);
 t_tree	*redirect(t_list *lexer);
 t_tree	*simple_command(t_list *lexer, t_program *program);
 t_list	*get_next_token(t_list *lexer);
+t_tree	*get_last_prefix(t_tree *prefix);
 void	print_tree(t_tree *tree, int n);
 void	free_tree(t_tree *tree);
 void	consume_token(t_list *token);
 void	return_error(t_list *token);
 
 // Interpreter
-int	interpreter(t_tree *ast);
+int		interpreter(t_tree *ast);
 
 #endif
