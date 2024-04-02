@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/02 14:56:51 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:12:47 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_tree	*simple_command(t_list *lexer, t_program *program)
 	t_tree	*prefix;
 	t_tree	*suffix;
 
+	if (!lexer)
+		return (NULL);
 	prefix = command_prefix(lexer);
 	if (prefix)
 	{
