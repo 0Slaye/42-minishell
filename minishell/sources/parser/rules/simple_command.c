@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/02 18:32:50 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:49:26 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ t_tree	*simple_command(t_list *lexer, t_program *program)
 			consume_token(token);
 			node = tree_new(G_COMMAND, lexer_get_value(token), prefix, NULL);
 			suffix = command_suffix(lexer, node);
-			if (suffix)
-			{
-				get_last_prefix(prefix)->left = suffix;
-				return (node);
-			}
-			return (tree_new(G_COMMAND, lexer_get_value(token), prefix, NULL));
+			get_last_prefix(prefix)->left = suffix;
+			return (node);
 		}
 		return (prefix);
 	}
@@ -46,11 +42,10 @@ t_tree	*simple_command(t_list *lexer, t_program *program)
 		if (lexer_get_type(token) == T_WORD)
 		{
 			consume_token(token);
-			node = tree_new(G_COMMAND, lexer_get_value(token), prefix, NULL);
+			node = tree_new(G_COMMAND, lexer_get_value(token), NULL, NULL);
 			suffix = command_suffix(lexer, node);
-			if (suffix)
-				return (node->left = suffix, node);
-			return (tree_new(G_COMMAND, lexer_get_value(token), NULL, NULL));
+			node->left = suffix;
+			return (node);
 		}
 	}
 	return_error(get_next_token(lexer));
