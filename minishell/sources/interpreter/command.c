@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/03 16:27:25 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:32:33 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	cmd_execute(t_tree *node, t_program *program)
 	char	**options;
 	int		id;
 
+	if (!node)
+		return (2);
 	if (ft_strncmp(node->value, "exit", 4) == 0)
 		return (printf("exit\n"), 1);
 	id = fork();
