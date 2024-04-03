@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/03 16:21:41 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:27:25 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ char	**get_cmd_option(t_tree *node)
 	return (result);
 }
 
+char	*get_envp_path(char **envp)
+{
+	int		i;
+
+	i = -1;
+	while (envp[++i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			return (&envp[i][5]);
+	}
+	return (NULL);
+}
+
 void	path_execve(char *cmd, char **argv, char **envp)
 {
 	char	*path;
@@ -65,15 +78,9 @@ void	path_execve(char *cmd, char **argv, char **envp)
 	char	*builded_cmd;
 	int		i;
 
-	i = -1;
-	while (envp[++i])
-	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-		{
-			path = &envp[i][5];
-			break ;
-		}
-	}
+	path = get_envp_path(envp);
+	if (!path)
+		return ;
 	paths = ft_split(path, ':');
 	if (!paths)
 		return ;
