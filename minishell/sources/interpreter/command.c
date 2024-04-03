@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/03 15:27:20 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:21:41 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,44 @@ char	**get_cmd_option(t_tree *node)
 	return (result);
 }
 
+void	path_execve(char *cmd, char **argv, char **envp)
+{
+	char	*path;
+	char	**paths;
+	char	*holder;
+	char	*builded_cmd;
+	int		i;
+
+	i = -1;
+	while (envp[++i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+		{
+			path = &envp[i][5];
+			break ;
+		}
+	}
+	paths = ft_split(path, ':');
+	if (!paths)
+		return ;
+	i = -1;
+	while (paths[++i])
+	{
+		holder = ft_strjoin("/", cmd);
+		builded_cmd = ft_strjoin(paths[i], holder);
+		execve(builded_cmd, argv, envp);
+		free(holder);
+		free(builded_cmd);
+	}
+}
+
 int	cmd_execute(t_tree *node, t_program *program)
 {
 	char	**options;
 	int		id;
 
 	if (ft_strncmp(node->value, "exit", 4) == 0)
-		return (1);
+		return (printf("exit\n"), 1);
 	id = fork();
 	if (id == -1)
 		return (2);
@@ -71,6 +102,7 @@ int	cmd_execute(t_tree *node, t_program *program)
 	{
 		options = get_cmd_option(node);
 		execve(node->value, options, program->envp);
+		path_execve(node->value, options, program->envp);
 		free(options);
 		ft_putstr_fd(node->value, 2);
 		ft_putstr_fd(ER_CMD_NFOUND, 2);
