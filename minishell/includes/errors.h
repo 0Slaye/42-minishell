@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/29 16:22:33 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:20:03 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,8 @@
 
 // Parser
 # define ER_PARSER_TOKEN "minishell: syntax error near unexpected token "
+
+// Interpreter
+# define ER_CMD_NFOUND ": command not found\n"
 
 #endif

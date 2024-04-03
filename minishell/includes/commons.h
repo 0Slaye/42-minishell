@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/02 18:29:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:23:30 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <fcntl.h>
+# include <string.h>
+# include <sys/wait.h>
 # include "../sources/libft/libft.h"
 # include "tokens.h"
 
@@ -92,6 +95,9 @@ void	consume_token(t_list *token);
 void	return_error(t_list *token);
 
 // Interpreter
-int		interpreter(t_tree *ast);
+char	**get_cmd_option(t_tree *node);
+int		interpreter(t_tree *ast, t_program *program);
+int		cmd_execute(t_tree *node, t_program *program);
+int		get_node_size(t_tree *node, int select);
 
 #endif
