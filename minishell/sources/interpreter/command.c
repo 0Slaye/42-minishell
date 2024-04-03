@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/03 16:32:33 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:06:36 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,20 +95,31 @@ void	path_execve(char *cmd, char **argv, char **envp)
 	}
 }
 
-int	cmd_execute(t_tree *node, t_program *program)
+int	cmd_execute(t_tree *node, t_program *program, int input_fd, t_list *pipe)
 {
 	char	**options;
 	int		id;
 
+	(void) pipe;
 	if (!node)
-		return (2);
+		return (1);
 	if (ft_strncmp(node->value, "exit", 4) == 0)
-		return (printf("exit\n"), 1);
+		return (printf("exit\n"), 2);
 	id = fork();
 	if (id == -1)
-		return (2);
+		return (1);
 	if (id == 0)
 	{
+		ft_putstr_fd(node->value, 1);
+		ft_putstr_fd(": ", 1);
+		ft_putstr_fd(ft_itoa(input_fd), 1);
+		ft_putstr_fd(" | ", 1);
+		ft_putstr_fd(ft_itoa(((int *) pipe->content)[1]), 1);
+		ft_putstr_fd("\n", 1);
+		dup2(input_fd, STDIN_FILENO);
+		//close(input_fd);
+		dup2(((int *) pipe->content)[1], STDOUT_FILENO);
+		//close(((int *) pipe->content)[1]);
 		options = get_cmd_option(node);
 		execve(node->value, options, program->envp);
 		path_execve(node->value, options, program->envp);
