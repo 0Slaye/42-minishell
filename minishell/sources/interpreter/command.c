@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 13:19:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:48:45 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	path_execve(char *cmd, char **argv, char **envp)
 		free(builded_cmd);
 	}
 	free(argv);
+	free_path_split(paths);
+	per_cmd_nfound(cmd);
 }
 
 int	cmd_execute(t_tree *node, t_program *program, int input_fd, t_list *pipe)
@@ -121,7 +123,7 @@ int	cmd_execute(t_tree *node, t_program *program, int input_fd, t_list *pipe)
 			close(((int *) pipe->content)[1]);
 		options = get_cmd_option(node);
 		path_execve(node->value, options, program->envp);
-		return (per_cmd_nfound(node->value), exit(EXIT_FAILURE), -1);
+		return (exit(EXIT_FAILURE), -1);
 	}
 	return (id);
 }
