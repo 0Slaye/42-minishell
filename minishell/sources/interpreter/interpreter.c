@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 13:51:37 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:57:54 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	last_command_fd(t_tree *ast, t_list *pipe, int *hfd)
 void	holder_fd_handle(t_tree *ast, t_list *pipe, int hfd)
 {
 	if (ast->right == NULL)
+	{
 		((int *) pipe->content)[1] = hfd;
+		close(((int *) pipe->content)[0]);
+	}
 	if (ast->right != NULL)
 		close(((int *) pipe->content)[1]);
 }
