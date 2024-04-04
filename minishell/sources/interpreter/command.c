@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 11:59:47 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:28:06 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ int	cmd_execute(t_tree *node, t_program *program, int input_fd, t_list *pipe)
 
 	(void) pipe;
 	if (!node)
-		return (1);
+		return (-1);
 	if (ft_strncmp(node->value, "exit", 4) == 0)
-		return (printf("exit\n"), 2);
+		return (printf("exit\n"), -2);
 	id = fork();
 	if (id == -1)
-		return (1);
+		return (-1);
 	if (id == 0)
 	{
 		dup2(input_fd, STDIN_FILENO);
@@ -127,5 +127,5 @@ int	cmd_execute(t_tree *node, t_program *program, int input_fd, t_list *pipe)
 		ft_putstr_fd(ER_CMD_NFOUND, 2);
 		exit(EXIT_FAILURE);
 	}
-	return (0);
+	return (id);
 }
