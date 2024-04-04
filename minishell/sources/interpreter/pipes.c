@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 12:49:27 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:54:12 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*creates_list(t_tree *ast)
 	result = ft_lstnew(NULL);
 	if (!result)
 		return (NULL);
-	while (ast)
+	while (ast->right)
 	{
 		new = ft_lstnew(NULL);
 		if (!new)

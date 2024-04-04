@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 13:12:03 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:08:16 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ t_tree	*simple_command(t_list *lexer, t_program *program)
 	t_tree	*suffix;
 	t_tree	*node;
 
+	if (lexer_get_type(lexer) == T_PIPE)
+	{
+		consume_token(lexer);
+		lexer = lexer->next;
+	}
 	if (!lexer)
 		return (NULL);
 	prefix = command_prefix(lexer);

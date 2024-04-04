@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 13:57:54 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:44:11 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	last_command_fd(t_tree *ast, t_list *pipe, int *hfd)
 void	holder_fd_handle(t_tree *ast, t_list *pipe, int hfd)
 {
 	if (ast->right == NULL)
-	{
 		((int *) pipe->content)[1] = hfd;
-		close(((int *) pipe->content)[0]);
-	}
 	if (ast->right != NULL)
 		close(((int *) pipe->content)[1]);
 }
@@ -46,22 +43,31 @@ int	interpreter(t_tree *ast, t_program *program)
 	t_list	*holder;
 	int		input_fd;
 	int		result;
-	int		hfd;
+	int		i;
 
 	input_fd = STDIN_FILENO;
 	pipe = setup_pipes(ast);
 	if (!pipe)
 		return (1);
+	i = 0;
 	holder = pipe;
 	while (ast && ast->left)
 	{
-		last_command_fd(ast, pipe, &hfd);
+		if (ast->right == NULL)
+		{
+			close(((int *) pipe->content)[1]);
+			((int *) pipe->content)[1] = STDOUT_FILENO;
+		}
 		result = cmd_execute(ast->left, program, input_fd, pipe);
-		holder_fd_handle(ast, pipe, hfd);
+		close(((int *) pipe->content)[0]);
+		if (((int *) pipe->content)[1] != STDOUT_FILENO)
+			close(((int *) pipe->content)[1]);
 		if (result < 0)
 			return (close_pipes(holder), ft_lstclear(&pipe, &free), -result);
 		loop_update(&ast, &pipe, &input_fd);
+		i++;
 	}
 	waitpid(result, NULL, 0);
-	return (wait(NULL), close_pipes(holder), ft_lstclear(&holder, &free), 0);
+	wait(NULL);
+	return (ft_lstclear(&holder, &free), 0);
 }

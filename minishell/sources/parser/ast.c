@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:29 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/02 15:11:54 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:43:54 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ t_tree	*ast(t_list **lexer, t_program *program)
 	tree = command_line(lexer, program);
 	if (!tree)
 		return (NULL);
+	print_tree(tree, 0);
 	return (tree);
 }

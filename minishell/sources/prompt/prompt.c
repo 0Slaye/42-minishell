@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 13:52:02 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:42:05 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ void	prompt(char *value, t_program *program)
 				return (free_lexer(r_lexer));
 			if (!r_ast->left)
 				return (free_lexer(r_lexer), free_tree(r_ast));
-			if (interpreter(r_ast, program) == 2)
-				return (free_lexer(r_lexer), free_tree(r_ast), exit(0));
+			//print_tree(r_ast, 0);
+			// if (interpreter(r_ast, program) == 2)
+			// 	return (free_lexer(r_lexer), free_tree(r_ast), exit(0));
 			free_lexer(r_lexer);
-			free_tree(r_ast);
+			//free_tree(r_ast);
 			program->ast = 0;
 		}
 	}
