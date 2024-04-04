@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/03 19:07:55 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:02:14 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,29 @@ int	interpreter(t_tree *ast, t_program *program)
 	t_list	*holder;
 	int		input_fd;
 	int		result;
+	int		hfd;
 
+	(void) program;
 	pipe = setup_pipes(ast);
 	if (!pipe)
 		return (1);
 	holder = pipe;
-	input_fd = ((int *) pipe->content)[0];
+	input_fd = STDIN_FILENO;
 	while (ast && ast->left)
 	{
 		if (ast->right == NULL)
+		{
+			hfd = ((int *) pipe->content)[1];
 			((int *) pipe->content)[1] = STDOUT_FILENO;
+		}
 		result = cmd_execute(ast->left, program, input_fd, pipe);
+		if (ast->right == NULL)
+			((int *) pipe->content)[1] = hfd;
+		if (ast->right != NULL)
+			close(((int *) pipe->content)[1]);
 		if (result != 0)
 			return (close_pipes(holder), ft_lstclear(&pipe, &free), result);
 		input_fd = ((int *) pipe->content)[0];
-		printf("input_fd: %d\n", input_fd);
 		pipe = pipe->next;
 		ast = ast->right;
 	}

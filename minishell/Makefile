@@ -85,8 +85,7 @@ fclean : clean
 
 re : fclean all
 
-valgrind : re
-	@make clean
+valgrind : all
 	@clear
 	@valgrind --quiet --leak-check=full --track-fds=yes ./minishell
 
