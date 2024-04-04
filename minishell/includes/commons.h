@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/03 19:27:45 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:19:14 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ void	return_error(t_list *token);
 // Interpreter
 char	**get_cmd_option(t_tree *node);
 int		interpreter(t_tree *ast, t_program *program);
-int		cmd_execute(t_tree *node, t_program *program, int input_fd, t_list *pipe);
+int		cmd_execute(t_tree *node, t_program *program, int in_fd, t_list *pipe);
 int		get_node_size(t_tree *node, int select);
+t_list	*setup_pipes(t_tree *ast);
+void	close_pipes(t_list *pipe);
+void	per_cmd_nfound(char *cmd_name);
 
 #endif

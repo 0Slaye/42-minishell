@@ -6,57 +6,35 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 12:31:15 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:20:20 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-t_list	*setup_pipes(t_tree *ast)
+void	last_command_fd(t_tree *ast, t_list *pipe, int *hfd)
 {
-	t_list	*new;
-	t_list	*result;
-	void	*holder;
-	int		*pipefds;
-
-	holder = ast;
-	result = ft_lstnew(NULL);
-	if (!result)
-		return (NULL);
-	while (ast)
+	if (ast->right == NULL)
 	{
-		new = ft_lstnew(NULL);
-		if (!new)
-			return (ft_lstclear(&result, &free), NULL);
-		ft_lstadd_back(&result, new);
-		ast = ast->right;
+		*hfd = ((int *) pipe->content)[1];
+		((int *) pipe->content)[1] = STDOUT_FILENO;
 	}
-	ast = holder;
-	holder = result;
-	while (result)
-	{
-		pipefds = ft_calloc(2, sizeof(int));
-		if (!pipefds)
-			return (ft_lstclear(&result, &free), NULL);
-		if (pipe(pipefds) == -1)
-			return (ft_lstclear(&result, &free), NULL);
-		result->content = pipefds;
-		result = result->next;
-	}
-	result = holder;
-	return (result);
 }
 
-void	close_pipes(t_list *pipe)
+void	holder_fd_handle(t_tree *ast, t_list *pipe, int hfd)
 {
-	while (pipe)
-	{
-		close(((int *) pipe->content)[0]);
-		if (((int *) pipe->content)[1] != STDOUT_FILENO)
-			close(((int *) pipe->content)[1]);
-		pipe = pipe->next;
-	}
+	if (ast->right == NULL)
+		((int *) pipe->content)[1] = hfd;
+	if (ast->right != NULL)
+		close(((int *) pipe->content)[1]);
+}
+
+void	loop_update(t_tree **ast, t_list **pipe, int *input_fd)
+{
+	*input_fd = ((int *)(*pipe)->content)[0];
+	*pipe = (*pipe)->next;
+	*ast = (*ast)->right;
 }
 
 int	interpreter(t_tree *ast, t_program *program)
@@ -67,32 +45,21 @@ int	interpreter(t_tree *ast, t_program *program)
 	int		result;
 	int		hfd;
 
-	if (!ast->left)
-		return (0);
+	input_fd = STDIN_FILENO;
 	pipe = setup_pipes(ast);
 	if (!pipe)
 		return (1);
 	holder = pipe;
-	input_fd = STDIN_FILENO;
 	while (ast && ast->left)
 	{
-		if (ast->right == NULL)
-		{
-			hfd = ((int *) pipe->content)[1];
-			((int *) pipe->content)[1] = STDOUT_FILENO;
-		}
+		last_command_fd(ast, pipe, &hfd);
 		result = cmd_execute(ast->left, program, input_fd, pipe);
-		if (ast->right == NULL)
-			((int *) pipe->content)[1] = hfd;
-		if (ast->right != NULL)
-			close(((int *) pipe->content)[1]);
+		holder_fd_handle(ast, pipe, hfd);
 		if (result < 0)
-			return (close_pipes(holder), ft_lstclear(&pipe, &free), -1 * result);
-		input_fd = ((int *) pipe->content)[0];
-		pipe = pipe->next;
-		ast = ast->right;
+			return (close_pipes(holder), \
+		ft_lstclear(&pipe, &free), -1 * result);
+		loop_update(&ast, &pipe, &input_fd);
 	}
 	waitpid(result, NULL, 0);
-	close_pipes(holder);
-	return (ft_lstclear(&holder, &free), 0);
+	return (wait(NULL), close_pipes(holder), ft_lstclear(&holder, &free), 0);
 }
