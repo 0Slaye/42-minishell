@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 13:20:20 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:21:03 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	interpreter(t_tree *ast, t_program *program)
 		result = cmd_execute(ast->left, program, input_fd, pipe);
 		holder_fd_handle(ast, pipe, hfd);
 		if (result < 0)
-			return (close_pipes(holder), \
-		ft_lstclear(&pipe, &free), -1 * result);
+			return (close_pipes(holder),
+			ft_lstclear(&pipe, &free), -1 * result);
 		loop_update(&ast, &pipe, &input_fd);
 	}
 	waitpid(result, NULL, 0);
