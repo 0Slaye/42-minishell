@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 13:27:13 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:43:39 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	prompt(char *value, t_program *program);
 t_token	*get_token(int type, char *value);
 t_list	**lexer(char *line, t_program *program);
 t_list	**split_command(char *command);
+t_list	*get_lpipe(t_list **lexer);;
 void	lst_update_type(t_list *first, t_list *second, int type);
 void	free_lexer(t_list **lexer);
 void	lfree(void *token);
