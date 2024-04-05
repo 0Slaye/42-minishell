@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/05 17:22:03 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:55:37 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ t_list	*setup_pipes(t_tree *ast);
 void	close_pipes(t_list *pipe);
 void	per_cmd_nfound(char *cmd_name);
 void	free_path_split(char **split);
+void	path_execve(char *cmd, char **argv, char **envp);
 
 #endif

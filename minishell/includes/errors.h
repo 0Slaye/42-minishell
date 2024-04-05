@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/05 18:07:14 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 19:16:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define ER_PARSER_RRR "minishell: syntax error near unexpected token `>>'"
 
 // Interpreter
+# define ER_PIPE_FUNC "minishell: pipe function error"
+# define ER_FORK_FUNC "minishell: pipe function error"
 # define ER_CMD_NFOUND ": command not found"
 
 #endif
