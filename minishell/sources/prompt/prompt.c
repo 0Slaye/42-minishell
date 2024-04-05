@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/05 18:16:17 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:28:12 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	prompt(char *value, t_program *program)
 			r_lexer = lexer(line_read, program);
 			free(line_read);
 			r_ast = ast(r_lexer);
+			if (r_ast)
+				interpreter(r_ast, program);
 			if (r_lexer)
 				free_lexer(r_lexer);
 			if (r_ast)
