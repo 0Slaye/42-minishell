@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:29 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/05 17:34:08 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:17:29 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*get_next_cmd(t_list *lexer)
 	return (NULL);
 }
 
-t_tree	*get_last_right(t_tree *node)
+t_tree	*get_lrnode(t_tree *node)
 {
 	t_tree	*result;
 	t_tree	*holder;
@@ -55,7 +55,7 @@ t_tree	*builder(t_list *lexer, int lvl)
 	holder = get_node(lholder);
 	if (result == NULL)
 		return (holder);
-	get_last_right(result)->right = holder;
+	get_lrnode(result)->right = holder;
 	return (result);
 }
 
