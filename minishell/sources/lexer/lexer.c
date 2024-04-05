@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 20:39:56 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:48:35 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,17 @@ int	tokenize(int *hashmap, char *line, t_list **list)
 	int	offset;
 
 	if (hashmap[0] == T_SPACE)
-		return (0); // ICI
+		return (0);
 	if (hashmap[0] == T_PIPE)
 		offset = add_token(list, T_PIPE, NULL);
+	else if (hashmap[1] && hashmap[0] == T_SL_REDIRECTION \
+	&& hashmap[1] == T_SL_REDIRECTION)
+		offset = add_token(list, T_DL_REDIRECTION, NULL) + 1;
 	else if (hashmap[0] == T_SL_REDIRECTION)
 		offset = add_token(list, T_SL_REDIRECTION, NULL);
+	else if (hashmap[1] && hashmap[0] == T_SR_REDIRECTION \
+	&& hashmap[1] == T_SR_REDIRECTION)
+		offset = add_token(list, T_DR_REDIRECTION, NULL) + 1;
 	else if (hashmap[0] == T_SR_REDIRECTION)
 		offset = add_token(list, T_SR_REDIRECTION, NULL);
 	else
