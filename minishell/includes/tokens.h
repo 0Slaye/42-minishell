@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/27 17:41:21 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:39:04 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ enum e_tokens
 	T_D_QUOTE,
 	T_SPACE,
 	T_CONSUMED
-};
-
-enum e_grammar
-{
-	G_PIPE = 1000,
-	G_COMMAND
 };
 
 typedef struct s_token

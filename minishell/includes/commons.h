@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 19:43:39 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:22:03 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@
 
 typedef struct s_program
 {
-	int		argc;
 	char	**argv;
 	char	**envp;
+	int		argc;
 	int		exit;
-	int		ast;
 }	t_program;
 
 typedef struct s_tree
@@ -55,7 +54,7 @@ t_list	*get_lpipe(t_list **lexer);;
 void	lst_update_type(t_list *first, t_list *second, int type);
 void	free_lexer(t_list **lexer);
 void	lfree(void *token);
-void	show_lexer(t_list **lexer);
+void	print_lexer(t_list **lexer);
 void	show_hashmap(int *hashmap, int length);
 void	setup_tokens(char *line, int *hashmap);
 void	replace_token_by_ascii(char *value);
@@ -80,20 +79,18 @@ int		list_return_selector(t_list **list);
 int		get_envp_var_length(char *str);
 
 // Parser
-t_tree	*ast(t_list **lexer, t_program *program);
-t_tree	*command_line(t_list **lexer, t_program *program);
+t_tree	*ast(t_list **lexer);
+t_tree	*get_node(t_list *lexer);
+t_tree	*get_prefix(t_list *lexer);
+t_tree	*get_lprefix(t_tree *prefix);
+t_tree	*get_redirect(t_list *lexer);
+t_tree	*get_suffix(t_list *lexer, t_tree *node);
 t_tree	*tree_new(int type, char *value, t_tree *left, t_tree *right);
-t_tree	*command_prefix(t_list *lexer);
-t_tree	*command_suffix(t_list *lexer, t_tree *node);
-t_tree	*piped_command(t_list *lexer, t_program *program);
-t_tree	*redirect(t_list *lexer);
-t_tree	*simple_command(t_list *lexer, t_program *program);
 t_list	*get_next_token(t_list *lexer);
-t_tree	*get_last_prefix(t_tree *prefix);
 void	print_tree(t_tree *tree, int n);
 void	free_tree(t_tree *tree);
 void	consume_token(t_list *token);
-void	return_error(t_list *token);
+int		check_syntax(t_list *lexer);
 
 // Interpreter
 char	**get_cmd_option(t_tree *node);

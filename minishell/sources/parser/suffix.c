@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   piped_command.c                                    :+:      :+:    :+:   */
+/*   get_suffix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 15:56:25 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 19:46:42 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/03/26 15:56:29 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/04/05 16:09:25 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-t_tree	*piped_command(t_list *lexer, t_program *program)
+t_tree	*get_suffix(t_list *lexer, t_tree *node)
 {
 	t_list	*token;
+	t_tree	*suffix;
 
-	token = get_lpipe(&lexer);
-	if (!token || lexer_get_type(token) == T_CONSUMED)
+	token = get_next_token(lexer);
+	if (!token)
 		return (NULL);
-	if (lexer_get_type(token) == T_PIPE)
+	while (lexer_get_type(token) == T_WORD)
 	{
-		if (!token->next && program->ast == 0)
-			return (return_error(token), program->ast = 1, NULL);
-		else if (!token->next && program->ast != 0)
-			return (NULL);
 		consume_token(token);
-		return (tree_new(G_PIPE, NULL, simple_command(token->next, program), \
-		piped_command(lexer, program)));
+		node->right = tree_new(T_WORD, lexer_get_value(token), NULL, NULL);
+		node = node->right;
+		token = get_next_token(lexer);
 	}
-	else
-		return (simple_command(token, program));
+	suffix = get_redirect(lexer);
+	if (suffix)
+		suffix->left = get_suffix(lexer, node);
+	return (suffix);
 }

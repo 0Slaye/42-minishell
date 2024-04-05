@@ -1,0 +1,10 @@
+total 8
+drwxr-xr-x 4 uwywijas 2023_mulhouse  117 avril  5 17:28 .
+drwxr-xr-x 5 uwywijas 2023_mulhouse   66 mars  13 17:22 ..
+-rw-r--r-- 1 uwywijas 2023_mulhouse  763 mars  28 16:00 grammar.txt
+drwxr-xr-x 2 uwywijas 2023_mulhouse   55 mars   6 17:34 includes
+-rw-r--r-- 1 uwywijas 2023_mulhouse    0 avril  5 17:28 infile
+-rw-r--r-- 1 uwywijas 2023_mulhouse 3305 avril  5 17:20 Makefile
+-rw-r--r-- 1 uwywijas 2023_mulhouse    0 avril  5 17:28 outfile
+-rw-r--r-- 1 uwywijas 2023_mulhouse    0 avril  5 17:28 outfile2
+drwxr-xr-x 7 uwywijas 2023_mulhouse   93 avril  5 17:18 sources

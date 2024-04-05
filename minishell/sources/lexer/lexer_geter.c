@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:21:58 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/29 16:11:50 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:13:08 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	lexer_get_type(t_list *list)
 {
 	if (!list)
-		return (-1);
+		return (-2);
 	return ((int)((t_token *) list->content)->type);
 }
 

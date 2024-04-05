@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:11:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/28 18:01:21 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:19:24 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	free_lexer(t_list **lexer)
 	free(lexer);
 }
 
-void	show_lexer(t_list **lexer)
+void	print_lexer(t_list **lexer)
 {
 	t_list	*holder;
 

@@ -6,40 +6,68 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:29 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/04 19:45:21 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:34:08 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-void	return_error(t_list *token)
+t_list	*get_next_cmd(t_list *lexer)
 {
-	if (!token)
-		return ;
-	ft_putstr_fd(ER_PARSER_TOKEN, 2);
-	ft_putstr_fd("`", 2);
-	if (lexer_get_type(token) == T_WORD)
-		ft_putstr_fd(lexer_get_value(token), 2);
-	else if (lexer_get_type(token) == T_PIPE)
-		ft_putstr_fd("|", 2);
-	else if (lexer_get_type(token) == T_SL_REDIRECTION)
-		ft_putstr_fd("<", 2);
-	else if (lexer_get_type(token) == T_SR_REDIRECTION)
-		ft_putstr_fd(">", 2);
-	else if (lexer_get_type(token) == T_DL_REDIRECTION)
-		ft_putstr_fd("<<", 2);
-	else if (lexer_get_type(token) == T_DR_REDIRECTION)
-		ft_putstr_fd(">>", 2);
-	ft_putstr_fd("'\n", 2);
+	while (lexer)
+	{
+		if (lexer_get_type(lexer) == T_PIPE)
+			return (lexer);
+		lexer = lexer->next;
+	}
+	return (NULL);
 }
 
-t_tree	*ast(t_list **lexer, t_program *program)
+t_tree	*get_last_right(t_tree *node)
+{
+	t_tree	*result;
+	t_tree	*holder;
+
+	holder = node;
+	while (node->right)
+		node = node->right;
+	result = node;
+	node = holder;
+	return (result);
+}
+
+t_tree	*builder(t_list *lexer, int lvl)
+{
+	t_tree	*result;
+	t_tree	*holder;
+	t_list	*lholder;
+
+	if (lexer == NULL)
+		return (NULL);
+	if (lvl != 0 && lexer_get_type(lexer) == T_PIPE)
+	{
+		consume_token(lexer);
+		lexer = lexer->next;
+	}
+	lholder = lexer;
+	result = builder(get_next_cmd(lexer), lvl + 1);
+	holder = get_node(lholder);
+	if (result == NULL)
+		return (holder);
+	get_last_right(result)->right = holder;
+	return (result);
+}
+
+t_tree	*ast(t_list **lexer)
 {
 	t_tree	*tree;
 
-	tree = command_line(lexer, program);
+	if (check_syntax(*lexer) != 0)
+		return (NULL);
+	tree = builder(*lexer, 0);
 	if (!tree)
 		return (NULL);
+	print_tree(tree, 0);
 	return (tree);
 }

@@ -28,12 +28,11 @@ SRCS_FILES =	main.c \
 				lexer/lexer_expender_ascii.c \
 				parser/ast.c \
 				parser/tree.c \
-				parser/rules/command_line.c \
-				parser/rules/piped_command.c \
-				parser/rules/simple_command.c \
-				parser/rules/command_prefix.c \
-				parser/rules/command_suffix.c \
-				parser/rules/redirect.c \
+				parser/node.c \
+				parser/prefix.c \
+				parser/suffix.c \
+				parser/redirect.c \
+				parser/syntax.c \
 				interpreter/interpreter.c \
 				interpreter/command.c \
 				interpreter/command_utils.c \

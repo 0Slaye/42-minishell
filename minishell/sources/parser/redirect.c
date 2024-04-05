@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect.c                                         :+:      :+:    :+:   */
+/*   get_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:56:19 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/02 14:39:01 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:05:22 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_tree	*redirect_return(t_list *token, int type)
 	return (tree_new(type, lexer_get_value(token->next), NULL, NULL));
 }
 
-t_tree	*redirect(t_list *lexer)
+t_tree	*get_redirect(t_list *lexer)
 {
 	t_list	*token;
 

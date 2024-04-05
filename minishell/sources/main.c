@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/02 14:54:20 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:30:29 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv, char **envp)
 	program->argv = argv;
 	program->envp = envp;
 	program->exit = 0;
-	program->ast = 0;
 	prompt("minishell$ ", program);
 	return (free(program), 0);
 }
