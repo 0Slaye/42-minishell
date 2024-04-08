@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:29 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/05 18:17:29 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:55:58 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ t_tree	*ast(t_list **lexer)
 	tree = builder(*lexer, 0);
 	if (!tree)
 		return (NULL);
-	print_tree(tree, 0);
 	return (tree);
 }
