@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 16:33:20 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:36:06 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	path_execve(char *cmd, char **argv, char **envp)
 	execve(cmd, argv, envp);
 	path = get_envp_path(envp);
 	if (!path)
-		return ;
+		return (ft_putendl_fd(ER_PATH_NFOUND, 2));
 	paths = ft_split(path, ':');
 	if (!paths)
 		return ;
@@ -96,32 +96,3 @@ void	path_execve(char *cmd, char **argv, char **envp)
 	}
 	return (free(argv), free_path_split(paths), per_cmd_nfound(cmd));
 }
-
-// int	cmd_execute(t_tree *node, t_program *program, int input_fd, t_list *pipe)
-// {
-// 	char	**options;
-// 	int		id;
-
-// 	(void) pipe;
-// 	if (!node)
-// 		return (-1);
-// 	if (ft_strncmp(node->value, "exit", 4) == 0)
-// 		return (printf("exit\n"), -2);
-// 	id = fork();
-// 	if (id == -1)
-// 		return (-1);
-// 	if (id == 0)
-// 	{
-// 		dup2(input_fd, STDIN_FILENO);
-// 		if (input_fd != STDIN_FILENO)
-// 			close(input_fd);
-// 		close(((int *) pipe->content)[0]);
-// 		dup2(((int *) pipe->content)[1], STDOUT_FILENO);
-// 		if (((int *) pipe->content)[1] != STDOUT_FILENO)
-// 			close(((int *) pipe->content)[1]);
-// 		options = get_cmd_option(node);
-// 		path_execve(node->value, options, program->envp);
-// 		return (exit(EXIT_FAILURE), -1);
-// 	}
-// 	return (id);
-// }
