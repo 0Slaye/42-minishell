@@ -12,6 +12,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 LIBFT = sources/libft
 SRCS_FILES =	main.c \
+				utils.c \
 				prompt/prompt.c \
 				lexer/lexer.c \
 				lexer/lexer_utils.c \

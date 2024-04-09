@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/08 17:18:54 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:16:20 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,21 @@ char	*readline_handler(char *value)
 void	prompt(char *value, t_program *program)
 {
 	char	*line_read;
-	t_list	**r_lexer;
-	t_tree	*r_ast;
 
 	while (TRUE)
 	{
 		line_read = readline_handler(value);
 		if (line_read[0] != ""[0])
 		{
-			r_lexer = lexer(line_read, program);
+			program->lexer = lexer(line_read, program);
 			free(line_read);
-			r_ast = ast(r_lexer);
-			if (r_ast)
-				interpreter(r_ast, program);
-			if (r_lexer)
-				free_lexer(r_lexer);
-			if (r_ast)
-				free_tree(r_ast);
+			program->ast = ast(program->lexer);
+			if (program->ast)
+				interpreter(program->ast, program);
+			if (program->lexer)
+				free_lexer(program->lexer);
+			if (program->ast)
+				free_tree(program->ast);
 		}
 	}
 }

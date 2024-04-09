@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 15:49:26 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:15:28 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@
 # include "../sources/libft/libft.h"
 # include "tokens.h"
 
-typedef struct s_program
-{
-	char	**argv;
-	char	**envp;
-	int		argc;
-	int		exit;
-	int		pipelvl;
-}	t_program;
-
 typedef struct s_tree
 {
 	int				type;
@@ -43,6 +34,17 @@ typedef struct s_tree
 	struct s_tree	*right;
 	char			*value;
 }	t_tree;
+
+typedef struct s_program
+{
+	char	**argv;
+	char	**envp;
+	t_list	**lexer;
+	t_tree	*ast;
+	int		argc;
+	int		exit;
+	int		pipelvl;
+}	t_program;
 
 typedef struct s_fds
 {

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 16:10:05 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/04/09 16:06:47 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/04/09 16:16:42 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
+#include "errors.h"
 
-int	main(int argc, char **argv, char **envp)
+void	free_exit(t_program *program, int status)
 {
-	t_program	*program;
-
-	program = ft_calloc(1, sizeof(t_program));
-	if (!program)
-		return (1);
-	program->argc = argc;
-	program->argv = argv;
-	program->envp = envp;
-	program->lexer = NULL;
-	program->ast = NULL;
-	program->exit = 0;
-	prompt("minishell$ ", program);
-	return (free(program), 0);
+	if (program->lexer)
+		free_lexer(program->lexer);
+	if (program->ast)
+		free_tree(program->ast);
+	if (program->pipelvl != 0)
+		free(program);
+	exit(status);
 }
