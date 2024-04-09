@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/05 18:55:37 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:35:22 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_program
 typedef struct s_tree
 {
 	int		type;
-	void	*left;
-	void	*right;
+	struct s_tree	*left;
+	struct s_tree	*right;
 	char	*value;
 }	t_tree;
 

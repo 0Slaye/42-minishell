@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/08 18:32:49 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:47:09 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,16 @@ void	execute(t_program *program, t_tree *node, int ifd, int ofd, int lvl)
 	}
 	if (node->type == T_PIPE)
 	{
-		// if (!node->right)
-		// {
-		// 	if (ifd != STDIN_FILENO)
-		// 		close(ifd);
-		// 	execute(program, node->left, ifd, ofd, lvl);
-		// }
-		if (pipe(fds) == -1)
-			return (ft_putendl_fd(ER_PIPE_FUNC, 2));
+		pipe(fds);
 		id = fork();
-		if (id == -1)
-			return (ft_putendl_fd(ER_FORK_FUNC, 2));
 		if (id == 0)
 		{
-			if (node->right && !(((t_tree *) node->right)->right))
+			if (node->right && !node->right->right)
 			{
 				close(fds[0]);
 				if (ofd != STDOUT_FILENO)
 					close(ofd);
-				execute(program, ((t_tree *) node->right)->left, ifd, fds[1], lvl + 1);
+				execute(program, node->right->left, ifd, fds[1], lvl + 1);
 			}
 			else
 			{
@@ -58,8 +49,6 @@ void	execute(t_program *program, t_tree *node, int ifd, int ofd, int lvl)
 			}
 		}
 		id2 = fork();
-		if (id2 == -1)
-			return (ft_putendl_fd(ER_FORK_FUNC, 2));
 		if (id2 == 0)
 		{
 			close(fds[1]);
@@ -67,8 +56,16 @@ void	execute(t_program *program, t_tree *node, int ifd, int ofd, int lvl)
 				close(ifd);
 			if (lvl != 0)
 				execute(program, node->left, fds[0], ofd, lvl);
-			execute(program, node->left, ifd, ofd, lvl);
+			else if (lvl == 0 && !node->right)
+			{
+				close(fds[0]);
+				execute(program, node->left, ifd, ofd, lvl);
+			}
+			else
+				execute(program, node->left, fds[0], ofd, lvl);
 		}
+		close(fds[0]);
+		close(fds[1]);
 		if (ifd != STDIN_FILENO)
 			close(ifd);
 		if (ofd != STDOUT_FILENO)
