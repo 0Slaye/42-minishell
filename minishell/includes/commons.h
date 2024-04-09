@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 16:15:28 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:27:12 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ typedef struct s_fds
 	int	pifd;
 	int	pofd;
 }	t_fds;
+
+// Utils
+void	free_exit(t_program *program, int status);
 
 // Prompt
 void	prompt(char *value, t_program *program);

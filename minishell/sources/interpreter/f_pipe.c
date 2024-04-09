@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 16:14:29 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:26:21 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd)
 	t_fds	fds;
 	int		hfds[2];
 	int		left_id;
+	int		status;
 
 	if (pipe(hfds) == -1)
 		return (ft_putendl_fd(ER_PIPE_FUNC, 2));
@@ -74,7 +75,11 @@ void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd)
 	sclose(fds.pifd);
 	sclose(fds.pofd);
 	if (left_id != -1 && left_id != 0)
-		waitpid(left_id, &program->exit, 0);
+	{
+		waitpid(left_id, &status, 0);
+		if (WIFEXITED(status))
+			program->exit = WEXITSTATUS(status);
+	}
 	if (program->pipelvl != 0)
 		free_exit(program, EXIT_SUCCESS);
 }
