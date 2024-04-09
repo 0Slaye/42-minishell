@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:51:57 by uwywijas          #+#    #+#             */
-/*   Updated: 2023/12/08 17:08:52 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:53:38 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strchr(const char *s, int c)
 
 	i = 0;
 	convert = c;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 	{
 		if (s[i] == convert)

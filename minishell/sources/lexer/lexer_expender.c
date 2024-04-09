@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/22 19:19:40 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:51:58 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ char	*get_expend_value(char *value, t_program *program)
 
 	length = 0;
 	i = -1;
-	while (value[++i] != ' ' && value[i] != S_QUOTE && value[i] != QUESTION \
-	&& value[i] != D_QUOTE && value[i] != DOLLAR && value[i] != '\0')
-		length++;
 	if (value[0] && value[0] == QUESTION)
 		return (ft_itoa(program->exit));
-	if (length == 0)
+	if ((value[0] && (value[0] == ' ' || value[0] == S_QUOTE || value[0] == D_QUOTE)) || !value[0])
 		return ("$");
+	while (ft_isalpha(value[++i]) && value[i] != '\0')
+		length++;
+	if (length == 0)
+		return ("");
 	i = -1;
 	while (program->envp[++i])
 	{

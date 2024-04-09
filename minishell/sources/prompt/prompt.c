@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 16:16:20 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:58:49 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	prompt(char *value, t_program *program)
 		{
 			program->lexer = lexer(line_read, program);
 			free(line_read);
-			program->ast = ast(program->lexer);
+			if (program->lexer)
+				program->ast = ast(program->lexer);
 			if (program->ast)
 				interpreter(program->ast, program);
 			if (program->lexer)

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:12:08 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/03/07 11:27:18 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:59:03 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	setup_hashmap(char *line, int *hashmap)
 {
 	if (setup_quotes(line, hashmap) != 0)
-		return (printf(ER_LEXER_QUOTE), 1);
+		return (ft_putendl_fd(ER_LEXER_QUOTE, 2), 1);
 	setup_tokens(line, hashmap);
 	return (0);
 }
