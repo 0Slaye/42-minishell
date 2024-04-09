@@ -89,7 +89,7 @@ re : fclean all
 
 valgrind : all
 	@clear
-	@valgrind --quiet --leak-check=full --track-fds=yes ./minishell
+	@valgrind --quiet --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=valgrind.supp ./minishell
 
 git : fclean
 	@git add . > /dev/null 2>&1
