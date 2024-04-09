@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 14:35:22 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:49:26 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,24 @@ typedef struct s_program
 	char	**envp;
 	int		argc;
 	int		exit;
+	int		pipelvl;
 }	t_program;
 
 typedef struct s_tree
 {
-	int		type;
+	int				type;
 	struct s_tree	*left;
 	struct s_tree	*right;
-	char	*value;
+	char			*value;
 }	t_tree;
+
+typedef struct s_fds
+{
+	int	ifd;
+	int	ofd;
+	int	pifd;
+	int	pofd;
+}	t_fds;
 
 // Prompt
 void	prompt(char *value, t_program *program);
@@ -102,5 +111,12 @@ void	close_pipes(t_list *pipe);
 void	per_cmd_nfound(char *cmd_name);
 void	free_path_split(char **split);
 void	path_execve(char *cmd, char **argv, char **envp);
+
+void	execute_ast(t_program *program, t_tree *node, int ifd, int ofd);
+void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd);
+void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd);
+void	f_pipe_right(t_program *program, t_tree *node, t_fds *fds);
+int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
+void	sclose(int fd);
 
 #endif

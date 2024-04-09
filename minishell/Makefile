@@ -34,8 +34,10 @@ SRCS_FILES =	main.c \
 				parser/redirect.c \
 				parser/syntax.c \
 				interpreter/interpreter.c \
+				interpreter/interpreter_utils.c \
 				interpreter/command.c \
-				interpreter/command_utils.c
+				interpreter/command_utils.c \
+				interpreter/f_pipe.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/

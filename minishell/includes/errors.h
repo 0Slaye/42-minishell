@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/05 19:16:04 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:56:47 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 // Interpreter
 # define ER_PIPE_FUNC "minishell: pipe function error"
-# define ER_FORK_FUNC "minishell: pipe function error"
+# define ER_FORK_FUNC "minishell: fork function error"
 # define ER_CMD_NFOUND ": command not found"
 
 #endif
