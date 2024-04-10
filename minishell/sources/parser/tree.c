@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:59:16 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 16:37:39 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:32:37 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ void	free_tree(t_tree *tree)
 	if (tree->left)
 		free_tree(tree->left);
 	if (tree->heredoc)
+	{
+		sclose(tree->heredoc[0]);
+		sclose(tree->heredoc[1]);
 		free(tree->heredoc);
+	}
 	if (tree)
 		free(tree);
 }
