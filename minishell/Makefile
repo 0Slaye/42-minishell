@@ -40,6 +40,7 @@ SRCS_FILES =	main.c \
 				interpreter/command_utils.c \
 				interpreter/f_pipe.c \
 				interpreter/heredoc.c \
+				interpreter/redirection.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
