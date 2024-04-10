@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:56:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 15:34:49 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:06:06 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,3 @@ char	*ft_gnlstrjoin(char *s1, char const *s2)
 	free(s1);
 	return (result);
 }
-
