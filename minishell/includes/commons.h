@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 16:27:12 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:30:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_tree
 	struct s_tree	*left;
 	struct s_tree	*right;
 	char			*value;
+	int				*heredoc;
 }	t_tree;
 
 typedef struct s_program
@@ -123,5 +124,6 @@ void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd);
 void	f_pipe_right(t_program *program, t_tree *node, t_fds *fds);
 int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
 void	sclose(int fd);
+int		setup_heredocs(t_tree *tree);
 
 #endif

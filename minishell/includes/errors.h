@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 17:34:26 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:39:24 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@
 # define ER_PIPE_FUNC "minishell: pipe function error"
 # define ER_FORK_FUNC "minishell: fork function error"
 # define ER_CMD_NFOUND ": command not found"
+# define HEREDOC_STOP "minishell: here-document stopped"
 
 #endif
