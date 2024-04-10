@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 16:53:33 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:59:34 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,22 @@ void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd)
 void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd)
 {
 	int	rifd;
+	int	rofd;
 
 	if (node->type != T_WORD && program->pipelvl != 0)
 		return (sclose(ifd), sclose(ofd), free_exit(program, EXIT_SUCCESS));
 	else if (node->type != T_WORD)
 		return (sclose(ifd), sclose(ofd));
-	rifd = get_cmd_ifd(node);
-	if (rifd == -2)
-		return (sclose(ifd), sclose(ofd), free_exit(program, EXIT_SUCCESS));
+	get_cmd_fds(node, &rifd, &rofd);
 	if (rifd != -1)
 	{
 		sclose(ifd);
 		ifd = rifd;
+	}
+	if (rofd != -1)
+	{
+		sclose(ofd);
+		ofd = rofd;
 	}
 	dup2(ifd, STDIN_FILENO);
 	sclose(ifd);

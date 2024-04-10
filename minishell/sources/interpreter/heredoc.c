@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:14:38 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:04 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:50:41 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	run_heredoc(t_tree *node)
 		ft_putstr_fd("> ", 1);
 		value = get_next_line(0);
 		if (!value)
-			return (close(fds[1]), ft_putendl_fd(HEREDOC_STOP, 2), 0);
+			return (sclose(fds[1]), ft_putendl_fd(HEREDOC_STOP, 2), 0);
 		if (ft_strlen(node->value) == ft_strlen(value) - 1)
 		{
 			if (ft_strncmp(node->value, value, ft_strlen(value) - 1) == 0)
-				return (close(fds[1]), free(value), 0);
+				return (sclose(fds[1]), free(value), 0);
 		}
 		write(fds[1], value, ft_strlen(value));
 		free(value);

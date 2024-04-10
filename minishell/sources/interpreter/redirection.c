@@ -6,14 +6,14 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:23:53 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 16:52:47 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:59:32 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-int	is_next_ifd(t_tree *node)
+int	is_next_fd(t_tree *node, int type)
 {
 	t_tree	*holder;
 
@@ -22,43 +22,82 @@ int	is_next_ifd(t_tree *node)
 	holder = node;
 	while (node)
 	{
-		if (node->type == T_SL_REDIRECTION || node->type == T_DL_REDIRECTION)
-			return (node = holder, 1);
+		if (type == 0)
+		{
+			if (node->type == T_SL_REDIRECTION || node->type == T_DL_REDIRECTION)
+				return (node = holder, 1);
+		}
+		else
+		{
+			if (node->type == T_SR_REDIRECTION || node->type == T_DR_REDIRECTION)
+				return (node = holder, 1);
+		}
 		node = node->left;
 	}
 	node = holder;
 	return (0);
 }
 
-int	get_cmd_ifd(t_tree *node)
+void	ifd_handler(t_tree *node, int *fds)
+{
+	fds[0] = open(node->value, O_RDONLY);
+	if (fds[0] == -1)
+	{
+		sclose(fds[0]);
+		sclose(fds[1]);
+		return (ft_putendl_fd(ER_FILE_NFOUND, 1), exit(EXIT_FAILURE));
+	}
+	else if (is_next_fd(node->left, 0) == 1)
+		sclose(fds[0]);
+}
+
+void	ofd_handler(t_tree *node, int *fds)
+{
+	if (node->type == T_SR_REDIRECTION)
+		fds[1] = open(node->value, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	else
+		fds[1] = open(node->value, O_CREAT | O_WRONLY | O_APPEND, 0644);
+	if (fds[1] == -1)
+	{
+		sclose(fds[0]);
+		sclose(fds[1]);
+		return (ft_putendl_fd(ER_OPEN_FAILED, 1), exit(EXIT_FAILURE));
+	}
+	else if (is_next_fd(node->left, 1) == 1)
+		sclose(fds[1]);
+}
+
+void	get_cmd_fds(t_tree *node, int *ifd, int *ofd)
 {
 	t_tree	*holder;
 	t_tree	*last;
-	int		ifd;
+	int		fds[2];
 
 	holder = node;
-	ifd = -1;
+	last = NULL;
+	fds[0] = -1;
+	fds[1] = -1;
 	if (node == T_WORD)
 		node = node->left;
 	while (node)
 	{
 		if (node->type == T_SL_REDIRECTION)
 		{
-			ifd = open(node->value, O_RDONLY);
-			if (ifd == -1)
-				ft_putendl_fd(ER_FILE_NFOUND, 1);
-			if (ifd != -1 && is_next_ifd(node->left) == 1)
-				close(ifd);
-			else if (ifd == -1)
-				return (-2);
+			ifd_handler(node, fds);
 			last = node;
 		}
 		else if (node->type == T_DL_REDIRECTION)
+		{
+			sclose(fds[0]);
 			last = node;
+		}
+		else if (node->type == T_SR_REDIRECTION || node->type == T_DR_REDIRECTION)
+			ofd_handler(node, fds);
 		node = node->left;
 	}
 	node = holder;
 	if (last && last->type == T_DL_REDIRECTION)
-		return (last->heredoc[0]);
-	return (ifd);
+		fds[0] = last->heredoc[0];
+	*ifd = fds[0];
+	*ofd = fds[1];
 }
