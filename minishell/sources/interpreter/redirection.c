@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:23:53 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 16:46:48 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:26:05 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	ifd_handler(t_program *program, t_tree *node, int *fds)
 	{
 		sclose(fds[0]);
 		sclose(fds[1]);
-		return (ft_putendl_fd(ER_FILE_NFOUND, 2), \
-		free_exit(program, EXIT_FAILURE));
+		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd(node->value, 2), \
+		ft_putendl_fd(ER_FILE_NFOUND, 2), free_exit(program, EXIT_FAILURE));
 	}
 	else if (is_next_fd(node->left, 0) == 1)
 		sclose(fds[0]);

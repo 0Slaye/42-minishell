@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 17:08:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:04:03 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	add_to_list(t_list **list, char *value, int type)
 	t_token	*token;
 	t_list	*holder;
 
+	if (!value)
+		return (1);
 	token = ft_calloc(1, sizeof(t_token));
 	if (!token)
 		return (1);
@@ -38,14 +40,12 @@ char	*get_expend_value(char *value, t_program *program)
 	i = -1;
 	if (value[0] && value[0] == QUESTION)
 		return (ft_itoa(program->exit));
-	if ((value[0] && (value[0] == ' ' || value[0] == S_QUOTE || value[0] == D_QUOTE)) || !value[0])
+	if (!value[0])
 		return ("$");
 	while (ft_isalpha(value[++i]) && value[i] != '\0')
 		length++;
-	if (length == 0)
-		return ("");
 	i = -1;
-	while (program->envp[++i])
+	while (length > 0 && program->envp[++i])
 	{
 		if (get_envp_var_length(program->envp[i]) != length)
 			continue ;
