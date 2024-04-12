@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 17:36:06 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:54:36 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*get_envp_path(char **envp)
 	return (NULL);
 }
 
-void	path_execve(char *cmd, char **argv, char **envp)
+void	path_execve(char *cmd, char **argv, t_program *program)
 {
 	char	*path;
 	char	**paths;
@@ -78,8 +78,8 @@ void	path_execve(char *cmd, char **argv, char **envp)
 	char	*builded_cmd;
 	int		i;
 
-	execve(cmd, argv, envp);
-	path = get_envp_path(envp);
+	execve(cmd, argv, program->envp);
+	path = get_envp_path(program->envp);
 	if (!path)
 		return (ft_putendl_fd(ER_PATH_NFOUND, 2));
 	paths = ft_split(path, ':');
@@ -90,9 +90,9 @@ void	path_execve(char *cmd, char **argv, char **envp)
 	{
 		holder = ft_strjoin("/", cmd);
 		builded_cmd = ft_strjoin(paths[i], holder);
-		execve(builded_cmd, argv, envp);
+		execve(builded_cmd, argv, program->envp);
 		free(holder);
 		free(builded_cmd);
 	}
-	return (free(argv), free_path_split(paths), per_cmd_nfound(cmd));
+	return (free(argv), free_path_split(paths), per_cmd_nfound(program, cmd));
 }

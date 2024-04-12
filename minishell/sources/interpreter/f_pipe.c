@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:07:28 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:51:54 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd)
 	sclose(ifd);
 	dup2(ofd, STDOUT_FILENO);
 	sclose(ofd);
-	path_execve(node->value, get_cmd_option(node), program->envp);
-	free_exit(program, EXIT_SUCCESS);
+	path_execve(node->value, get_cmd_option(node), program);
+	free_exit(program, EXIT_FAILURE);
 }
 
 void	execute_ast(t_program *program, t_tree *node, int ifd, int ofd)

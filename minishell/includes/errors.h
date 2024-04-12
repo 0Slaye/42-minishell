@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 17:46:27 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:23:23 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@
 # define HEREDOC_STOP "minishell: here-document stopped"
 # define ER_FILE_NFOUND "No such file or directory"
 # define ER_OPEN_FAILED "minishell: open function failed"
+# define ER_CMD_DIRECTORY ": Is a directory"
+# define ER_CMD_PERMS ": Permission denied"
 
 #endif

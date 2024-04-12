@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:05:14 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:54:49 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <fcntl.h>
 # include <string.h>
 # include <sys/wait.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include "../sources/libft/libft.h"
 # include "tokens.h"
 
@@ -114,9 +116,9 @@ int		cmd_execute(t_tree *node, t_program *program, int in_fd, t_list *pipe);
 int		get_node_size(t_tree *node, int select);
 t_list	*setup_pipes(t_tree *ast);
 void	close_pipes(t_list *pipe);
-void	per_cmd_nfound(char *cmd_name);
+void	per_cmd_nfound(t_program *program, char *cmd_name);
 void	free_path_split(char **split);
-void	path_execve(char *cmd, char **argv, char **envp);
+void	path_execve(char *cmd, char **argv, t_program *program);
 
 void	execute_ast(t_program *program, t_tree *node, int ifd, int ofd);
 void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd);
