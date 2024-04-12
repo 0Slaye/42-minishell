@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:23:53 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:05:26 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:37:51 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	is_next_fd(t_tree *node, int type)
 	{
 		if (type == 0)
 		{
-			if (node->type == T_SL_REDIRECTION || node->type == T_DL_REDIRECTION)
+			if (node->type == T_SL_REDIRECTION \
+			|| node->type == T_DL_REDIRECTION)
 				return (node = holder, 1);
 		}
 		else
 		{
-			if (node->type == T_SR_REDIRECTION || node->type == T_DR_REDIRECTION)
+			if (node->type == T_SR_REDIRECTION \
+			|| node->type == T_DR_REDIRECTION)
 				return (node = holder, 1);
 		}
 		node = node->left;
@@ -45,7 +47,8 @@ void	ifd_handler(t_program *program, t_tree *node, int *fds)
 	{
 		sclose(fds[0]);
 		sclose(fds[1]);
-		return (ft_putendl_fd(ER_FILE_NFOUND, 1), free_exit(program, EXIT_FAILURE));
+		return (ft_putendl_fd(ER_FILE_NFOUND, 1), \
+		free_exit(program, EXIT_FAILURE));
 	}
 	else if (is_next_fd(node->left, 0) == 1)
 		sclose(fds[0]);
@@ -61,7 +64,8 @@ void	ofd_handler(t_program *program, t_tree *node, int *fds)
 	{
 		sclose(fds[0]);
 		sclose(fds[1]);
-		return (ft_putendl_fd(ER_OPEN_FAILED, 1), free_exit(program, EXIT_FAILURE));
+		return (ft_putendl_fd(ER_OPEN_FAILED, 1), \
+		free_exit(program, EXIT_FAILURE));
 	}
 	else if (is_next_fd(node->left, 1) == 1)
 		sclose(fds[1]);
@@ -98,6 +102,5 @@ void	get_cmd_fds(t_program *program, t_tree *node, int *ifd, int *ofd)
 	node = holder;
 	if (last && last->type == T_DL_REDIRECTION)
 		fds[0] = last->heredoc[0];
-	*ifd = fds[0];
-	*ofd = fds[1];
+	return (*ifd = fds[0], *ofd = fds[1]);
 }
