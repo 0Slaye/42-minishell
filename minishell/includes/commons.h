@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 17:54:43 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:05:14 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ void	f_pipe_right(t_program *program, t_tree *node, t_fds *fds);
 int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
 void	sclose(int fd);
 int		setup_heredocs(t_tree *tree);
-
-void	get_cmd_fds(t_tree *node, int *ifd, int *ofd);
+void	get_cmd_fds(t_program *program, t_tree *node, int *ifd, int *ofd);
 
 #endif
