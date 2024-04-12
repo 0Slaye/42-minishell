@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:23:53 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 16:37:51 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:46:48 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ifd_handler(t_program *program, t_tree *node, int *fds)
 	{
 		sclose(fds[0]);
 		sclose(fds[1]);
-		return (ft_putendl_fd(ER_FILE_NFOUND, 1), \
+		return (ft_putendl_fd(ER_FILE_NFOUND, 2), \
 		free_exit(program, EXIT_FAILURE));
 	}
 	else if (is_next_fd(node->left, 0) == 1)
@@ -64,7 +64,7 @@ void	ofd_handler(t_program *program, t_tree *node, int *fds)
 	{
 		sclose(fds[0]);
 		sclose(fds[1]);
-		return (ft_putendl_fd(ER_OPEN_FAILED, 1), \
+		return (ft_putendl_fd(ER_OPEN_FAILED, 2), \
 		free_exit(program, EXIT_FAILURE));
 	}
 	else if (is_next_fd(node->left, 1) == 1)
@@ -102,5 +102,5 @@ void	get_cmd_fds(t_program *program, t_tree *node, int *ifd, int *ofd)
 	node = holder;
 	if (last && last->type == T_DL_REDIRECTION)
 		fds[0] = last->heredoc[0];
-	return (*ifd = fds[0], *ofd = fds[1]);
+	return (*ifd = fds[0], *ofd = fds[1], (void) NULL);
 }

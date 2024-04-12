@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:51:54 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:52:08 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd)
 	int	rofd;
 
 	program->pipelvl = -1;
-	if (node->type != T_WORD && program->pipelvl != 0)
+	if (!node && program->pipelvl != 0)
 		return (sclose(ifd), sclose(ofd), free_exit(program, EXIT_SUCCESS));
 	else if (node->type != T_WORD)
-		return (sclose(ifd), sclose(ofd));
+		return (get_cmd_fds(program, node, &rifd, &rofd), sclose(ifd), sclose(ofd));
 	get_cmd_fds(program, node, &rifd, &rofd);
 	if (rifd != -1)
 	{
