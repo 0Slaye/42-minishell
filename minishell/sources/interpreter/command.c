@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:54:36 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:45:24 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,28 @@ void	path_execve(char *cmd, char **argv, t_program *program)
 	char	*builded_cmd;
 	int		i;
 
-	execve(cmd, argv, program->envp);
-	path = get_envp_path(program->envp);
-	if (!path)
-		return (ft_putendl_fd(ER_PATH_NFOUND, 2));
-	paths = ft_split(path, ':');
-	if (!paths)
-		return ;
-	i = -1;
-	while (paths[++i])
+	paths = NULL;
+	if (ft_strchr(cmd, '/') != NULL)
+		execve(cmd, argv, program->envp);
+	else
 	{
-		holder = ft_strjoin("/", cmd);
-		builded_cmd = ft_strjoin(paths[i], holder);
-		execve(builded_cmd, argv, program->envp);
-		free(holder);
-		free(builded_cmd);
+		path = get_envp_path(program->envp);
+		if (!path)
+			return (ft_putendl_fd(ER_CMD_NFOUND, 2)); // EXIT CODE HERE
+		paths = ft_split(path, ':');
+		if (!paths)
+			return (ft_putendl_fd(ER_MALLOC_FUNC, 2)); // EXIT CODE HERE
+		i = -1;
+		while (paths[++i])
+		{
+			holder = ft_strjoin("/", cmd);
+			builded_cmd = ft_strjoin(paths[i], holder);
+			printf("%s\n", builded_cmd);
+			check_perms(program, builded_cmd);
+			execve(builded_cmd, argv, program->envp);
+			free(holder);
+			free(builded_cmd);
+		}
 	}
 	return (free(argv), free_path_split(paths), per_cmd_nfound(program, cmd));
 }

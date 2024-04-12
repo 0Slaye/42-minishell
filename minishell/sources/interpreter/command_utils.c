@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:14:45 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 16:39:17 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:38:47 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,27 @@ void	per_cmd_nfound(t_program *program, char *cmd_name)
 	}
 }
 
+void	check_perms(t_program *program, char *builded_cmd)
+{
+	if (access(builded_cmd, F_OK) != -1)
+	{
+		if (access(builded_cmd, X_OK) == -1)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(builded_cmd, 2);
+			ft_putendl_fd(ER_CMD_PERMS, 2);
+			free_exit(program, 126);
+		}
+	}
+}
+
 void	free_path_split(char **split)
 {
 	int	i;
 
 	i = -1;
+	if (!split)
+		return ;
 	while (split[++i])
 		free(split[i]);
 	free(split);
