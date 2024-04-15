@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 17:25:58 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:00:42 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,13 @@ void	execute_cmd(t_program *p, t_tree *node, int ifd, int ofd)
 	int	rifd;
 	int	rofd;
 
+	p->hofd = ofd;
 	p->pipelvl = -1;
 	if (!node && p->pipelvl != 0)
 		return (sclose(ifd), sclose(ofd), free_exit(p, EXIT_SUCCESS));
 	else if (node->type != T_WORD)
-		return (get_cmd_fds(p, node, &rifd, &rofd), sclose(ifd), sclose(ofd));
+		return (sclose(ifd), sclose(ofd), get_cmd_fds(p, node, &rifd, &rofd), \
+	sclose(rifd), sclose(rofd), free_exit(p, EXIT_SUCCESS));
 	get_cmd_fds(p, node, &rifd, &rofd);
 	setup_io_fds(&rifd, &rofd, &ifd, &ofd);
 	cmd_duping(p, ifd, ofd);

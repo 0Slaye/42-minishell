@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 17:24:33 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:59:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_program
 	int		argc;
 	int		exit;
 	int		pipelvl;
+	int		hofd;
 }	t_program;
 
 typedef struct s_fds
