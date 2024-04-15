@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 19:06:43 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:29:15 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,17 @@ void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd)
 		free_exit(program, EXIT_SUCCESS);
 }
 
-void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd)
+void	execute_cmd(t_program *p, t_tree *node, int ifd, int ofd)
 {
 	int	rifd;
 	int	rofd;
 
-	program->pipelvl = -1;
-	if (!node && program->pipelvl != 0)
-		return (sclose(ifd), sclose(ofd), free_exit(program, EXIT_SUCCESS));
+	p->pipelvl = -1;
+	if (!node && p->pipelvl != 0)
+		return (sclose(ifd), sclose(ofd), free_exit(p, EXIT_SUCCESS));
 	else if (node->type != T_WORD)
-		return (get_cmd_fds(program, node, &rifd, &rofd), sclose(ifd), sclose(ofd));
-	get_cmd_fds(program, node, &rifd, &rofd);
+		return (get_cmd_fds(p, node, &rifd, &rofd), sclose(ifd), sclose(ofd));
+	get_cmd_fds(p, node, &rifd, &rofd);
 	if (rifd != -1)
 	{
 		sclose(ifd);
@@ -109,8 +109,8 @@ void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd)
 	sclose(ifd);
 	dup2(ofd, STDOUT_FILENO);
 	sclose(ofd);
-	path_execve(node->value, get_cmd_option(node), program);
-	free_exit(program, EXIT_FAILURE);
+	path_execve(node->value, get_cmd_option(node), p);
+	free_exit(p, EXIT_FAILURE);
 }
 
 void	execute_ast(t_program *program, t_tree *node, int ifd, int ofd)

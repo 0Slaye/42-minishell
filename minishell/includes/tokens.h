@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:52:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/10 15:19:21 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:41:57 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ enum e_tokens
 	T_SPACE,
 	T_CONSUMED
 };
+
+# define TDR_R T_DR_REDIRECTION
 
 typedef struct s_token
 {

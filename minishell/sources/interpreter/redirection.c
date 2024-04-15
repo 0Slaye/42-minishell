@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:23:53 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 19:26:05 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:42:01 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,7 @@ void	get_cmd_fds(t_program *program, t_tree *node, int *ifd, int *ofd)
 	t_tree	*last;
 	int		fds[2];
 
-	holder = node;
-	last = NULL;
-	fds[0] = -1;
-	fds[1] = -1;
-	if (node == T_WORD)
-		node = node->left;
+	last = redirect_setup(node, &holder, fds);
 	while (node)
 	{
 		if (node->type == T_SL_REDIRECTION)
@@ -95,7 +90,7 @@ void	get_cmd_fds(t_program *program, t_tree *node, int *ifd, int *ofd)
 			sclose(fds[0]);
 			last = node;
 		}
-		else if (node->type == T_SR_REDIRECTION || node->type == T_DR_REDIRECTION)
+		else if (node->type == T_SR_REDIRECTION || node->type == TDR_R)
 			ofd_handler(program, node, fds);
 		node = node->left;
 	}
