@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 18:00:42 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:07:44 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	execute_cmd(t_program *p, t_tree *node, int ifd, int ofd)
 	get_cmd_fds(p, node, &rifd, &rofd);
 	setup_io_fds(&rifd, &rofd, &ifd, &ofd);
 	cmd_duping(p, ifd, ofd);
+	check_and_exec_builtin(p, node);
 	path_execve(node->value, get_cmd_option(node), p);
 	free_exit(p, EXIT_FAILURE);
 }

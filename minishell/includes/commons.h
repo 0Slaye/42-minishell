@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 17:59:44 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:09:30 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,27 +111,30 @@ void	consume_token(t_list *token);
 int		check_syntax(t_list *lexer);
 
 // Interpreter
-char	**get_cmd_option(t_tree *node);
-int		interpreter(t_tree *ast, t_program *program);
-int		cmd_execute(t_tree *node, t_program *program, int in_fd, t_list *pipe);
-int		get_node_size(t_tree *node, int select);
 t_list	*setup_pipes(t_tree *ast);
 void	close_pipes(t_list *pipe);
 void	per_cmd_nfound(t_program *program, char *cmd_name);
 void	free_path_split(char **split);
 void	path_execve(char *cmd, char **argv, t_program *program);
-
 void	execute_ast(t_program *program, t_tree *node, int ifd, int ofd);
 void	execute_cmd(t_program *program, t_tree *node, int ifd, int ofd);
 void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd);
 void	f_pipe_right(t_program *program, t_tree *node, t_fds *fds);
-int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
 void	sclose(int fd);
-int		setup_heredocs(t_tree *tree);
 void	get_cmd_fds(t_program *program, t_tree *node, int *ifd, int *ofd);
 void	check_perms(t_program *program, char *builded_cmd);
 void	*redirect_setup(t_tree *node, t_tree **holder, int *fds);
 void	setup_io_fds(int *rifd, int *rofd, int *ifd, int *ofd);
 void	cmd_duping(t_program *program, int ifd, int ofd);
+char	**get_cmd_option(t_tree *node);
+int		interpreter(t_tree *ast, t_program *program);
+int		cmd_execute(t_tree *node, t_program *program, int in_fd, t_list *pipe);
+int		get_node_size(t_tree *node, int select);
+int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
+int		setup_heredocs(t_tree *tree);
+
+
+// Builtins
+void	check_and_exec_builtin(t_program *program, t_tree *node);
 
 #endif
