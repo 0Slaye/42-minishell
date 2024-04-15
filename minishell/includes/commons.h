@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 14:38:00 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:24:33 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,7 @@ int		setup_heredocs(t_tree *tree);
 void	get_cmd_fds(t_program *program, t_tree *node, int *ifd, int *ofd);
 void	check_perms(t_program *program, char *builded_cmd);
 void	*redirect_setup(t_tree *node, t_tree **holder, int *fds);
+void	setup_io_fds(int *rifd, int *rofd, int *ifd, int *ofd);
+void	cmd_duping(t_program *program, int ifd, int ofd);
 
 #endif

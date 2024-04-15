@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection_utils.c                                :+:      :+:    :+:   */
+/*   f_pipe_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 19:14:39 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 16:54:16 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/04/15 17:22:00 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/04/15 17:26:24 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-void	*redirect_setup(t_tree *node, t_tree **holder, int *fds)
+void	cmd_duping(t_program *program, int ifd, int ofd)
 {
-	*holder = node;
-	fds[0] = -1;
-	fds[1] = -1;
-	if (node == T_WORD)
-		node = node->left;
-	return (NULL);
-}
-
-void	setup_io_fds(int *rifd, int *rofd, int *ifd, int *ofd)
-{
-	if (*rifd != -1)
-	{
-		sclose(*ifd);
-		*ifd = *rifd;
-	}
-	if (*rofd != -1)
-	{
-		sclose(*ofd);
-		*ofd = *rofd;
-	}
+	if (dup2(ifd, STDIN_FILENO) == -1)
+		return (sclose(ifd), sclose(ofd), free_exit(program, EXIT_FAILURE));
+	sclose(ifd);
+	if (dup2(ofd, STDOUT_FILENO) == -1)
+		return (sclose(ofd), free_exit(program, EXIT_FAILURE));
+	sclose(ofd);
 }
