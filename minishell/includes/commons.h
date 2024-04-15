@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 18:09:30 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:42:05 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,8 @@ int		get_node_size(t_tree *node, int select);
 int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
 int		setup_heredocs(t_tree *tree);
 
-
 // Builtins
 void	check_and_exec_builtin(t_program *program, t_tree *node);
+void	ft_echo(t_tree *node);
 
 #endif
