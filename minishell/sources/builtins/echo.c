@@ -6,15 +6,18 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 18:42:00 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:57:02 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-void	print_value(char **values, int start, int i)
+void	print_value(char **values, int i)
 {
+	int	start;
+
+	start = i;
 	while (values[i])
 	{
 		if (i != start && values[i])
@@ -28,7 +31,7 @@ void	ft_echo(t_tree *node)
 {
 	char	**argv;
 	int		i;
-	int		start;
+	int		j;
 	int		is_newline;
 
 	is_newline = 1;
@@ -36,12 +39,19 @@ void	ft_echo(t_tree *node)
 	if (argv == NULL)
 		return ((void) printf("\n"));
 	i = 0;
-	while (argv[++i] && ft_strncmp(argv[i], "-n", ft_strlen("-n")) == 0)
+	while (argv[++i] && argv[i][0] == '-')
+	{
+		j = 1;
+		while (argv[i][j] != '\0' && argv[i][j] == 'n')
+			j++;
+		if (argv[i][j] != '\0')
+			break ;
 		is_newline = 0;
+	}
 	if (i == 0)
 		i++;
-	start = i;
-	print_value(argv, start, i);
+	print_value(argv, i);
 	if (is_newline)
 		printf("\n");
+	free(argv);
 }
