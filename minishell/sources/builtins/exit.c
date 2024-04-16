@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 16:06:47 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/16 15:07:14 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/04/16 15:42:24 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-void	free_exit(t_program *program, int status)
+void	ft_exit(t_program *program, t_tree *node)
 {
-	if (program->lexer)
-		free_lexer(program->lexer);
-	if (program->ast)
-		free_tree(program->ast);
-	if (program->pipelvl != 0)
-		free(program);
-	exit(status);
+	(void) program;
+	(void) node;
+	free_exit(program, EXIT_SUCCESS);
 }

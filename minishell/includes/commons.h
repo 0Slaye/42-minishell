@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/16 15:03:05 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:44:58 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,7 @@ int		setup_heredocs(t_tree *tree);
 void	check_and_exec_builtin(t_program *program, t_tree *node);
 void	ft_echo(t_tree *node);
 void	ft_pwd(void);
+void	ft_exit(t_program *program, t_tree *node);
+void	ft_env(t_program *program);
 
 #endif

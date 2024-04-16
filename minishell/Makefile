@@ -47,7 +47,9 @@ SRCS_FILES =	main.c \
 				interpreter/f_pipe_utils.c \
 				builtins/builtins.c \
 				builtins/echo.c \
-				builtins/pwd.c
+				builtins/pwd.c \
+				builtins/exit.c \
+				builtins/env.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
