@@ -49,7 +49,8 @@ SRCS_FILES =	main.c \
 				builtins/echo.c \
 				builtins/pwd.c \
 				builtins/exit.c \
-				builtins/env.c
+				builtins/env.c \
+				builtins/cd.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/16 15:24:33 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:51:12 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@
 // Builtins
 # define ER_EXIT_ARGS_NB "minishell: exit: too many argments"
 # define ER_EXIT_ARG_VALUE ": numeric argument required"
+# define ER_CD_ARGS_NB "minishell: cd: too many argments"
 
 #endif
