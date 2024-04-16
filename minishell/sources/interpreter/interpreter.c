@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/16 16:06:30 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:09:17 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	check_solo_cmds(t_program *program, t_tree *ast)
 {
-	t_tree *node;
+	t_tree	*node;
 
 	if (ast->right)
 		return (0);
