@@ -50,7 +50,9 @@ SRCS_FILES =	main.c \
 				builtins/pwd.c \
 				builtins/exit.c \
 				builtins/env.c \
-				builtins/cd.c
+				builtins/cd.c \
+				builtins/unset.c \
+				builtins/export.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/

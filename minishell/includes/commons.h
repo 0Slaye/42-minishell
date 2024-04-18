@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/16 16:00:23 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:46:47 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,7 @@ void	ft_exit(t_program *program, t_tree *node);
 void	ft_env(t_program *program);
 void	ft_cd(t_program *program, t_tree *node);
 void	ft_solo_cd(t_program *program, t_tree *node);
+void	ft_unset(t_program *program, t_tree *node);
+void	ft_export(t_program *program, t_tree *node);
 
 #endif
