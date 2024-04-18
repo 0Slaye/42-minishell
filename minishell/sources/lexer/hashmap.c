@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:12:08 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/09 17:00:17 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:03:47 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	*ft_hashmap(char *line)
 {
 	int	*hashmap;
 
-	hashmap = ft_calloc(ft_strlen(line), sizeof(int));
+	hashmap = ft_calloc(ft_strlen(line) + 1, sizeof(int));
 	if (!hashmap)
 		return (NULL);
 	if (setup_hashmap(line, hashmap) != 0)
