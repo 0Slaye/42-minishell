@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 19:12:57 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:15:35 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void	path_execve(char *cmd, char **argv, t_program *program)
 	{
 		path = get_envp_path(program->envp);
 		if (!path)
-			return (ft_putendl_fd(ER_CMD_NFOUND, 2), free_exit(program, 127));
+			return (ft_putstr_fd(argv[0], 2), \
+		ft_putendl_fd(ER_CMD_NFOUND, 2), free_exit(program, 127));
 		paths = ft_split(path, ':');
 		if (!paths)
 			return (ft_putendl_fd(ER_MALLOC_FUNC, 2), free_exit(program, 1));

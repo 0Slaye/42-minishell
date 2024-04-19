@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:04:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/16 15:52:42 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:14:11 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_and_exec_builtin(t_program *program, t_tree *node)
 	if (ft_strncmp(node->value, "pwd", ft_strlen(node->value)) == 0)
 		return (ft_pwd(), free_exit(program, EXIT_SUCCESS));
 	if (ft_strncmp(node->value, "export", ft_strlen(node->value)) == 0)
-		return (printf("%s\n", node->value), free_exit(program, EXIT_SUCCESS));
+		return (ft_export(program, node), free_exit(program, EXIT_SUCCESS));
 	if (ft_strncmp(node->value, "unset", ft_strlen(node->value)) == 0)
 		return (printf("%s\n", node->value), free_exit(program, EXIT_SUCCESS));
 	if (ft_strncmp(node->value, "env", ft_strlen(node->value)) == 0)
