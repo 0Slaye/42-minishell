@@ -52,7 +52,8 @@ SRCS_FILES =	main.c \
 				builtins/env.c \
 				builtins/cd.c \
 				builtins/unset.c \
-				builtins/export.c
+				builtins/export.c \
+				signals/signals.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/

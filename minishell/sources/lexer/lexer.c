@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:12:02 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/18 15:03:42 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:10:59 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_list	**lexer(char *value, t_program *program)
 		return (NULL);
 	hashmap = ft_hashmap(expended);
 	if (!hashmap)
-		return (NULL);
+		return (free(expended), NULL);
 	lexer = hashmap_parse(hashmap, expended);
 	if (!lexer)
 		return (free(expended), free_lexer(lexer), free(hashmap), NULL);

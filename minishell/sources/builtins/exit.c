@@ -6,12 +6,24 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/18 15:44:31 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:07:51 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
+
+int	is_allnum(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i] != '\0' && ft_isdigit(arg[i]))
+		i++;
+	if (i != (int) ft_strlen(arg))
+		return (0);
+	return (1);
+}
 
 void	ft_exit(t_program *program, t_tree *node)
 {
@@ -32,7 +44,7 @@ void	ft_exit(t_program *program, t_tree *node)
 	(void)(program->exit = EXIT_FAILURE));
 	if (i == 1)
 		return (free(argv), free_exit(program, 0));
-	if (ft_strlen(argv[1]) > ft_strlen("9223372036854775807"))
+	if (!is_allnum(argv[1]))
 		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd(argv[1], 2), \
 	free(argv), ft_putendl_fd(ER_EXIT_ARG_VALUE, 2), free_exit(program, 2));
 	holder = ft_atoi(argv[1]);
