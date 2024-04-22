@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/19 16:31:40 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:22:19 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <signal.h>
+# include <stddef.h>
 # include "../sources/libft/libft.h"
 # include "tokens.h"
 
@@ -147,5 +148,7 @@ void	ft_export(t_program *program, t_tree *node);
 
 // Signals
 void	setup_signals(void);
+void	sig_default(void);
+void	sig_ignore(void);
 
 #endif

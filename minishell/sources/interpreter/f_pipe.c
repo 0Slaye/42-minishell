@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 14:17:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:22:19 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	execute_cmd(t_program *p, t_tree *node, int ifd, int ofd)
 	int	rifd;
 	int	rofd;
 
+	sig_default();
 	p->hofd = ofd;
 	p->pipelvl = -1;
 	if (!node && p->pipelvl != 0)

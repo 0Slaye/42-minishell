@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 14:19:54 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:22:19 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	prompt(char *value, t_program *program)
 
 	while (TRUE)
 	{
+		setup_signals();
 		line_read = readline_handler(value);
 		if (line_read && line_read[0] != ""[0])
 		{
+			sig_ignore();
 			program->lexer = lexer(line_read, program);
 			free(line_read);
 			if (program->lexer)
