@@ -3,16 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 18:09:42 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:30:16 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
+static void	ft_print_env(char *env)
+{
+	int	i;
+	
+	i = 0;
+	while (env[i] != '=')
+	{
+		printf("%c", env[i]);
+		i++;
+	}
+	printf("%s", "=\"");
+	i++;
+	while (env[i])
+	{
+		printf("%c", env[i]);
+		i++;
+	}
+	printf("%s", "\"\n");
+}
 static int	ft_env_size(char **envp)
 {
 	int	size;
@@ -23,27 +42,41 @@ static int	ft_env_size(char **envp)
 	return (size);
 }
 
-char	**ft_copy_env(t_program *program, t_tree *node)
+static void	ft_add_to_env(char **argv, char **new_env, int j, int add)
+{
+	int	k;
+
+	while (add > 0)
+	{
+		k = 1;
+		new_env[j] = ft_strdup(argv[k]);
+		j++;
+		k++;
+		add--;
+	}
+	new_env[j] = NULL;
+}
+
+static void	ft_copy_env(t_program *program, char **argv, int add)
 {
 	char	**new_env;
 	int		env_size;
 	int		j;
-	int		size;
 
-	size = 1; // temp
+
 	env_size = ft_env_size(program->envp);
-	new_env = ft_calloc(env_size + 1, sizeof(char *));
+	new_env = ft_calloc(env_size + add + 1, sizeof(char *));
 	if (!new_env)
-		return (NULL);
+		exit(EXIT_FAILURE);
+	env_size = ft_env_size(new_env);
 	j = 0;
-	while (j <= size)
+	while (j < env_size - add)
 	{
 		new_env[j] = ft_strdup(program->envp[j]);
 		j++;
 	}
-	new_env[j] = ft_strdup(node->value);
-	new_env[j + 1] = 0;
-	return (new_env);
+	ft_add_to_env(argv, new_env, j, add);
+	program->envp = new_env;
 }
 void	ft_export(t_program *program, t_tree *node)
 {
@@ -62,9 +95,11 @@ void	ft_export(t_program *program, t_tree *node)
 		i = 0;
 		while (program->envp[i])
 		{
-			printf("declare -x %s\n", program->envp[i]);
+			ft_print_env(program->envp[i]);
 			i++;
 		}
-		return (free(argv));
 	}
+	else if ( i > 1)
+		ft_copy_env(program, argv, i);
+	return (free(argv));	
 }
