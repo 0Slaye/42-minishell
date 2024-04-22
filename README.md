@@ -8,7 +8,7 @@
 [Parser](#Parser)|[booleanworld](https://www.booleanworld.com/building-recursive-descent-parsers-definitive-guide/)|done|
 [Interpreter](#Interpreter)|[wikipedia](https://en.wikipedia.org/wiki/Interpreter_(computing))|done|
 [Builtins](#Builtins)|[manual](https://www.man7.org/linux/man-pages/)|doing|
-[Signals](#Signals)|[wikipedia](https://en.wikipedia.org/wiki/Bash_(Unix_shell))|todo|
+[Signals](#Signals)|[wikipedia](https://en.wikipedia.org/wiki/Bash_(Unix_shell))|doing|
 [Leaks](#Leaks)|[wikipedia](https://en.wikipedia.org/wiki/Valgrind)|todo|
 [Norm](#Norm)|[github](https://github.com/42School/norminette)|todo|
 
