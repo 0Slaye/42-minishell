@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/18 15:08:34 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:31:31 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	check_solo_cmds(t_program *program, t_tree *ast)
 	if (ast->right)
 		return (0);
 	node = ast->left;
-	if (ft_strncmp(node->value, "cd", ft_strlen(node->value)) == 0)
+	if (ft_strncmp(node->value, "cd", 2) == 0)
 		return (ft_solo_cd(program, node), 1);
-	if (ft_strncmp(node->value, "exit", ft_strlen(node->value)) == 0)
+	if (ft_strncmp(node->value, "exit", 4) == 0)
 		return (program->pipelvl = -1, ft_exit(program, node), 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:16:35 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/19 17:12:59 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:44:18 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@
 void	sigint_handler(int signal)
 {
 	if (signal == SIGINT)
-		printf("\nminishell$ ");
+	{
+		write(2, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 	else if (signal == SIGQUIT)
 		return ;
 }
