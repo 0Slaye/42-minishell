@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:51:39 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 17:53:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:17:08 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	signals_setup_heredocs(void)
 	struct sigaction	sigint;
 	struct sigaction	sigquit;
 
-	bzero(&sigint, sizeof(sigquit));
+	bzero(&sigint, sizeof(sigint));
 	sigint.sa_handler = &heredoc_sigint_handler;
 	sigaction(SIGINT, &sigint, NULL);
 	bzero(&sigquit, sizeof(sigquit));

@@ -6,13 +6,19 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:14:38 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 18:05:41 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:26:34 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 #include "get_next_line.h"
+
+char	*norminetted_heredoc(void)
+{
+	ft_putstr_fd("> ", 1);
+	return (get_next_line(0));
+}
 
 int	run_heredoc(t_tree *node)
 {
@@ -27,8 +33,7 @@ int	run_heredoc(t_tree *node)
 	node->heredoc = fds;
 	while (TRUE)
 	{
-		ft_putstr_fd("> ", 1);
-		value = get_next_line(0);
+		value = norminetted_heredoc();
 		if (!value && g_sig == SIGINT)
 			return (sclose(fds[1]), 1);
 		if (!value)
@@ -64,11 +69,14 @@ int	search_heredoc(t_tree *node)
 	return (0);
 }
 
-int	setup_heredocs(t_tree *tree)
+int	setup_heredocs(t_tree *tree) //<< EOF1 cat > a | << EOF2 cat > b | << EOF3 cat > c
 {
+	int	res;
+
+	res = 0;
 	if (tree->right)
-		setup_heredocs(tree->right);
-	if (search_heredoc(tree->left) != 0)
+		res = setup_heredocs(tree->right);
+	if (res == 0 && search_heredoc(tree->left) != 0)
 		return (1);
-	return (0);
+	return (res);
 }
