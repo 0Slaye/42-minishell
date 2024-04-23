@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:16:35 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 18:22:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:43:19 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	sig_ignore(void)
 	sigaction(SIGQUIT, &act, NULL);
 }
 
-void	sig_handler(int signal)
+void	sigint_handler(int signal)
 {
 	if (signal == SIGINT)
 	{
@@ -42,16 +42,17 @@ void	sig_handler(int signal)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-	else if (signal == SIGQUIT)
-		return ;
 }
 
 void	setup_signals(void)
 {
-	struct sigaction	act;
+	struct sigaction	sigint;
+	struct sigaction	sigquit;
 
-	bzero(&act, sizeof(act));
-	act.sa_handler = &sig_handler;
-	sigaction(SIGINT, &act, NULL);
-	sigaction(SIGQUIT, &act, NULL);
+	bzero(&sigint, sizeof(sigquit));
+	sigint.sa_handler = &sigint_handler;
+	sigaction(SIGINT, &sigint, NULL);
+	bzero(&sigquit, sizeof(sigquit));
+	sigquit.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sigquit, NULL);
 }
