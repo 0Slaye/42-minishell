@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 14:31:31 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:30:30 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	check_solo_cmds(t_program *program, t_tree *ast)
 		return (ft_solo_cd(program, node), 1);
 	if (ft_strncmp(node->value, "exit", 4) == 0)
 		return (program->pipelvl = -1, ft_exit(program, node), 1);
+	if (ft_strncmp(node->value, "export", 6) == 0)
+		return (ft_export(program, node), 1);
 	return (0);
 }
 

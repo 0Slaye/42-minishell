@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 20:30:16 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:30:28 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,27 @@ static void	ft_print_env(char *env)
 	int	i;
 	
 	i = 0;
+	printf("declare -x ");
 	while (env[i] != '=')
 	{
 		printf("%c", env[i]);
 		i++;
 	}
-	printf("%s", "=\"");
+	printf("=\"");
 	i++;
 	while (env[i])
 	{
 		printf("%c", env[i]);
 		i++;
 	}
-	printf("%s", "\"\n");
+	printf("\"\n");
 }
-static int	ft_env_size(char **envp)
+static int	ft_array_len(char **array)
 {
 	int	size;
 
 	size = 0;
-	while (envp[size])
+	while (array[size])
 		size++;
 	return (size);
 }
@@ -63,27 +64,33 @@ static void	ft_copy_env(t_program *program, char **argv, int add)
 	int		env_size;
 	int		j;
 
-
-	env_size = ft_env_size(program->envp);
+	env_size = ft_array_len(program->envp);
 	new_env = ft_calloc(env_size + add + 1, sizeof(char *));
 	if (!new_env)
 		exit(EXIT_FAILURE);
-	env_size = ft_env_size(new_env);
+	env_size = ft_array_len(new_env);
 	j = 0;
 	while (j < env_size - add)
 	{
 		new_env[j] = ft_strdup(program->envp[j]);
+		free(program->envp[j]);
 		j++;
 	}
 	ft_add_to_env(argv, new_env, j, add);
 	program->envp = new_env;
+	j = env_size;
+	while (j > 0)
+	{
+		free(new_env[j]);
+		j--;
+	}
+	free(new_env);
 }
 void	ft_export(t_program *program, t_tree *node)
 {
 	char	**argv;
 	int		i;
 
-	(void)program;
 	argv = get_cmd_option(node);
 	if (!argv)
 		return ;
