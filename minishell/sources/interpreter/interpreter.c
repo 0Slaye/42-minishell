@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 14:30:30 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:49:56 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 int	check_solo_cmds(t_program *program, t_tree *ast)
 {
 	t_tree	*node;
+	int		length;
 
 	if (ast->right)
 		return (0);
 	node = ast->left;
-	if (ft_strncmp(node->value, "cd", 2) == 0)
+	length = ft_strlen(node->value);
+	if (ft_strncmp(node->value, "cd", 2) == 0 && length == 2)
 		return (ft_solo_cd(program, node), 1);
-	if (ft_strncmp(node->value, "exit", 4) == 0)
+	if (ft_strncmp(node->value, "exit", 4) == 0 && length == 4)
 		return (program->pipelvl = -1, ft_exit(program, node), 1);
-	if (ft_strncmp(node->value, "export", 6) == 0)
+	if (ft_strncmp(node->value, "export", 6) == 0 && length == 6)
 		return (ft_export(program, node), 1);
 	return (0);
 }
