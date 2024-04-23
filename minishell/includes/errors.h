@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/16 15:51:12 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:13:32 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define ER_FORK_FUNC "minishell: fork function error"
 # define ER_MALLOC_FUNC "minishell: malloc function error"
 # define ER_CMD_NFOUND ": command not found"
-# define HEREDOC_STOP "minishell: here-document stopped"
+# define HEREDOC_STOP "\nminishell: here-document stopped"
 # define ER_FILE_NFOUND ": No such file or directory"
 # define ER_OPEN_FAILED "minishell: open function failed"
 # define ER_CMD_DIRECTORY ": Is a directory"

@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 15:30:55 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:19:37 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ void	free_to_null(t_program *program, int select)
 		return (free_lexer(program->lexer), (void)(program->lexer = NULL));
 	else
 		return (free_tree(program->ast), (void)(program->ast = NULL));
+}
+
+void	sigint_inter()
+{
+	printf("\n");
+}
+
+void	sigquit_inter()
+{
+	printf("Quit\n");
 }
 
 void	prompt(char *value, t_program *program)
