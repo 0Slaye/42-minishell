@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 17:11:52 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:53:51 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_fds
 	int	pifd;
 	int	pofd;
 }	t_fds;
+
+extern sig_atomic_t	g_sig;
 
 // Utils
 void	free_exit(t_program *program, int status);
@@ -150,6 +152,6 @@ void	ft_export(t_program *program, t_tree *node);
 void	setup_signals(void);
 void	sig_default(void);
 void	sig_ignore(void);
-void	sig_heredoc(void);
+void	signals_setup_heredocs(void);
 
 #endif

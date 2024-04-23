@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 14:49:56 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:54:22 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	check_solo_cmds(t_program *program, t_tree *ast)
 int	interpreter(t_tree *ast, t_program *program)
 {
 	program->pipelvl = 0;
+	signals_setup_heredocs();
 	if (setup_heredocs(ast) != 0)
 		return (1);
+	sig_ignore();
 	if (check_solo_cmds(program, ast) != 0)
 		return (0);
 	execute_ast(program, ast, 0, 1);

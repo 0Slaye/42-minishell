@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sig_heredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 17:47:31 by uwywijas         ###   ########.fr       */
+/*   Created: 2024/04/23 17:51:39 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/04/23 17:53:46 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
+#include "errors.h"
 
-sig_atomic_t	g_sig = 0;
-
-int	main(int argc, char **argv, char **envp)
+void	heredoc_sigint_handler(int signal)
 {
-	t_program	*program;
+	g_sig = signal;
+	write(1, "\n", 1);
+}
 
-	program = ft_calloc(1, sizeof(t_program));
-	if (!program)
-		return (1);
-	program->argc = argc;
-	program->argv = argv;
-	program->envp = envp;
-	program->lexer = NULL;
-	program->ast = NULL;
-	program->exit = 0;
-	prompt("minishell$ ", program);
-	return (free(program), 0);
+void	signals_setup_heredocs(void)
+{
+	struct sigaction	sigint;
+	struct sigaction	sigquit;
+
+	bzero(&sigint, sizeof(sigquit));
+	sigint.sa_handler = &heredoc_sigint_handler;
+	sigaction(SIGINT, &sigint, NULL);
+	bzero(&sigquit, sizeof(sigquit));
+	sigquit.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sigquit, NULL);
 }
