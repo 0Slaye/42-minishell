@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 13:55:01 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:28:47 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_exit(t_program *program, t_tree *node)
 	int		holder;
 	int		i;
 
-	printf("exit\n");
+	ft_putendl_fd("exit", 2);
 	argv = get_cmd_option(node);
 	if (!argv)
 		return (ft_putendl_fd(ER_MALLOC_FUNC, 2), \

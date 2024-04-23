@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:16:35 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 14:46:18 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:55:25 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	sig_ignore(void)
 
 void	sigint_handler(int signal)
 {
-	printf("sig: %d\n", signal);
 	if (signal == SIGINT)
 	{
 		write(1, "\n", 1);
