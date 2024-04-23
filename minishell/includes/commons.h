@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commons.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 18:22:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:32:56 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ void	ft_cd(t_program *program, t_tree *node);
 void	ft_solo_cd(t_program *program, t_tree *node);
 void	ft_unset(t_program *program, t_tree *node);
 void	ft_export(t_program *program, t_tree *node);
+int		ft_array_len(char **array);
+void	ft_print_env(char *env);
 
 // Signals
 void	setup_signals(void);
