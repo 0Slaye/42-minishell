@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:14:38 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 18:26:34 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:28:15 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	search_heredoc(t_tree *node)
 	return (0);
 }
 
-int	setup_heredocs(t_tree *tree) //<< EOF1 cat > a | << EOF2 cat > b | << EOF3 cat > c
+int	setup_heredocs(t_tree *tree)
 {
 	int	res;
 
