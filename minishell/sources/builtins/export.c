@@ -6,33 +6,33 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 14:30:28 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:32:29 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-static void	ft_print_env(char *env)
-{
-	int	i;
+// static void	ft_print_env(char *env)
+// {
+// 	int	i;
 	
-	i = 0;
-	printf("declare -x ");
-	while (env[i] != '=')
-	{
-		printf("%c", env[i]);
-		i++;
-	}
-	printf("=\"");
-	i++;
-	while (env[i])
-	{
-		printf("%c", env[i]);
-		i++;
-	}
-	printf("\"\n");
-}
+// 	i = 0;
+// 	printf("declare -x ");
+// 	while (env[i] != '=')
+// 	{
+// 		printf("%c", env[i]);
+// 		i++;
+// 	}
+// 	printf("=\"");
+// 	i++;
+// 	while (env[i])
+// 	{
+// 		printf("%c", env[i]);
+// 		i++;
+// 	}
+// 	printf("\"\n");
+// }
 static int	ft_array_len(char **array)
 {
 	int	size;
