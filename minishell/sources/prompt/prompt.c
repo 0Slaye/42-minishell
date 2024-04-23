@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 15:28:38 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:30:55 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*readline_handler(char *value)
 void	free_to_null(t_program *program, int select)
 {
 	if (select == 0)
-		return (free_lexer(program->lexer), (void) (program->lexer = NULL));
+		return (free_lexer(program->lexer), (void)(program->lexer = NULL));
 	else
-		return (free_tree(program->ast), (void) (program->ast = NULL));
+		return (free_tree(program->ast), (void)(program->ast = NULL));
 }
 
 void	prompt(char *value, t_program *program)
