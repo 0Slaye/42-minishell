@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_pipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:49:49 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 18:35:29 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:47:33 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,19 @@ void	f_pipe(t_program *program, t_tree *node, int ifd, int ofd)
 		waitpid(left_id, &status, 0);
 		if (WIFEXITED(status))
 			program->exit = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+		{
+			if (WTERMSIG(status) == SIGINT)
+			{
+				write(1, "\n", 1);
+				program->exit = 130;
+			}
+			else if (WTERMSIG(status) == SIGQUIT)
+			{
+				write(1, "Quit\n", 5);
+				program->exit = 131;
+			}
+		}
 	}
 	if (program->pipelvl != 0)
 		free_exit(program, EXIT_SUCCESS);
