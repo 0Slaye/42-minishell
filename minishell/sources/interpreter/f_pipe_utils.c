@@ -6,12 +6,31 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 17:22:00 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 14:15:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:47:24 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
+
+void	update_exit_status(t_program *program, int status)
+{
+	if (WIFEXITED(status))
+		program->exit = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+		{
+			write(1, "\n", 1);
+			program->exit = 130;
+		}
+		else if (WTERMSIG(status) == SIGQUIT)
+		{
+			write(1, "Quit\n", 5);
+			program->exit = 131;
+		}
+	}
+}
 
 void	cmd_duping(t_program *program, int ifd, int ofd)
 {

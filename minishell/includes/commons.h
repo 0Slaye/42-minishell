@@ -6,7 +6,7 @@
 /*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 18:21:46 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:45:25 by uwywijas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	check_perms(t_program *program, char *builded_cmd);
 void	*redirect_setup(t_tree *node, t_tree **holder, int *fds);
 void	setup_io_fds(int *rifd, int *rofd, int *ifd, int *ofd);
 void	cmd_duping(t_program *program, int ifd, int ofd);
+void	update_exit_status(t_program *program, int status);
 char	**get_cmd_option(t_tree *node);
 int		interpreter(t_tree *ast, t_program *program);
 int		cmd_execute(t_tree *node, t_program *program, int in_fd, t_list *pipe);
