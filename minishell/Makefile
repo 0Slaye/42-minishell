@@ -54,6 +54,7 @@ SRCS_FILES =	main.c \
 				builtins/unset.c \
 				builtins/export.c \
 				builtins/utils.c \
+				builtins/export_verify.c\
 				signals/signals.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)

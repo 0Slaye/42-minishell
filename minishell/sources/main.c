@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 18:22:19 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:29:20 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	program->argc = argc;
 	program->argv = argv;
-	program->envp = envp;
+	program->envp = ft_dup_envp(envp);
 	program->lexer = NULL;
 	program->ast = NULL;
 	program->exit = 0;
