@@ -6,14 +6,14 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:30:38 by tal-yafi          #+#    #+#             */
-/*   Updated: 2024/04/29 19:14:15 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:07:40 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-int	ft_env_args(char **argv)
+int ft_env_args(char **argv)
 {
 	int	l;
 	int	m;
@@ -38,7 +38,7 @@ int	ft_env_args(char **argv)
 	return (valids);
 }
 
-int    ft_valid_arg(char *argv)
+int ft_valid_arg(char *argv)
 {
     int i;
 
@@ -54,7 +54,7 @@ int    ft_valid_arg(char *argv)
     return (0);
 }
 
-int	ft_to_update(t_program *program, char *argv)
+int ft_to_update(t_program *program, char *argv)
 {
     int i;
     int pos;

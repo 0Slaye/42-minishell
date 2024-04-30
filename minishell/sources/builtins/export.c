@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/29 18:43:32 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:36:20 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,24 @@ static int	ft_update_env(t_program *program, char **argv, int add)
 	int	sub;
 
 	sub = 0;
-	j = add;
-	while (j > 0)
+	j = 1;
+	
+	while (j <= add)
 	{
 		pos = ft_to_update(program, argv[j]);
-		if (pos > 0)
+		if (pos >= 0)
 		{
+			free (program->envp[pos]);
 			program->envp[pos] = ft_strdup(argv[j]);
 			if (!program->envp[pos])
 				return (-1);
 			sub++;
 		}
-		j--;
+		j++;
 	}
-	return (sub); 
+	return (sub);
 }
+
 static void	ft_add_to_env(char **argv, char **new_env, int j, int add)
 {
 	int	k;
@@ -61,19 +64,17 @@ static void	ft_add_to_env(char **argv, char **new_env, int j, int add)
 static void	ft_new_env(t_program *program, char **argv, int add)
 {
 	char	**new_env;
-	int		env_size;
 	int		j;
-	int		create;
+	int		n;
 
 	if (ft_update_env(program, argv, add) < 0)
 		return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
-	create = add - ft_update_env(program, argv, add);
-	env_size = ft_array_len(program->envp);
-	new_env = ft_calloc(env_size + create + 1, sizeof(char *));
+	n = add - ft_update_env(program, argv, add);
+	new_env = ft_calloc(ft_array_len(program->envp) + n + 1, sizeof(char *));
 	if (!new_env)
 		return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
 	j = 0;
-	while (j < env_size)
+	while (j < ft_array_len(program->envp))
 	{
 		new_env[j] = ft_strdup(program->envp[j]);
 		if (!new_env[j])
@@ -84,7 +85,7 @@ static void	ft_new_env(t_program *program, char **argv, int add)
 		j++;
 	}
 	ft_array_cleaner((void **)program->envp, j);
-	ft_add_to_env(argv, new_env, j, create);
+	ft_add_to_env(argv, new_env, j, n);
 	program->envp = new_env;
 }
 
