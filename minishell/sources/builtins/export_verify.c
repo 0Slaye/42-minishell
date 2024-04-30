@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:30:38 by tal-yafi          #+#    #+#             */
-/*   Updated: 2024/04/30 11:07:40 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:11:34 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int ft_valid_arg(char *argv)
 {
     int i;
 
-    if (ft_isalpha(argv[0]) == 0)
+    if (argv[0] != '_' && ft_isalpha(argv[0]) == 0)
         return (1);
     i = 1;
     while (argv[i] && argv[i] != '=')
     {
-        if (ft_isalnum(argv[i]) == 0)
+        if (argv[i] != '_' && ft_isalnum(argv[i]) == 0)
          return (1);
         i++;
     }
