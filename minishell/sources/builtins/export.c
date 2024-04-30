@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/30 14:06:21 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:04:42 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,32 @@ static void	ft_add_to_env(char *argv, char **new_env, int j)
 	new_env[j + 1] = NULL;
 }
 
+static void	ft_bigger_env(t_program *program, char *argv)
+{
+	char	**new_e;
+	int		j;
+
+	new_e = ft_calloc(ft_array_len(program->envp) + 2, sizeof(char *));
+	if (!new_e)
+		return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
+	j = 0;
+	while (j < ft_array_len(program->envp))
+	{
+		new_e[j] = ft_strdup(program->envp[j]);
+		if (!new_e[j])
+		{
+			ft_array_cleaner((void **)new_e, j);
+			return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
+		}
+		j++;
+	}
+	ft_array_cleaner((void **)program->envp, j);
+	ft_add_to_env(argv, new_e, j);
+	program->envp = new_e;
+}
+
 static void	ft_new_env(t_program *program, char **argv)
 {
-	char	**new_env;
-	int		j;
 	int		i;
 
 	i = 1;
@@ -56,23 +78,7 @@ static void	ft_new_env(t_program *program, char **argv)
 			return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
 		if (ft_update_env(program, argv[i]) == 0)
 		{
-			new_env = ft_calloc(ft_array_len(program->envp) + 2, sizeof(char *));
-			if (!new_env)
-				return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
-			j = 0;
-			while (j < ft_array_len(program->envp))
-			{
-				new_env[j] = ft_strdup(program->envp[j]);
-				if (!new_env[j])
-				{
-					ft_array_cleaner((void **)new_env, j);
-					return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
-				}
-				j++;
-			}
-			ft_array_cleaner((void **)program->envp, j);
-			ft_add_to_env(argv[i], new_env, j);
-			program->envp = new_env;
+			ft_bigger_env(program, argv[i]);
 		}
 		i++;
 	}

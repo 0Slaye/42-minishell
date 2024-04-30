@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:35:59 by tal-yafi          #+#    #+#             */
-/*   Updated: 2024/04/30 10:39:37 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:03:56 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,9 @@ static void	ft_iter_print(char *env)
 	printf("\"\n");
 }
 
-// static int	ft_strcmp(char *s1, char *s2)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (s1[i] && s2[i] && s1[i] != '=' && s2[i] != '=')
-// 	{
-// 		if (s1[i] != s2[i])
-// 			return (s1[i] - s2[i]);
-// 		i++;
-// 	}
-// 	return (s1[i] - s2[i]);
-// }
-
-// Add alphabetical order sorting !
-// Alphabetical NOT WORKING
 void	ft_print_env(char **envp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (envp[i])
