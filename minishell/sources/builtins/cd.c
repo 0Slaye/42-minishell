@@ -3,15 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/18 16:00:21 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:06:34 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
+
+void	update_pwds(t_program *program, char *current, char *next)
+{
+	char	*oldpwd;
+	char	*pwd;
+
+	if (!program->envp)
+		return ;
+	oldpwd = ft_strjoin("OLDPWD=", current);
+	if (!oldpwd)
+		return (perror("malloc"));
+	pwd = ft_strjoin("PWD=", next);
+	if (!pwd)
+		return (perror("malloc"));
+	if (is_env_containing(program, "PWD"))
+		remove_to_envp(program, "PWD");
+	if (is_env_containing(program, "OLDPWD"))
+		remove_to_envp(program, "OLDPWD");
+	add_to_envp(program, oldpwd);
+	add_to_envp(program, pwd);
+}
 
 char	*get_home(char **envp)
 {
@@ -46,13 +67,13 @@ void	ft_solo_cd(t_program *program, t_tree *node)
 	if (i == 1)
 	{
 		if (chdir(get_home(program->envp)) != 0)
-			return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd("cd: ", 2), \
+			return (ft_putendl_fd(ER_HOME_NFOUND, 2), \
 		perror(get_home(program->envp)), free_exit(program, EXIT_FAILURE));
 		return (program->exit = EXIT_SUCCESS, (void) NULL);
 	}
 	if (chdir(argv[1]) != 0)
-		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd("cd: ", 2), \
-	perror(argv[1]), program->exit = EXIT_FAILURE, (void) NULL);
+		return (ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
+	program->exit = EXIT_FAILURE, (void) NULL);
 	program->exit = EXIT_SUCCESS;
 }
 
@@ -74,10 +95,10 @@ void	ft_cd(t_program *program, t_tree *node)
 	if (i == 1)
 	{
 		if (chdir(get_home(program->envp)) != 0)
-			return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd("cd: ", 2), \
+			return (ft_putendl_fd(ER_HOME_NFOUND, 2), \
 		perror(get_home(program->envp)), free_exit(program, EXIT_FAILURE));
 	}
 	if (chdir(argv[1]) != 0)
-		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd("cd: ", 2), \
-	perror(argv[1]), free_exit(program, EXIT_FAILURE));
+		return (ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
+	free_exit(program, EXIT_FAILURE));
 }

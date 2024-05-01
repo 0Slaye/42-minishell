@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:24:12 by slaye             #+#    #+#             */
-/*   Updated: 2024/05/01 14:53:37 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/01 15:11:09 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	safe_print(char *v1, char *v2, char *v3, int fd)
 	{
 		result1 = ft_strjoin(v1, v2);
 		if (!result1)
-			return ((void) perror("malloc: "));
+			return ((void) perror("malloc"));
 		result2 = ft_strjoin(result1, v3);
 		if (!result2)
 			return (free(result1), (void) perror("malloc: "));
@@ -34,7 +34,7 @@ void	safe_print(char *v1, char *v2, char *v3, int fd)
 	{
 		result1 = ft_strjoin(v1, v2);
 		if (!result1)
-			return ((void) perror("malloc: "));
+			return ((void) perror("malloc"));
 		ft_putendl_fd(result1, fd);
 		free(result1);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 15:33:50 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:05:37 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@ int	is_allnum(char *arg)
 	int	i;
 
 	i = 0;
-	while (arg[i] != '\0' && ft_isdigit(arg[i]))
+	while (arg[i] != '\0' && (ft_isdigit(arg[i]) || \
+	(arg[i] == '-' && arg[i + 1])))
 		i++;
 	if (i != (int) ft_strlen(arg))
 		return (0);
 	return (1);
 }
 
+// check -1 arg value
 void	ft_exit(t_program *program, t_tree *node)
 {
-	char	**argv;
-	int		holder;
-	int		i;
+	char				**argv;
+	unsigned int		holder;
+	int					i;
 
 	ft_putendl_fd("exit", 2);
 	argv = get_cmd_option(node);

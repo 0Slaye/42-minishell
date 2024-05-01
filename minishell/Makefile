@@ -54,6 +54,7 @@ SRCS_FILES =	main.c \
 				builtins/cd.c \
 				builtins/unset.c \
 				builtins/export.c \
+				builtins/envp_utils.c \
 				signals/signals.c \
 				signals/sig_heredoc.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))

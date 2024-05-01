@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 14:33:31 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/01 16:35:43 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,13 @@ void	*redirect_setup(t_tree *node, t_tree **holder, int *fds);
 void	setup_io_fds(int *rifd, int *rofd, int *ifd, int *ofd);
 void	cmd_duping(t_program *program, int ifd, int ofd);
 void	update_exit_status(t_program *program, int status);
+void	safe_print(char *v1, char *v2, char *v3, int fd);
 char	**get_cmd_option(t_tree *node);
 int		interpreter(t_tree *ast, t_program *program);
 int		cmd_execute(t_tree *node, t_program *program, int in_fd, t_list *pipe);
 int		get_node_size(t_tree *node, int select);
 int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
 int		setup_heredocs(t_tree *tree);
-
-void	safe_print(char *v1, char *v2, char *v3, int fd);
 
 // Builtins
 void	check_and_exec_builtin(t_program *program, t_tree *node);
@@ -150,6 +149,9 @@ void	ft_cd(t_program *program, t_tree *node);
 void	ft_solo_cd(t_program *program, t_tree *node);
 void	ft_unset(t_program *program, t_tree *node);
 void	ft_export(t_program *program, t_tree *node);
+int		add_to_envp(t_program *program, char *value);
+int		remove_to_envp(t_program *program, char *value);
+int		is_env_containing(t_program *program, char *key);
 
 // Signals
 void	setup_signals(void);

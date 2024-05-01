@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:34:17 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 16:13:32 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:15:40 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@
 # define ER_EXIT_ARGS_NB "minishell: exit: too many argments"
 # define ER_EXIT_ARG_VALUE ": numeric argument required"
 # define ER_CD_ARGS_NB "minishell: cd: too many argments"
+# define ER_HOME_NFOUND "minishell: cd: HOME not set"
 
 #endif
