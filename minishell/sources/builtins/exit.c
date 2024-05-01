@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 17:05:37 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/01 17:28:58 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_allnum(char *arg)
 
 	i = 0;
 	while (arg[i] != '\0' && (ft_isdigit(arg[i]) || \
-	(arg[i] == '-' && arg[i + 1])))
+	(i == 0 && arg[i] == '-' && arg[i + 1])))
 		i++;
 	if (i != (int) ft_strlen(arg))
 		return (0);
