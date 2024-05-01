@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 17:23:09 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/01 17:32:53 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_solo_cd(t_program *program, t_tree *node)
 {
 	char	**argv;
 	char	current[1024];
+	char	next[1024];
 	int		i;
 
 	argv = get_cmd_option(node);
@@ -71,13 +72,15 @@ void	ft_solo_cd(t_program *program, t_tree *node)
 		if (chdir(get_home(program->envp)) != 0)
 			return (ft_putendl_fd(ER_HOME_NFOUND, 2), \
 		perror(get_home(program->envp)), free_exit(program, EXIT_FAILURE));
-		update_pwds(program, current, get_home(program->envp));
+		getcwd(next, 1024);
+		update_pwds(program, current, next);
 		return (program->exit = EXIT_SUCCESS, (void) NULL);
 	}
 	if (chdir(argv[1]) != 0)
 		return (ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
 	program->exit = EXIT_FAILURE, (void) NULL);
-	update_pwds(program, current, argv[1]);
+	getcwd(next, 1024);
+	update_pwds(program, current, next);
 	program->exit = EXIT_SUCCESS;
 }
 
@@ -85,6 +88,7 @@ void	ft_cd(t_program *program, t_tree *node)
 {
 	char	**argv;
 	char	current[1024];
+	char	next[1024];
 	int		i;
 
 	argv = get_cmd_option(node);
@@ -103,12 +107,14 @@ void	ft_cd(t_program *program, t_tree *node)
 		if (chdir(get_home(program->envp)) != 0)
 			return (ft_putendl_fd(ER_HOME_NFOUND, 2), \
 		perror(get_home(program->envp)), free_exit(program, EXIT_FAILURE));
-		update_pwds(program, current, get_home(program->envp));
+		getcwd(next, 1024);
+		update_pwds(program, current, next);
 		return (free_exit(program, EXIT_SUCCESS));
 	}
 	if (chdir(argv[1]) != 0)
 		return (ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
 	free_exit(program, EXIT_FAILURE));
-	update_pwds(program, current, argv[1]);
+	getcwd(next, 1024);
+	update_pwds(program, current, next);
 	free_exit(program, EXIT_SUCCESS);
 }
