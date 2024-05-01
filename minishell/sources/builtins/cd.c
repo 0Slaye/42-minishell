@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 17:32:53 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/01 17:44:12 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,24 @@ char	*get_home(char **envp)
 	return (NULL);
 }
 
+char	*get_with_home(char **envp, char *value)
+{
+	char	*result;
+
+	if (value[0] == '~')
+	{
+		result = ft_strjoin(get_home(envp), &value[1]);
+		return (result);
+	}
+	return (ft_strdup(value));
+}
+
 void	ft_solo_cd(t_program *program, t_tree *node)
 {
 	char	**argv;
 	char	current[1024];
 	char	next[1024];
+	char	*w_home;
 	int		i;
 
 	argv = get_cmd_option(node);
@@ -76,9 +89,13 @@ void	ft_solo_cd(t_program *program, t_tree *node)
 		update_pwds(program, current, next);
 		return (program->exit = EXIT_SUCCESS, (void) NULL);
 	}
-	if (chdir(argv[1]) != 0)
-		return (ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
+	w_home = get_with_home(program->envp, argv[1]);
+	if (!w_home)
+		return (perror("malloc"), (void) (program->exit = EXIT_FAILURE));
+	if (chdir(w_home) != 0)
+		return (free(w_home), ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
 	program->exit = EXIT_FAILURE, (void) NULL);
+	free(w_home);
 	getcwd(next, 1024);
 	update_pwds(program, current, next);
 	program->exit = EXIT_SUCCESS;
@@ -89,6 +106,7 @@ void	ft_cd(t_program *program, t_tree *node)
 	char	**argv;
 	char	current[1024];
 	char	next[1024];
+	char	*w_home;
 	int		i;
 
 	argv = get_cmd_option(node);
@@ -111,9 +129,13 @@ void	ft_cd(t_program *program, t_tree *node)
 		update_pwds(program, current, next);
 		return (free_exit(program, EXIT_SUCCESS));
 	}
+	w_home = get_with_home(program->envp, argv[1]);
+	if (!w_home)
+		return (perror("malloc"), free_exit(program, EXIT_FAILURE));
 	if (chdir(argv[1]) != 0)
-		return (ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
+		return (free(w_home), ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
 	free_exit(program, EXIT_FAILURE));
+	free(w_home);
 	getcwd(next, 1024);
 	update_pwds(program, current, next);
 	free_exit(program, EXIT_SUCCESS);
