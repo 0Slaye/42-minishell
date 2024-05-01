@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commons.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/25 15:45:25 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:33:31 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ int		cmd_execute(t_tree *node, t_program *program, int in_fd, t_list *pipe);
 int		get_node_size(t_tree *node, int select);
 int		f_pipe_left(t_program *program, t_tree *node, t_fds *fds);
 int		setup_heredocs(t_tree *tree);
+
+void	safe_print(char *v1, char *v2, char *v3, int fd);
 
 // Builtins
 void	check_and_exec_builtin(t_program *program, t_tree *node);

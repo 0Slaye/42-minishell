@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:15:41 by uwywijas          #+#    #+#             */
-/*   Updated: 2023/12/08 17:08:44 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:51:56 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	char	*result;
+
+	result = ft_strjoin(s, "\n");
+	if (!result)
+		return ;
+	ft_putstr_fd(result, fd);
+	free(result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:14:45 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 18:51:56 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:38:58 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,17 @@ void	error_slash(t_program *program, char *cmd_name)
 {
 	if (is_directory(cmd_name))
 	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd_name, 2);
-		ft_putendl_fd(ER_CMD_DIRECTORY, 2);
+		safe_print("minishell: ", cmd_name, ER_CMD_DIRECTORY, 2);
 		free_exit(program, 127);
 	}
 	else if (access(cmd_name, F_OK))
 	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd_name, 2);
-		ft_putendl_fd(ER_FILE_NFOUND, 2);
+		safe_print("minishell: ", cmd_name, ER_FILE_NFOUND, 2);
 		free_exit(program, 127);
 	}
 	else
 	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd_name, 2);
-		ft_putendl_fd(ER_CMD_PERMS, 2);
+		safe_print("minishell: ", cmd_name, ER_CMD_PERMS, 2);
 		free_exit(program, 126);
 	}
 }
@@ -53,8 +47,7 @@ void	per_cmd_nfound(t_program *program, char *cmd_name)
 		error_slash(program, cmd_name);
 	else
 	{
-		ft_putstr_fd(cmd_name, 2);
-		ft_putendl_fd(ER_CMD_NFOUND, 2);
+		safe_print("minishell: ", cmd_name, ER_CMD_NFOUND, 2);
 		free_exit(program, 127);
 	}
 }
@@ -65,9 +58,7 @@ void	check_perms(t_program *program, char *builded_cmd)
 	{
 		if (access(builded_cmd, X_OK) == -1)
 		{
-			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd(builded_cmd, 2);
-			ft_putendl_fd(ER_CMD_PERMS, 2);
+			safe_print("minishell: ", builded_cmd, ER_CMD_PERMS, 2);
 			free_exit(program, 126);
 		}
 	}

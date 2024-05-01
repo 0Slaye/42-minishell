@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:23:53 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/15 18:00:10 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:42:21 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	ifd_handler(t_program *program, t_tree *node, int *fds)
 		sclose(fds[0]);
 		sclose(fds[1]);
 		sclose(program->hofd);
-		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd(node->value, 2), \
-		ft_putendl_fd(ER_FILE_NFOUND, 2), free_exit(program, EXIT_FAILURE));
+		return (safe_print("minishell: ", node->value, ER_FILE_NFOUND, 2), \
+		free_exit(program, EXIT_FAILURE));
 	}
 	else if (is_next_fd(node->left, 0) == 1)
 		sclose(fds[0]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/22 19:39:48 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:40:21 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	path_execve(char *cmd, char **argv, t_program *program)
 	{
 		path = get_envp_path(program->envp);
 		if (!path)
-			return (ft_putstr_fd(argv[0], 2), \
-		ft_putendl_fd(ER_CMD_NFOUND, 2), free_exit(program, 127));
+			return (safe_print(argv[0], ER_CMD_NFOUND, NULL, 2), \
+			free_exit(program, 127));
 		paths = ft_split(path, ':');
 		if (!paths)
 			return (ft_putendl_fd(ER_MALLOC_FUNC, 2), free_exit(program, 1));

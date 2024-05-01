@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/24 15:34:35 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:55:34 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	interpreter(t_tree *ast, t_program *program)
 	if (check_solo_cmds(program, ast) != 0)
 		return (0);
 	execute_ast(program, ast, 0, 1);
+	wait(NULL);
 	wait(NULL);
 	program->pipelvl = 0;
 	return (0);

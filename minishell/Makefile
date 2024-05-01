@@ -41,6 +41,7 @@ SRCS_FILES =	main.c \
 				interpreter/f_pipe.c \
 				interpreter/heredoc.c \
 				interpreter/redirection.c \
+				interpreter/safe_print.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				interpreter/redirection_utils.c \
