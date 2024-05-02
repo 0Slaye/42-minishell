@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 17:44:12 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 11:09:00 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,49 +64,30 @@ char	*get_with_home(char **envp, char *value)
 void	ft_solo_cd(t_program *program, t_tree *node)
 {
 	char	**argv;
-	char	current[1024];
-	char	next[1024];
-	char	*w_home;
+	char	oldpwd[1024];
 	int		i;
 
 	argv = get_cmd_option(node);
 	if (!argv)
 		return (ft_putendl_fd(ER_MALLOC_FUNC, 2), \
-	program->exit = EXIT_FAILURE, (void) NULL);
+		(void) (program->exit = EXIT_FAILURE));
 	i = 0;
-	getcwd(current, 1024);
+	getcwd(oldpwd, 1024);
 	while (argv[i])
 		i++;
 	if (i > 2)
 		return (ft_putendl_fd(ER_CD_ARGS_NB, 2), \
-	program->exit = EXIT_FAILURE, (void) NULL);
+		(void) (program->exit = EXIT_FAILURE));
 	if (i == 1)
-	{
-		if (chdir(get_home(program->envp)) != 0)
-			return (ft_putendl_fd(ER_HOME_NFOUND, 2), \
-		perror(get_home(program->envp)), free_exit(program, EXIT_FAILURE));
-		getcwd(next, 1024);
-		update_pwds(program, current, next);
-		return (program->exit = EXIT_SUCCESS, (void) NULL);
-	}
-	w_home = get_with_home(program->envp, argv[1]);
-	if (!w_home)
-		return (perror("malloc"), (void) (program->exit = EXIT_FAILURE));
-	if (chdir(w_home) != 0)
-		return (free(w_home), ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
-	program->exit = EXIT_FAILURE, (void) NULL);
-	free(w_home);
-	getcwd(next, 1024);
-	update_pwds(program, current, next);
-	program->exit = EXIT_SUCCESS;
+		return (cd_solo_home(program, oldpwd, get_home(program->envp)));
+	else
+		return (cd_solo_path(program, oldpwd, argv));
 }
 
 void	ft_cd(t_program *program, t_tree *node)
 {
 	char	**argv;
-	char	current[1024];
-	char	next[1024];
-	char	*w_home;
+	char	oldpwd[1024];
 	int		i;
 
 	argv = get_cmd_option(node);
@@ -114,29 +95,14 @@ void	ft_cd(t_program *program, t_tree *node)
 		return (ft_putendl_fd(ER_MALLOC_FUNC, 2), \
 	free_exit(program, EXIT_FAILURE));
 	i = 0;
-	getcwd(current, 1024);
+	getcwd(oldpwd, 1024);
 	while (argv[i])
 		i++;
 	if (i > 2)
 		return (ft_putendl_fd(ER_CD_ARGS_NB, 2), \
 	free_exit(program, EXIT_FAILURE));
 	if (i == 1)
-	{
-		if (chdir(get_home(program->envp)) != 0)
-			return (ft_putendl_fd(ER_HOME_NFOUND, 2), \
-		perror(get_home(program->envp)), free_exit(program, EXIT_FAILURE));
-		getcwd(next, 1024);
-		update_pwds(program, current, next);
-		return (free_exit(program, EXIT_SUCCESS));
-	}
-	w_home = get_with_home(program->envp, argv[1]);
-	if (!w_home)
-		return (perror("malloc"), free_exit(program, EXIT_FAILURE));
-	if (chdir(argv[1]) != 0)
-		return (free(w_home), ft_putstr_fd("minishell: cd: ", 2), perror(argv[1]), \
-	free_exit(program, EXIT_FAILURE));
-	free(w_home);
-	getcwd(next, 1024);
-	update_pwds(program, current, next);
-	free_exit(program, EXIT_SUCCESS);
+		return (cd_home(program, oldpwd, get_home(program->envp)));
+	else
+		return (cd_path(program, oldpwd, argv));
 }

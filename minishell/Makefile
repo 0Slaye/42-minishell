@@ -52,6 +52,7 @@ SRCS_FILES =	main.c \
 				builtins/exit.c \
 				builtins/env.c \
 				builtins/cd.c \
+				builtins/cd_utils.c \
 				builtins/unset.c \
 				builtins/export.c \
 				builtins/envp_utils.c \

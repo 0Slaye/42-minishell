@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 17:18:58 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 11:09:07 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,12 @@ void	ft_cd(t_program *program, t_tree *node);
 void	ft_solo_cd(t_program *program, t_tree *node);
 void	ft_unset(t_program *program, t_tree *node);
 void	ft_export(t_program *program, t_tree *node);
+void	update_pwds(t_program *program, char *current, char *next);
+char	*get_with_home(char **envp, char *value);
+void	cd_solo_home(t_program *program, char *oldpwd, char *home);
+void	cd_solo_path(t_program *program, char *oldpwd, char **argv);
+void	cd_home(t_program *program, char *oldpwd, char *home);
+void	cd_path(t_program *program, char *oldpwd, char **argv);
 int		add_to_envp(t_program *program, char *value);
 int		remove_to_envp(t_program *program, char *value);
 int		is_env_containing(t_program *program, char *key);
