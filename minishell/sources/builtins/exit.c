@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 17:28:58 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 17:57:05 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	is_allnum(char *arg)
 	return (1);
 }
 
-// check -1 arg value
 void	ft_exit(t_program *program, t_tree *node)
 {
 	char				**argv;
@@ -45,7 +44,7 @@ void	ft_exit(t_program *program, t_tree *node)
 		return (free(argv), ft_putendl_fd(ER_EXIT_ARGS_NB, 2), \
 	(void)(program->exit = EXIT_FAILURE));
 	if (i == 1)
-		return (free(argv), free_exit(program, 0));
+		return (free(argv), free_exit(program, program->exit));
 	if (!is_allnum(argv[1]))
 		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd(argv[1], 2), \
 	free(argv), ft_putendl_fd(ER_EXIT_ARG_VALUE, 2), free_exit(program, 2));
