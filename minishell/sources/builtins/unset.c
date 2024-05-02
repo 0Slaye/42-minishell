@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/25 15:50:08 by uwywijas         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/02 16:40:45 by tal-yafi         ###   ########.fr       */
->>>>>>> slowpoke
+/*   Updated: 2024/05/02 17:20:04 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +58,6 @@ static void	ft_smaller_env(t_program *program, int pos)
 
 void	ft_unset(t_program *program, t_tree *node)
 {
-<<<<<<< HEAD
-	(void) program;
-	(void) node;
-=======
 	char	**argv;
 	int		i;
 	int		j;
@@ -91,5 +83,4 @@ void	ft_unset(t_program *program, t_tree *node)
 		i++;
 	}
 	return (free(argv));
->>>>>>> slowpoke
 }
