@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
 /*   Updated: 2024/05/02 15:00:26 by slaye            ###   ########.fr       */
+=======
+/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/21 19:12:26 by uwywijas          #+#    #+#             */
+/*   Updated: 2024/04/25 16:29:20 by tal-yafi         ###   ########.fr       */
+>>>>>>> slowpoke
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	program->argc = argc;
 	program->argv = argv;
-	program->envp = envp;
+	program->envp = ft_dup_envp(envp);
 	program->lexer = NULL;
 	program->ast = NULL;
 	program->exit = 0;

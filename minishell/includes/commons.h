@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/02 11:16:12 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 17:16:40 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,15 @@ void	cd_path(t_program *program, char *oldpwd, char **argv);
 int		add_to_envp(t_program *program, char *value);
 int		remove_to_envp(t_program *program, char *value);
 int		is_env_containing(t_program *program, char *key);
+int		ft_array_len(char **array);
+void	ft_array_cleaner(void **array, int position);
+int		ft_print_env(char **envp);
+char	**ft_dup_envp(char **envp);
+int		ft_env_args(char **argv);
+int		ft_valid_arg(char *argv);
+int		ft_to_update(t_program *program, char *argv);
+void	ft_been_printed(char *line);
+int		ft_strcmp(char *s1, char *s2);
 
 // Signals
 void	setup_signals(void);

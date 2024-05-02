@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:04:48 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 14:55:16 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:16:03 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_and_exec_builtin(t_program *program, t_tree *node)
 	if (ft_strncmp(node->value, "export", 6) == 0 && length == 6)
 		return (ft_export(program, node), free_exit(program, EXIT_SUCCESS));
 	if (ft_strncmp(node->value, "unset", 5) == 0 && length == 5)
-		return (printf("%s\n", node->value), free_exit(program, EXIT_SUCCESS));
+		return (ft_unset(program, node), free_exit(program, EXIT_SUCCESS));
 	if (ft_strncmp(node->value, "env", 3) == 0 && length == 3)
 		return (ft_env(program), free_exit(program, EXIT_SUCCESS));
 	if (ft_strncmp(node->value, "exit", 4) == 0 && length == 4)

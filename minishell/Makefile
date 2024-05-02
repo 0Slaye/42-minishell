@@ -4,7 +4,7 @@
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -58,6 +58,8 @@ SRCS_FILES =	main.c \
 				builtins/envp_utils.c \
 				signals/signals.c \
 				signals/sig_heredoc.c
+				builtins/utils.c \
+				builtins/export_verify.c
 SRCS = $(addprefix sources/, $(SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 INCLS = includes/
