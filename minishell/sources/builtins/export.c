@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/02 17:14:26 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 17:34:39 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ void	ft_export(t_program *program, t_tree *node)
 	argv = get_cmd_option(node);
 	if (!argv)
 		return ;
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (argv[++i])
 	{
 		if (ft_valid_arg(argv[i]) > 0)
-			return (free(argv), (void)ft_putendl_fd(ER_EXPORT_ID, 2)); //ER_MSG ft_putstr_fd(argv[i], 2)
-		i++;
+			return (safe_print("minishell: export: `", argv[i],
+					ER_EXPORT_ID, 2), free(argv));
 	}
 	if (i == 1)
 	{
