@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/02 11:31:25 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 15:00:42 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_env(t_program *program)
 	int	i;
 
 	i = 0;
-	while (program->envp[i])
+	while (program->envp && program->envp[i])
 	{
 		printf("%s\n", program->envp[i]);
 		i++;
