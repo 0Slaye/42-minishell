@@ -6,14 +6,14 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:02:46 by slaye             #+#    #+#             */
-/*   Updated: 2024/05/01 15:53:44 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 11:29:39 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-int get_envp_size(char **envp)
+int	get_envp_size(char **envp)
 {
 	int	i;
 
@@ -70,7 +70,7 @@ int	add_to_envp(t_program *program, char *value)
 	}
 	result[i] = ft_strdup(value);
 	if (!result[i])
-			return (perror("malloc"), 1);
+		return (perror("malloc"), 1);
 	result[i + 1] = NULL;
 	//free_envp(program->envp);
 	program->envp = result;
@@ -96,7 +96,6 @@ int	remove_to_envp(t_program *program, char *value)
 			j--;
 		else
 		{
-			
 			result[j] = ft_strdup(program->envp[i]);
 			if (!result[j])
 				return (perror("malloc"), 1);

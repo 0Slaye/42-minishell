@@ -6,14 +6,14 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/01 17:06:19 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 11:30:34 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 #include "errors.h"
 
-int		is_env_containing(t_program *program, char *key)
+int	is_env_containing(t_program *program, char *key)
 {
 	int	len_s1;
 	int	len_s2;

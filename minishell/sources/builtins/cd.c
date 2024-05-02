@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/02 11:09:00 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 11:30:25 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ void	ft_solo_cd(t_program *program, t_tree *node)
 	argv = get_cmd_option(node);
 	if (!argv)
 		return (ft_putendl_fd(ER_MALLOC_FUNC, 2), \
-		(void) (program->exit = EXIT_FAILURE));
+		(void)(program->exit = EXIT_FAILURE));
 	i = 0;
 	getcwd(oldpwd, 1024);
 	while (argv[i])
 		i++;
 	if (i > 2)
 		return (ft_putendl_fd(ER_CD_ARGS_NB, 2), \
-		(void) (program->exit = EXIT_FAILURE));
+		(void)(program->exit = EXIT_FAILURE));
 	if (i == 1)
 		return (cd_solo_home(program, oldpwd, get_home(program->envp)));
 	else
