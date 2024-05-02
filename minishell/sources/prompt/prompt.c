@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:56:27 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 14:04:35 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*readline_handler(t_program *program, char *value)
 	if (line_read && line_read[0] != ""[0])
 		add_history(line_read);
 	if (g_sig == SIGINT)
-			program->exit = 130;
+		program->exit = 130;
 	return (line_read);
 }
 
