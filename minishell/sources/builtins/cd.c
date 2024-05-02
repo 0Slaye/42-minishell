@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/02 11:30:25 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 17:30:12 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ void	update_pwds(t_program *program, char *current, char *next)
 		return (perror("malloc"));
 	pwd = ft_strjoin("PWD=", next);
 	if (!pwd)
-		return (perror("malloc"));
+		return (free(oldpwd), perror("malloc"));
 	if (is_env_containing(program, "PWD"))
 		remove_to_envp(program, "PWD");
 	if (is_env_containing(program, "OLDPWD"))
 		remove_to_envp(program, "OLDPWD");
 	add_to_envp(program, oldpwd);
 	add_to_envp(program, pwd);
+	free(oldpwd);
+	free(pwd);
 }
 
 char	*get_home(char **envp)
@@ -76,12 +78,13 @@ void	ft_solo_cd(t_program *program, t_tree *node)
 	while (argv[i])
 		i++;
 	if (i > 2)
-		return (ft_putendl_fd(ER_CD_ARGS_NB, 2), \
+		return (free(argv), ft_putendl_fd(ER_CD_ARGS_NB, 2), \
 		(void)(program->exit = EXIT_FAILURE));
 	if (i == 1)
-		return (cd_solo_home(program, oldpwd, get_home(program->envp)));
+		return (cd_solo_home(program, oldpwd, get_home(program->envp)), \
+		free(argv));
 	else
-		return (cd_solo_path(program, oldpwd, argv));
+		return (cd_solo_path(program, oldpwd, argv), free(argv));
 }
 
 void	ft_cd(t_program *program, t_tree *node)
@@ -99,10 +102,10 @@ void	ft_cd(t_program *program, t_tree *node)
 	while (argv[i])
 		i++;
 	if (i > 2)
-		return (ft_putendl_fd(ER_CD_ARGS_NB, 2), \
+		return (free(argv), ft_putendl_fd(ER_CD_ARGS_NB, 2), \
 	free_exit(program, EXIT_FAILURE));
 	if (i == 1)
-		return (cd_home(program, oldpwd, get_home(program->envp)));
+		return (cd_home(program, oldpwd, get_home(program->envp)), free(argv));
 	else
-		return (cd_path(program, oldpwd, argv));
+		return (cd_path(program, oldpwd, argv), free(argv));
 }

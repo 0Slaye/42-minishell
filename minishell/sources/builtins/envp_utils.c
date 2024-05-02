@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:02:46 by slaye             #+#    #+#             */
-/*   Updated: 2024/05/02 11:29:39 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/02 17:25:54 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	add_to_envp(t_program *program, char *value)
 	if (!result[i])
 		return (perror("malloc"), 1);
 	result[i + 1] = NULL;
-	//free_envp(program->envp);
+	free_envp(program->envp);
 	program->envp = result;
 	return (0);
 }
@@ -102,6 +102,6 @@ int	remove_to_envp(t_program *program, char *value)
 		}
 		j++;
 	}
-	//free_envp(program->envp)
+	free_envp(program->envp);
 	return (result[j] = NULL, program->envp = result, 0);
 }
