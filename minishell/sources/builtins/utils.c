@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:35:59 by tal-yafi          #+#    #+#             */
-/*   Updated: 2024/04/30 16:49:46 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:57:28 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	ft_iter_print(char *env)
 	int	i;
 
 	i = 0;
+	if (!env[i] || env[0] == '|')
+		return ;
 	printf("declare -x ");
 	while (env[i] != '=')
 	{
@@ -55,16 +57,33 @@ static void	ft_iter_print(char *env)
 	printf("\"\n");
 }
 
-void	ft_print_env(char **envp)
+int	ft_print_env(char **envp)
 {
-	int	i;
+	char	**n_e;
+	int		i;
+	int		j;
+	int		k;
 
-	i = 0;
-	while (envp[i])
+	n_e = ft_dup_envp(envp);
+	if (!n_e)
+		return (1);
+	k = -1;
+	while (n_e[++k])
 	{
-		ft_iter_print(envp[i]);
-		i++;
+		j = 0;
+		i = k;
+		while (i < ft_array_len(n_e) && j < ft_array_len(n_e))
+		{
+			j = 0;
+			while (j <= ft_array_len(n_e) && ft_strcmp(n_e[i], n_e[j]) <= 0)
+				j++;
+			if (j <= ft_array_len(n_e) && ft_strcmp(n_e[i], n_e[j]) > 0)
+				i = j;
+		}
+		ft_iter_print(n_e[i]);
+		ft_been_printed(n_e[i]);
 	}
+	return (ft_array_cleaner((void **)n_e, ft_array_len(n_e)), 0);
 }
 
 char	**ft_dup_envp(char **envp)

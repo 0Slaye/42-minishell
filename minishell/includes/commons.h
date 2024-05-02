@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:12:23 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/29 17:31:25 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:53:12 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,13 @@ void	ft_unset(t_program *program, t_tree *node);
 void	ft_export(t_program *program, t_tree *node);
 int		ft_array_len(char **array);
 void	ft_array_cleaner(void **array, int position);
-void	ft_print_env(char **envp);
+int		ft_print_env(char **envp);
 char	**ft_dup_envp(char **envp);
 int		ft_env_args(char **argv);
 int		ft_valid_arg(char *argv);
 int		ft_to_update(t_program *program, char *argv);
+void	ft_been_printed(char *line);
+int		ft_strcmp(char *s1, char *s2);
 
 // Signals
 void	setup_signals(void);

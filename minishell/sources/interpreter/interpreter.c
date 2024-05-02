@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:02:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/23 18:13:25 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:29:43 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	check_solo_cmds(t_program *program, t_tree *ast)
 		return (program->pipelvl = -1, ft_exit(program, node), 1);
 	if (ft_strncmp(node->value, "export", 6) == 0)
 		return (ft_export(program, node), 1);
+	if (ft_strncmp(node->value, "unset", 5) == 0)
+		return (ft_unset(program, node), 1);
 	return (0);
 }
 

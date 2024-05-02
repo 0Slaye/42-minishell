@@ -6,7 +6,7 @@
 /*   By: tal-yafi <tal-yafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:45:37 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/30 16:04:42 by tal-yafi         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:09:38 by tal-yafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	ft_bigger_env(t_program *program, char *argv)
 		}
 		j++;
 	}
+	new_e[j] = NULL;
 	ft_array_cleaner((void **)program->envp, j);
 	ft_add_to_env(argv, new_e, j);
 	program->envp = new_e;
@@ -96,11 +97,14 @@ void	ft_export(t_program *program, t_tree *node)
 	while (argv[i])
 	{
 		if (ft_valid_arg(argv[i]) > 0)
-			return (free(argv), (void)ft_putendl_fd(ER_EXPORT_ID, 2));
+			return (free(argv), (void)ft_putendl_fd(ER_EXPORT_ID, 2)); //ER_MSG ft_putstr_fd(argv[i], 2)
 		i++;
 	}
 	if (i == 1)
-		ft_print_env(program->envp);
+	{
+		if (ft_print_env(program->envp) > 0)
+			return ((void)ft_putendl_fd(ER_MALLOC_FUNC, 2));
+	}
 	else if (i > 1)
 	{
 		i = ft_env_args(argv);
