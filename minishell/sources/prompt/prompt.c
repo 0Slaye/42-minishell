@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:33:18 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/24 16:26:43 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:56:27 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commons.h"
 
-char	*readline_handler(char *value)
+char	*readline_handler(t_program *program, char *value)
 {
 	char	*line_read;
 
 	line_read = readline(value);
 	if (line_read && line_read[0] != ""[0])
 		add_history(line_read);
+	if (g_sig == SIGINT)
+			program->exit = 130;
 	return (line_read);
 }
 
@@ -37,7 +39,7 @@ void	prompt(char *value, t_program *program)
 	while (TRUE)
 	{
 		setup_signals();
-		line_read = readline_handler(value);
+		line_read = readline_handler(program, value);
 		if (!line_read)
 			return (ft_putendl_fd("exit", 2), free_exit(program, EXIT_SUCCESS));
 		if (line_read)
