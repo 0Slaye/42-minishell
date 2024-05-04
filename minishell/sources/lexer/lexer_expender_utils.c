@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expender_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uwywijas <uwywijas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:37:20 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/04/12 19:04:02 by uwywijas         ###   ########.fr       */
+/*   Updated: 2024/05/04 10:14:06 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_list_value_length(t_list **list)
 	length = ft_lstsize(*list) - 1;
 	while (*list)
 	{
-		if (lexer_get_type(*list) == 1)
+		if (lexer_get_type(*list) == 1 || lexer_get_type(*list) == 2)
 			length += ft_strlen(lexer_get_value(*list));
 		*list = (*list)->next;
 	}
