@@ -6,7 +6,7 @@
 /*   By: slaye <slaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:14:21 by uwywijas          #+#    #+#             */
-/*   Updated: 2024/05/02 17:57:05 by slaye            ###   ########.fr       */
+/*   Updated: 2024/05/04 10:20:13 by slaye            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ void	ft_exit(t_program *program, t_tree *node)
 	i = 0;
 	while (argv[i])
 		i++;
-	if (i > 2)
+	if (i > 2 && !is_allnum(argv[1]))
 		return (free(argv), ft_putendl_fd(ER_EXIT_ARGS_NB, 2), \
-	(void)(program->exit = EXIT_FAILURE));
+		free_exit(program, EXIT_FAILURE));
+	else if (i > 2)
+		return (free(argv), ft_putendl_fd(ER_EXIT_ARGS_NB, 2), \
+		(void) (program->exit = 127));
 	if (i == 1)
 		return (free(argv), free_exit(program, program->exit));
 	if (!is_allnum(argv[1]))
